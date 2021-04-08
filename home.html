@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name = "viewport" content="with=device-width, intial-scale=1, shrink-to-fit-no">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <title> Long Beach Connect </title>
+        <link rel="stylesheet" href="styles.css">
+        <style>
+            
+            .messg{
+                filter: invert(63%) sepia(62%) saturate(517%) hue-rotate(4deg) brightness(90%) contrast(83%);   
+            }
+            .messg:hover{
+                filter: invert(100%) sepia(100%) saturate(2%) hue-rotate(164deg) brightness(102%) contrast(100%);            }
+            .notif{
+                filter: invert(100%) sepia(100%) saturate(2%) hue-rotate(164deg) brightness(102%) contrast(100%);
+            }
+            .notif:hover{
+                filter: invert(63%) sepia(62%) saturate(517%) hue-rotate(4deg) brightness(90%) contrast(83%);   
+            }
+            .acc{
+                filter: invert(100%) sepia(100%) saturate(2%) hue-rotate(164deg) brightness(102%) contrast(100%);
+            }
+            .acc:hover{
+                filter: invert(63%) sepia(62%) saturate(517%) hue-rotate(4deg) brightness(90%) contrast(83%);   
+            }
+        </style>
+    </head>
+
+    <body>
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        
+        <nav class="navbar navbar-expand-lg" style="background-color:rgb(61, 61, 61)">
+            <a class="navbar-home" href="home.html">
+                <img src="logo.png" width="130" height="60"></a>
+
+            <div class="mx-auto">
+                <form class="form-inline mx-auto">
+                    <input class="form-control mr-sm" style = "width: 400px;"; type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-warning my-1 my-sm-0" type="submit">Search</button>
+                </form>
+            </div>
+
+            <div class="imagess d-flex justify-content-end" >
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-mssg active">
+                        <a href="#">
+                            <img src="message.svg" class = "messg img-fluid" width="40" height="50"></a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-notif" href="#">
+                            <img src="notifications (1) (1).svg" class="notif img-fluid" width="40" height="50"></a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-acc" href="#">
+                            <img src="user.svg" class="acc img-fluid" width="40" height="50"></a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </body>
+</html>
