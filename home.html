@@ -25,6 +25,35 @@
             .acc:hover{
                 filter: invert(63%) sepia(62%) saturate(517%) hue-rotate(4deg) brightness(90%) contrast(83%);   
             }
+            .sidenav a {
+                position: absolute;
+                left: -80px;
+                transition: 0.3s;
+                padding: 15px;
+                width: 130px;
+                text-decoration: none;
+                font-size: 15px;
+                color: white;
+                border-radius: 0 5px 5px 0;
+            }
+            .sidenav a:hover {
+                left: 0;
+            }
+            .Global {
+                top: 130px;
+                background-color: rgb(238, 179, 31);
+            }
+
+            .Announcements{
+                top: 204px;
+                background-color: rgb(134, 134, 134);
+            }
+
+            .Friends {
+                top: 256px;
+                background-color: rgb(61, 61, 61);
+            }
+
         </style>
     </head>
 
@@ -61,5 +90,11 @@
                 </ul>
             </div>
         </nav>
+
+        <div class="sidenav">
+            <a href="#" class="Global">Global Announcements</a>
+            <a href="#" class="Announcements">Announcements</a>
+            <a href="#" class="Friends">Friends</a>
+        </div>
     </body>
 </html>
