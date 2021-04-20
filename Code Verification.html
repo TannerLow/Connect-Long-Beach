@@ -4,9 +4,20 @@
 		<meta charset="utf-8">
 		<title>Code Verification</title>
 		<style>
-			body{
+			.everything::before {    
+				content: "";
 				background-image: url('Walter_Pyramid.jpg');
 				background-size: cover;
+				position: fixed;
+				top: 0px;
+				right: 0px;
+				bottom: 0px;
+				left: 0px;
+				opacity: 0.70;
+				z-index: -1;
+			}
+			.everything {
+				content: "";
 			}
 			.logo-img{
 				height: 10vh;
@@ -86,26 +97,30 @@
 		</style>
 	</head>
 	<body>
-		<div class="logo">
-			<img src="logo.png" class="logo-img">
-		</div>
-		<div class="position-container">
-			<div class="container">
-				<div class="main-box">
-					<form class="form-box">
-						<div class="text-box">
-							<input class="text-box-object" type="code" placeholder="Verification Code">
+		<section>
+			<div class="everything">
+				<div class="logo">
+					<img src="logo.png" class="logo-img">
+				</div>
+				<div class="position-container">
+					<div class="container">
+						<div class="main-box">
+							<form class="form-box">
+								<div class="text-box">
+									<input class="text-box-object" type="code" placeholder="Verification Code">
+								</div>
+								<div class="resend">
+									<a class="resend-link" href="">Resend Code</a>
+								</div>
+								<div class="buttons">
+									<input class="input-button" type="submit" value="Back">
+									<input class="input-button" type="submit" value="Next">
+								</div>
+							</form>
 						</div>
-						<div class="resend">
-							<a class="resend-link" href="">Resend Code</a>
-						</div>
-						<div class="buttons">
-							<input class="input-button" type="submit" value="Back">
-							<input class="input-button" type="submit" value="Next">
-						</div>
-					</form>
+					</div>
 				</div>
 			</div>
-		</div>
+		</section>
 	</body>
 </html>
