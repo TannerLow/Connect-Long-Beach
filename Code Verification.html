@@ -24,14 +24,53 @@
         		height: 30vh;
         		background-color: white;
         		border-radius: 25px;
-        		border: 2px solid black;
+        		border: 2px solid #9c9c9c;
         		box-shadow: 0 0 1px transparent;
         	}
 			.form-box{
 				display: flex;
-				height: 30%;
-				justify-content: center;
+				flex-direction: column;
+				height: 80%;
+				justify-content: space-around;
 				align-items: center;
+			}
+			.text-box{
+				display: flex;
+				justify-content: center;
+				height: 20%;
+				width: 70%;
+			}
+			.text-box-object{
+				text-align: center;
+				width: 100%;
+				font-size: 20pt;
+			}
+			.resend{
+				display: flex;
+				justify-content: flex-end;
+				width:  70%;
+			}
+			.resend-link, .resend-link:visited{
+				text-align: center;
+				color: #0000ff;
+				font-size: 20pt;
+				font-family: Arial;
+				width: 45%;
+			}
+			.buttons{
+				display: flex;
+				justify-content: space-between;
+				width: 70%;
+				height: 20%;
+			}
+			.input-button{
+				width: 45%;
+				border-radius: 25px;
+        		border: 2px solid #9c9c9c;
+        		box-shadow: 0 0 1px transparent;
+        		color: white;
+        		font-size: 20pt;
+        		background-color: #4a4a4a;
 			}
 		</style>
 	</head>
@@ -43,7 +82,14 @@
 			<div class="main-box">
 				<form class="form-box">
 					<div class="text-box">
-						<input type="code" placeholder="Verification Code">
+						<input class="text-box-object" type="code" placeholder="Verification Code">
+					</div>
+					<div class="resend">
+						<a class="resend-link" href="">Resend Code</a>
+					</div>
+					<div class="buttons">
+						<input class="input-button" type="submit" value="Back">
+						<input class="input-button" type="submit" value="Next">
 					</div>
 				</form>
 			</div>
