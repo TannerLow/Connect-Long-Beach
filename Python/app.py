@@ -58,12 +58,12 @@ cur.execute(
 )
 
 # Lets the user enter strings to be inserted in the DB as "posts"
-print("Enter done to move on.")
+print("\nENTER done TO MOVE ON.\n")
 while True:
     post = input("Enter a message to simulate writing a post to the database: ")
     if post == "done":
         break
-    cur.execute("INSERT INTO posts (message) VALUES (%s);", (post,))
+    cur.execute("\nINSERT INTO posts (message) VALUES (%s);", (post,))
 
 db.commit() #DB commit
 
@@ -73,7 +73,7 @@ for post in cur.fetchall():
     print(post)
 
 # Lets the user enter strings to be inserted in the DB as "comments"
-print("Enter done to move on.")
+print("\nENTER done TO MOVE ON\n")
 while True:
     postID = input("Enter a post id you would like to comment on: ")
     if postID == "done":
