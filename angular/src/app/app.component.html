@@ -1,4 +1,16 @@
 <!--Test code for password hashing, feel free to remove if not on
     password hashing branch -->
-<input [(ngModel)]="password" id="passwordInput">
-<button (click)="submitCredentials()">Submit</button>
+<div>
+    <input [(ngModel)]="password" id="passwordInput">
+    <button (click)="submitCredentials()">Submit</button>
+</div>
+<div>
+    <p>{{password}}</p>
+</div>
+
+<nav>
+    <a routerLink="/">Home</a>
+    <a routerLink="/example">Example</a>
+</nav>
+
+<router-outlet></router-outlet>

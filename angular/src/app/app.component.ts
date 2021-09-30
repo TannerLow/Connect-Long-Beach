@@ -8,7 +8,7 @@ import sha256 from "fast-sha256";
 })
 
 export class AppComponent {
-    //title = 'angular';
+    title = 'angular';
 
     password = "";
 
