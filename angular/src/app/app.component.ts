@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component,OnInit } from '@angular/core';
 import sha256 from "fast-sha256";
+import { DatabaseService } from './database.service';
 
 @Component({
     selector: 'app-root',
@@ -11,6 +12,18 @@ export class AppComponent {
     //title = 'angular';
 
     password = "";
+    table:String = "";
+
+    constructor(
+        private databaseService: DatabaseService
+    ) {}
+
+    ngOnInit(){this.getTables() }
+
+    getTables(): void{
+        this.databaseService.retrieveTables().subscribe(table => this.table = table);
+    }
+
 
     submitCredentials() {
         let encoder = new TextEncoder();
