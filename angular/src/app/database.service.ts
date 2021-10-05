@@ -2,14 +2,15 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable,of } from 'rxjs';
 import {catchError,map,tap} from "rxjs/operators";
+import { TableList } from './TableList';
 
-const httpOptionsPlain = {
-  headers: new HttpHeaders({
-    'Accept': 'text/plain',
-    'Content-Type': 'text/plain'
-  }),
-  'responseType': 'text'
-};
+// const httpOptionsPlain = {
+//   headers: new HttpHeaders({
+//     'Accept': 'text/plain',
+//     'Content-Type': 'text/plain'
+//   }),
+//   'responseType': 'text'
+// };
 @Injectable({
   providedIn: 'root'
 })
@@ -19,12 +20,12 @@ export class DatabaseService {
     private http: HttpClient
   ) { }
 
-  retrieveTables(): Observable<any> {
-    return this.http.get("api/showTables",httpOptionsPlain);
-    //.pipe(
-      //tap(_ => console.log('fetched heroes')),
-      //catchError(this.handleError<string>('getHeroes', ""))
-    //);
+  retrieveTables(): Observable<TableList> {
+    return this.http.get<TableList>("api/showTables")
+        .pipe(
+        tap(_ => console.log('fetched heroes')),
+        catchError(this.handleError<TableList>('getHeroes'))
+        );
   }
 
   private handleError<T>(operation = 'operation', result?: T) {

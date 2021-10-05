@@ -9,7 +9,7 @@ def hello_world():
 
 @app.route('/api/showTables')
 def test():
-    print( databases.fetchTables() )
+    print(databases.fetchTables())
     return databases.fetchTables()
 
 app.run()

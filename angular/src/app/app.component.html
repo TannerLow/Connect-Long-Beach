@@ -2,4 +2,6 @@
     password hashing branch -->
 <input [(ngModel)]="password" id="passwordInput">
 <button (click)="submitCredentials()">Submit</button>
-<p> {{table}} </p>
+<div *ngIf="tables">
+    <p *ngFor="let table of tables.tables"> {{table}} </p>
+</div>

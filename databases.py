@@ -1,7 +1,8 @@
 import mysql.connector
+import json
 
 # Read database credentials file to login to the database
-dbCredentialsFile = open("Python/credentials.txt","r")
+dbCredentialsFile = open("credentials.txt","r")
 dbHost = None
 dbUsername = None
 dbPassword = None
@@ -38,8 +39,15 @@ def fetchTables():
     # Cursor is used to interact with the database
     cur = db.cursor()
     cur.execute("SHOW TABLES;")
-    string = cur.fetchall() 
+    dbResult = cur.fetchall() 
     cur.close()
 
-    
-    return " ".join( str(string) )
+    # data format: [("Table1",), ("Table2",)]
+    tables = { "tables": []}
+    for table in dbResult:
+        tables["tables"].append(table[0]) # add table name to dictionary
+
+    return json.loads(json.dumps(tables)) # dump and load removes double quotes
+
+if __name__ == "__main__":
+    print(fetchTables())

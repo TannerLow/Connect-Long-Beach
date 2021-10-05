@@ -1,6 +1,7 @@
 import { Component,OnInit } from '@angular/core';
 import sha256 from "fast-sha256";
 import { DatabaseService } from './database.service';
+import { TableList } from './TableList';
 
 @Component({
     selector: 'app-root',
@@ -9,10 +10,10 @@ import { DatabaseService } from './database.service';
 })
 
 export class AppComponent {
-    //title = 'angular';
+    title = 'angular';
 
     password = "";
-    table:String = "";
+    tables: TableList | undefined;
 
     constructor(
         private databaseService: DatabaseService
@@ -21,7 +22,8 @@ export class AppComponent {
     ngOnInit(){this.getTables() }
 
     getTables(): void{
-        this.databaseService.retrieveTables().subscribe(table => this.table = table);
+        this.databaseService.retrieveTables()
+            .subscribe((data: TableList) => this.tables = { ...data });
     }
 
 
