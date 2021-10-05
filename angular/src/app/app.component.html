@@ -3,5 +3,7 @@
 <input [(ngModel)]="password" id="passwordInput">
 <button (click)="submitCredentials()">Submit</button>
 <div *ngIf="tables">
-    <p *ngFor="let table of tables.tables"> {{table}} </p>
+    <ul *ngFor="let table of tables.tables">
+        <li>{{table}}</li>
+    </ul>
 </div>
