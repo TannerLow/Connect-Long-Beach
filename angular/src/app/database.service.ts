@@ -19,12 +19,12 @@ export class DatabaseService {
     private http: HttpClient
   ) { }
 
-  retrieveTables(): Observable<string> {
-    return this.http.get<string>("api/showTables",httpOptionsPlain)
-    .pipe(
-      tap(_ => console.log('fetched heroes')),
-      catchError(this.handleError<string>('getHeroes', ""))
-    );
+  retrieveTables(): Observable<any> {
+    return this.http.get("api/showTables",httpOptionsPlain);
+    //.pipe(
+      //tap(_ => console.log('fetched heroes')),
+      //catchError(this.handleError<string>('getHeroes', ""))
+    //);
   }
 
   private handleError<T>(operation = 'operation', result?: T) {
