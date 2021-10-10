@@ -1,7 +1,7 @@
 import mysql.connector
 
 # Read database credentials file to login to the database
-dbCredentialsFile = open("Python/credentials.txt","r")
+dbCredentialsFile = open("credentials.txt","r")
 dbHost = None
 dbUsername = None
 dbPassword = None
