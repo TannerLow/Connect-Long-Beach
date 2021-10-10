@@ -27,24 +27,23 @@
   padding: 10px;
 }
 .row{
-
   float:right;
   border-radius: 10px;
   background: linear-gradient(315deg, #636262, #f0f0f0);
   padding: 30px;
 }
-/*.btn1{*/
-/*  border: none;*/
-/*  outline: none;*/
-/*  height: 50px;*/
-/*  width: 100%;*/
-/*  background-color: black;*/
-/*  color: white;*/
-/*  border-radius: 4px;*/
-/*  font-weight: bold;*/
-/*}*/
-/*.btn1:hover{*/
-/*  background-color:goldenrod;*/
-/*  border: 1px solid;*/
-/*  color: black;*/
-/*}*/
+.btn1{
+  border: none;
+  outline: none;
+  height: 50px;
+  width: 100%;
+  background-color: black;
+  color: white;
+  border-radius: 4px;
+  font-weight: bold;
+}
+.btn1:hover{
+  background-color:goldenrod;
+  border: 1px solid;
+  color: black;
+}
