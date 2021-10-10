@@ -4,7 +4,7 @@ import sys
 
 angular_path = os.path.join(os.getcwd(), "angular")
 compile_command = "cd \"" + angular_path + "\" && ng build --base-href /"
-src_dir = "angular/dist/angular"
+src_dir = os.path.join("angular", "dist", "angular")
 dst_templates = "templates"
 dst_static = "static"
 
@@ -23,19 +23,26 @@ def getExtension(filename):
 runCommand(compile_command, "Failed to build. Copying aborted.")
 
 # Generate list of files in dist directory and copy them over
-files = os.listdir(os.path.join(os.getcwd(), src_dir))
+path = os.path.join(os.getcwd(), src_dir)
+files = os.listdir(path)
 for file in files:
-	print("Copying", file, "...")
-	# Put html files in templates folder
-	if getExtension(file) == "html":
-		filepath = os.path.join(src_dir, file)
-		destination = os.path.join(dst_templates, file)
-		shutil.copy2(filepath, destination)
-	# Put everything else in static folder
+	if not os.path.isdir(os.path.join(path, file)):
+		print("Copying", file, "...")
+		# Put html files in templates folder
+		if getExtension(file) == "html":
+			filepath = os.path.join(src_dir, file)
+			destination = os.path.join(dst_templates, file)
+			shutil.copy2(filepath, destination)
+		# Put everything else in static folder
+		else:
+			filepath = os.path.join(src_dir, file)
+			destination = os.path.join(dst_static, file)
+			shutil.copy2(filepath, destination)
 	else:
 		filepath = os.path.join(src_dir, file)
 		destination = os.path.join(dst_static, file)
-		shutil.copy2(filepath, destination)
+		shutil.rmtree(os.path.join(dst_static, file))
+		shutil.copytree(filepath, destination)
 
 
 # Make index.html file compatible with flask by inserting static where necessary

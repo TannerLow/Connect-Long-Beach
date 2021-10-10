@@ -9,7 +9,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-image: url('/angular/src/assets/Walter_Pyramid.jpg');
+  background-image: url('/static/assets/Walter_Pyramid.jpg');
 }
 
 /*.container::before {*/
