@@ -9,20 +9,21 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-image: url('/static/assets/Walter_Pyramid.jpg');
 }
 
-/*.container::before {*/
-/*  content: "";*/
-/*  background-image: url('/Walter_Pyramid.jpg');*/
-/*  background-size: cover;*/
-/*  position: fixed;*/
-/*  top: 0px;*/
-/*  right: 0px;*/
-/*  bottom: 0px;*/
-/*  left: 0px;*/
-/*  opacity: 0.70;*/
-/*}*/
+.container::before {
+  content: "";
+  background-image: url('/static/assets/Walter_Pyramid.jpg');
+  background-size: cover;
+  position: fixed;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+  opacity: 0.70;
+  background-position: top 50% right 0%;
+  z-index: -1;
+}
 .lefter{
   float:left;
   padding: 10px;
