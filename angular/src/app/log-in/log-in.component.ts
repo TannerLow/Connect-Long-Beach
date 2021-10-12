@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {NgForm} from "@angular/forms";
 
 @Component({
   selector: 'app-log-in',
@@ -9,6 +10,10 @@ export class LogInComponent implements OnInit {
 
   constructor() { }
 
+  onInfoItem(form: NgForm){
+    const value = form.value;
+    console.log(value);
+  }
   ngOnInit(): void {
   }
 
