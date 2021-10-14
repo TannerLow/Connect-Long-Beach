@@ -72,31 +72,4 @@ file = open(filepath, "w")
 file.write(with_static)
 file.close()
 
-
-
-# Make index.html file compatible with flask by inserting static where necessary
-filepath = "templates/index.html"
-file = open(filepath, "r")
-contents = file.read()
-contents = contents.split('\"')
-
-# insert /static/ before all file names belonging to the /static folder
-for i in range(len(contents)):
-	token = contents[i]
-	# favicon file
-	if "favicon." in token:
-		contents[i] = "/static/" + token
-	# js files
-	if "styles." in token or "runtime." in token or "polyfills." in token or "main." in token:
-		contents[i] = "/static/" + token
-
-with_static = '\"'.join(contents)
-file.close()
-
-# Update the file with the insertted text
-file = open(filepath, "w")
-file.write(with_static)
-file.close()
-
-
 print("Files done copying")
