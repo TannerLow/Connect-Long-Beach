@@ -1,4 +1,9 @@
-<!--Test code for password hashing, feel free to remove if not on
-    password hashing branch -->
-<input [(ngModel)]="password" id="passwordInput">
-<button (click)="submitCredentials()">Submit</button>
+
+<nav class="navbar  fixed-top navbar-light bg-light" style="background-color: #7e7d7d">
+  <nav class="container-fluid">
+      <img src="../static/assets/logo.png" width="50" class="d-lg-inline-block rounded-pill">
+      <a class ="navbar-brand" routerLink="/log-in">LOG IN</a>
+      <a class ="navbar-brand" routerLink="/sign-up">SIGN UP</a>
+  </nav>
+</nav>
+<router-outlet></router-outlet>

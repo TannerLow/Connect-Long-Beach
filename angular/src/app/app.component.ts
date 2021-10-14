@@ -8,7 +8,7 @@ import sha256 from "fast-sha256";
 })
 
 export class AppComponent {
-    //title = 'angular';
+    title = 'angular';
 
     password = "";
 
@@ -20,13 +20,13 @@ export class AppComponent {
         let str = decoder.decode(view);
         console.log(str);
         console.log(this.hexEncode(view));
-        
+
     }
 
     hexEncode(arr: Uint8Array){
         var hex;
         var result = "";
-    
+
         arr.forEach( character => {
             //only use least significant 8 bits
             for(var i = 1; i >= 0; i--) {
@@ -34,7 +34,7 @@ export class AppComponent {
                 result += hex.toString(16);
             }
         });
-    
+
         return result
     }
 }

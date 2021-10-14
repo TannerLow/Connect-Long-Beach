@@ -5,7 +5,7 @@ dbCredentialsFile = open("credentials.txt","r")
 dbHost = None
 dbUsername = None
 dbPassword = None
-dbDatabase = None
+dbDatabase = "test"
 # parse credentials file
 for line in dbCredentialsFile.readlines():
     line = line.split("=")
@@ -19,8 +19,6 @@ for line in dbCredentialsFile.readlines():
         dbUsername = line[1]
     elif line[0] == "passwd":
         dbPassword = line[1]
-    elif line[0] == "database":
-        dbDatabase = line[1]
 
 dbCredentialsFile.close() #close file
 
