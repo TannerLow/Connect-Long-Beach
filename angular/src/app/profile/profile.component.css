@@ -1,0 +1,8 @@
+.upper-left{
+  background-image: url('/static/assets/Walter_Pyramid.jpg');
+  background-size: cover;
+  height: auto;
+  position: fixed;
+  background-size: 100% 100%;
+  z-index: -1;
+}
