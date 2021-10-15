@@ -49,5 +49,22 @@ def fetchTables():
 
     return json.loads(json.dumps(tables)) # dump and load removes double quotes
 
+def login(email, password):
+    cur = db.cursor()
+    cur.execute(f"SELECT password FROM accounts a WHERE a.email = '{email}';")
+    dbResult = cur.fetchone()
+    while cur.fetchone():
+        pass
+    cur.close()
+
+    # verify password hashes match
+    access_granted = False
+    if dbResult != None and dbResult[0] == password:
+        access_granted = True
+
+    response = { "response": access_granted }
+    return response
+
 if __name__ == "__main__":
     print(fetchTables())
+    print(login("fake_email@test.gov", "9285ab8def09c863d8a68824c31f4404f1cd004029d2af30e62576149d9a652c"))

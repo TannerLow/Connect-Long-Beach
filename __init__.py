@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 import databases
 
 app = Flask(__name__)
@@ -11,5 +11,12 @@ def hello_world(path):
 @app.route('/api/showTables')
 def test():
     return databases.fetchTables()
+
+@app.route('/api/login', methods=['POST'])
+def login():
+    data = request.get_json()
+    email = data['email']
+    pass_hash = data['password']
+    return databases.login(email, pass_hash)
 
 app.run()
