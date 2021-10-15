@@ -6,17 +6,19 @@ import { AppComponent } from './app.component';
 
 import { FormsModule } from '@angular/forms';
 import { LogInComponent } from './log-in/log-in.component';
-import { ProfileComponent } from './profile/profile.component';
+import { ProfileComponent} from './profile/profile.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatGridListModule} from "@angular/material/grid-list";
 import {MatDividerModule} from "@angular/material/divider";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatInputModule} from "@angular/material/input";
 
 @NgModule({
   declarations: [
     AppComponent,
     routingComponents,
     LogInComponent,
-    ProfileComponent
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,
@@ -25,6 +27,8 @@ import {MatDividerModule} from "@angular/material/divider";
     BrowserAnimationsModule,
     MatGridListModule,
     MatDividerModule,
+    MatFormFieldModule,
+    MatInputModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
