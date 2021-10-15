@@ -22,8 +22,9 @@ export class AppComponent {
     ) {}
 
     ngOnInit() {
+        //testing connection to database
         this.login();
-        //this.getTables();
+        this.getTables();
     }
 
     getTables(): void{

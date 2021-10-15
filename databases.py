@@ -1,43 +1,40 @@
 import mysql.connector
 import json
 
-# Read database credentials file to login to the database
-dbCredentialsFile = open("credentials.txt","r")
-dbHost = None
-dbUsername = None
-dbPassword = None
-dbDatabase = None
+def initialize(app):
+    # Read database credentials file to login to the database
+    dbCredentialsFile = open("credentials.txt","r")
+    dbHost = None
+    dbUsername = None
+    dbPassword = None
+    dbDatabase = None
 
-# parse credentials file
-for line in dbCredentialsFile.readlines():
-    line = line.split("=")
-    for i in range(0, len(line)):
-        line[i] = line[i].strip()
-    
-    #set credential variables
-    if line[0] == "host":
-        dbHost = line[1]
-    elif line[0] == "user":
-        dbUsername = line[1]
-    elif line[0] == "passwd":
-        dbPassword = line[1]
-    elif line[0] == "database":
-        dbDatabase = line[1]
+    # parse credentials file
+    for line in dbCredentialsFile.readlines():
+        line = line.split("=")
+        for i in range(0, len(line)):
+            line[i] = line[i].strip()
+        
+        #set credential variables
+        if line[0] == "host":
+            dbHost = line[1]
+        elif line[0] == "user":
+            dbUsername = line[1]
+        elif line[0] == "passwd":
+            dbPassword = line[1]
+        elif line[0] == "database":
+            dbDatabase = line[1]
 
-dbCredentialsFile.close() #close file
-
-# Connect to remote database
-db = mysql.connector.connect(
-	host = dbHost,
-	user = dbUsername,
-	passwd = dbPassword,
-	database = dbDatabase
-)
+    app.config['MYSQL_HOST'] = dbHost
+    app.config['MYSQL_USER'] = dbUsername
+    app.config['MYSQL_PASSWORD'] = dbPassword
+    app.config['MYSQL_DB'] = dbDatabase
+    dbCredentialsFile.close() #close file
 
 
-def fetchTables():
+def fetchTables(mysql):
     # Cursor is used to interact with the database
-    cur = db.cursor()
+    cur = mysql.connection.cursor()
     cur.execute("SHOW TABLES;")
     dbResult = cur.fetchall() 
     cur.close()
@@ -49,12 +46,11 @@ def fetchTables():
 
     return json.loads(json.dumps(tables)) # dump and load removes double quotes
 
-def login(email, password):
-    cur = db.cursor()
+
+def login(mysql, email, password):
+    cur = mysql.connection.cursor()
     cur.execute(f"SELECT password FROM accounts a WHERE a.email = '{email}';")
     dbResult = cur.fetchone()
-    while cur.fetchone():
-        pass
     cur.close()
 
     # verify password hashes match
