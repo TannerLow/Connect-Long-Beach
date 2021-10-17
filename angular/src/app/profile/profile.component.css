@@ -1,4 +1,6 @@
-.upper-left{
+/*background image is not displaying when adding ::before. However if ::before is removed
+it will not allow us to click on the dialog button*/
+.upper-left::before{
   background-image: url('/static/assets/Walter_Pyramid.jpg');
   background-size: cover;
   height: auto;

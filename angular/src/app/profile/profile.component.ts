@@ -1,6 +1,7 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from "@angular/material/dialog";
-export interface DialogData{
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+//Data used for the Dialog data.. might want to export this interface to save space
+export interface DialogData {
   major: string;
   year: string;
   gender: string;
@@ -8,43 +9,63 @@ export interface DialogData{
   courses: string;
 }
 
+
 @Component({
-  selector: 'app-profile',
-  templateUrl: './profile.component.html',
+  selector: 'profile-component',
+  templateUrl: 'profile.component.html',
   styleUrls: ['./profile.component.css']
 })
-export class ProfileComponent implements OnInit {
+export class ProfileComponent implements  OnInit{
+
   major = ""
   year = ""
   gender = ""
   interest = ""
   courses = ""
-  constructor() { }
+  constructor(public dialog: MatDialog) {}
+  ngOnInit(): void {
+  }
+
+  openDialog(): void {
+    const dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
+      width: '250px',
+      data: {major: this.major, year: this.year, gender: this.gender, interest: this.interest, courses: this.courses}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      this.major = result[0];
+      this.year = result[1];
+      this.gender = result[2];
+      this.interest = result[3];
+      this.courses = result[4];
+      console.log(this.major);
+      console.log(this.year);
+      console.log(this.gender);
+      console.log(this.interest);
+      console.log(this.courses);
+      
+    });
+  }
+
+
+}
+
+@Component({
+  selector: 'dialog-overview-example-dialog',
+  templateUrl: 'dialog-overview-example-dialog.html',
+})
+export class DialogOverviewExampleDialog implements OnInit{
+
+  constructor(
+    public dialogRef: MatDialogRef<DialogOverviewExampleDialog>,
+    @Inject(MAT_DIALOG_DATA) public data: DialogData) {}
 
   ngOnInit(): void {
   }
 
-  openInformation(): void{
-    // const dialogRed = this.dialog.open(DialogOverview,{
-    //   width: '250px',
-    //   data: {major: this.major, year: this.year, gender: this.gender, interest: this.interest, courses: this.courses}
-    // });
+  onNoClick(): void {
+   this.dialogRef.close();
   }
 
 }
-
-// @Component({
-//   selector: 'profile-dialog-overview',
-//   templateUrl: 'profile-dialog-overview.html'
-// })
-// export class DialogOverview implements OnInit{
-//   constructor(
-//     public dialogRef:  MatDialogRef<DialogOverview>,
-//     @Inject(MAT_DIALOG_DATA) public data: DialogData){}
-//
-//     ngOnInit(): void {
-//     }
-//     onDone(): void{
-//       this.dialogRef.close();
-//     }
-// }
