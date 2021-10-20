@@ -5,7 +5,8 @@ import {catchError,map,tap} from "rxjs/operators";
 import { TableList } from './TableList';
 import { LoginCredentials } from './api-objects/LoginCredentials';
 import { LoginResponse } from './api-objects/LoginResponse';
-
+import { RegistrationInfo } from './api-objects/RegistrationInfo';
+import { RegistrationResponse } from './api-objects/RegistrationResponse';
 
 const URL = 'api/';
 
@@ -27,11 +28,18 @@ export class DatabaseService {
     }
 
     login(credentials: LoginCredentials): Observable<LoginResponse> {
-        console.log(credentials);
         return this.http.post<LoginResponse>(URL + "login", credentials)
             .pipe(
             tap(_ => console.log('login requested for ' + credentials.email)),
             catchError(this.handleError<LoginResponse>('login'))
+        );
+    }
+
+    register(registrationInfo: RegistrationInfo): Observable<RegistrationResponse> {
+        return this.http.post<RegistrationResponse>(URL + "register", registrationInfo)
+            .pipe(
+            tap(_ => console.log('registration requested for ' + registrationInfo.email)),
+            catchError(this.handleError<RegistrationResponse>('register'))
         );
     }
 

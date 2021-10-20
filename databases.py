@@ -61,6 +61,21 @@ def login(mysql, email, password):
     response = { "response": access_granted }
     return response
 
-if __name__ == "__main__":
-    print(fetchTables())
-    print(login("fake_email@test.gov", "9285ab8def09c863d8a68824c31f4404f1cd004029d2af30e62576149d9a652c"))
+
+def register(mysql, email, password):
+    cur = mysql.connection.cursor()
+    cur.execute(f"SELECT id FROM accounts a WHERE a.email = '{email}';")
+    if cur.fetchone():
+        return {"response": False}
+
+    cur.execute(f"INSERT INTO accounts(email, password) VALUES('{email}', '{password}');")
+    mysql.connection.commit()
+    cur.close()
+    return {"response": True}
+
+
+def test(mysql):
+    print(fetchTables(mysql))
+    print(login(mysql, "fake_email@test.gov", "9285ab8def09c863d8a68824c31f4404f1cd004029d2af30e62576149d9a652c"))
+    print(register(mysql, "another_fake@flylo.fm", "9285ab8def09c863d8a68824c31f4404f1cd004029d2af30e62576149d9a652d"))
+    print(login(mysql, "another_fake@flylo.fm", "9285ab8def09c863d8a68824c31f4404f1cd004029d2af30e62576149d9a652d"))

@@ -5,6 +5,8 @@ import { DatabaseService } from './database.service';
 import { LogInComponent } from './log-in/log-in.component';
 import { TableList } from './TableList';
 import { LoginResponse } from './api-objects/LoginResponse';
+import { RegistrationResponse } from './api-objects/RegistrationResponse';
+import { RegistrationInfo } from './api-objects/RegistrationInfo';
 
 @Component({
     selector: 'app-root',
@@ -25,6 +27,7 @@ export class AppComponent {
         //testing connection to database
         this.login();
         this.getTables();
+        this.register();
     }
 
     getTables(): void{
@@ -46,6 +49,26 @@ export class AppComponent {
             }
             else {
                 console.log("Login failed")
+            }
+        });
+    }
+
+    register(): void {
+        //test
+        let info: RegistrationInfo = {
+            firstName: "Mayor",
+            lastName: "Oana",
+            email: "another_fake@flylo.fm",
+            password: this.hashPassword("mypassword")
+        }
+
+        this.databaseService.register(info).subscribe((data: RegistrationResponse) => {
+            console.log("Restration response: " + data.response);
+            if (data.response) {
+                console.log("Registered successfully");
+            }
+            else {
+                console.log("Failed Registration")
             }
         });
     }

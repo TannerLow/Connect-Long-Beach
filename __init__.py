@@ -8,12 +8,14 @@ mysql = MySQL(app)
 
 @app.route('/', defaults={'path': ''})
 @app.route('/<path:path>')
-def hello_world(path):
+def home(path):
     return render_template('index.html')
+
 
 @app.route('/api/showTables')
 def test():
     return databases.fetchTables(mysql)
+
 
 @app.route('/api/login', methods=['POST'])
 def login():
@@ -21,5 +23,13 @@ def login():
     email = data['email']
     pass_hash = data['password']
     return databases.login(mysql, email, pass_hash)
+
+
+@app.route('/api/register', methods=['POST'])
+def register():
+    data = request.get_json()
+    email = data['email']
+    pass_hash = data['password']
+    return databases.register(mysql, email, pass_hash)
 
 app.run()
