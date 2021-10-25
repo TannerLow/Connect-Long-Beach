@@ -9,12 +9,8 @@ mysql = MySQL(app)
 @app.route('/', defaults={'path': ''})
 @app.route('/<path:path>')
 def home(path):
+    print(databases.is_email_in_use(mysql, "fake_email@test.gov"))
     return render_template('index.html')
-
-
-@app.route('/api/showTables')
-def test():
-    return databases.fetchTables(mysql)
 
 
 @app.route('/api/login', methods=['POST'])

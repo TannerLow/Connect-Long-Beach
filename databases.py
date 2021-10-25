@@ -62,12 +62,23 @@ def login(mysql, email, password):
     return response
 
 
-def register(mysql, email, password):
+def is_email_in_use(mysql, email):
     cur = mysql.connection.cursor()
     cur.execute(f"SELECT id FROM accounts a WHERE a.email = '{email}';")
+    email_in_use = False
     if cur.fetchone():
+        email_in_use = True
+
+    cur.close()
+    return {"response": email_in_use}
+
+
+def register(mysql, email, password):
+    # Fail if email already in use
+    if is_email_in_use(mysql, email):
         return {"response": False}
 
+    cur = mysql.connection.cursor()
     cur.execute(f"INSERT INTO accounts(email, password) VALUES('{email}', '{password}');")
     mysql.connection.commit()
     cur.close()
