@@ -64,8 +64,8 @@ def login(mysql, email, password):
 
 def is_email_in_use(mysql, email):
     cur = mysql.connection.cursor()
-    cur.execute(f"SELECT id FROM accounts a WHERE a.email = '{email}';")
     email_in_use = False
+    cur.execute(f"SELECT id FROM accounts a WHERE a.email = '{email}';")
     if cur.fetchone():
         email_in_use = True
 
@@ -73,13 +73,14 @@ def is_email_in_use(mysql, email):
     return {"response": email_in_use}
 
 
-def register(mysql, email, password):
+def register(mysql, email, password, fname, lname, gender, path_url):
     # Fail if email already in use
-    if is_email_in_use(mysql, email):
+    if is_email_in_use(mysql, email)["response"]:
         return {"response": False}
 
     cur = mysql.connection.cursor()
     cur.execute(f"INSERT INTO accounts(email, password) VALUES('{email}', '{password}');")
+    cur.execute(f"INSERT INTO users(userID, fname, lname, gender, pathUrl) VALUES(1, '{fname}', '{lname}', '{gender}', '{path_url}');")
     mysql.connection.commit()
     cur.close()
     return {"response": True}

@@ -53,6 +53,7 @@ export class AppComponent {
         let info: RegistrationInfo = {
             firstName: "Mayor",
             lastName: "Oana",
+            gender: "female",
             email: "another_fake@flylo.fm",
             password: this.hashPassword("mypassword")
         }

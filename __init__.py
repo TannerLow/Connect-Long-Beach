@@ -9,7 +9,6 @@ mysql = MySQL(app)
 @app.route('/', defaults={'path': ''})
 @app.route('/<path:path>')
 def home(path):
-    print(databases.is_email_in_use(mysql, "fake_email@test.gov"))
     return render_template('index.html')
 
 
@@ -26,7 +25,11 @@ def register():
     data = request.get_json()
     email = data['email']
     pass_hash = data['password']
-    return databases.register(mysql, email, pass_hash)
+    fname = data["firstName"]
+    lname = data["lastName"]
+    gender = data["gender"]
+    pathUrl = "temporary"
+    return databases.register(mysql, email, pass_hash, fname, lname, gender, pathUrl)
 
 
 @app.route('/api/emailCheck/<email>')
