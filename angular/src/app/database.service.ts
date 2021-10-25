@@ -2,11 +2,11 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable,of } from 'rxjs';
 import {catchError,map,tap} from "rxjs/operators";
-import { TableList } from './TableList';
 import { LoginCredentials } from './api-objects/LoginCredentials';
 import { LoginResponse } from './api-objects/LoginResponse';
 import { RegistrationInfo } from './api-objects/RegistrationInfo';
 import { RegistrationResponse } from './api-objects/RegistrationResponse';
+import { EmailCheckResponse } from './api-objects/EmailCheckResponse';
 
 const URL = 'api/';
 
@@ -18,14 +18,6 @@ export class DatabaseService {
     constructor(
         private http: HttpClient
     ) { }
-
-    retrieveTables(): Observable<TableList> {
-        return this.http.get<TableList>(URL + "showTables")
-            .pipe(
-            tap(_ => console.log('fetched db table names')),
-            catchError(this.handleError<TableList>('fetchTables'))
-        );
-    }
 
     login(credentials: LoginCredentials): Observable<LoginResponse> {
         return this.http.post<LoginResponse>(URL + "login", credentials)
@@ -40,6 +32,14 @@ export class DatabaseService {
             .pipe(
             tap(_ => console.log('registration requested for ' + registrationInfo.email)),
             catchError(this.handleError<RegistrationResponse>('register'))
+        );
+    }
+
+    isEmailInUse(email: string): Observable<EmailCheckResponse> {
+        return this.http.get<EmailCheckResponse>(URL + "emailCheck/" + email)
+            .pipe(
+            tap(_ => console.log('email check for ' + email)),
+            catchError(this.handleError<EmailCheckResponse>('isEmailInUse'))
         );
     }
 

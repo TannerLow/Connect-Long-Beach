@@ -28,4 +28,10 @@ def register():
     pass_hash = data['password']
     return databases.register(mysql, email, pass_hash)
 
+
+@app.route('/api/emailCheck/<email>')
+def check_email(email):
+    return databases.is_email_in_use(mysql, email)
+
+
 app.run()

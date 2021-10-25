@@ -3,10 +3,10 @@ import sha256 from "fast-sha256";
 import { LoginCredentials } from './api-objects/LoginCredentials';
 import { DatabaseService } from './database.service';
 import { LogInComponent } from './log-in/log-in.component';
-import { TableList } from './TableList';
 import { LoginResponse } from './api-objects/LoginResponse';
 import { RegistrationResponse } from './api-objects/RegistrationResponse';
 import { RegistrationInfo } from './api-objects/RegistrationInfo';
+import { EmailCheckResponse } from './api-objects/EmailCheckResponse';
 
 @Component({
     selector: 'app-root',
@@ -26,13 +26,8 @@ export class AppComponent {
     ngOnInit() {
         //testing connection to database
         this.login();
-        this.getTables();
         this.register();
-    }
-
-    getTables(): void{
-        this.databaseService.retrieveTables()
-            .subscribe((data: TableList) => console.log(data));
+        this.checkEmail("fake_email@tes.gov");
     }
 
     login(): void {
@@ -70,6 +65,13 @@ export class AppComponent {
             else {
                 console.log("Failed Registration")
             }
+        });
+    }
+
+    checkEmail(email: string): void {
+        //test
+        this.databaseService.isEmailInUse(email).subscribe((data: EmailCheckResponse) => {
+            console.log("Email " + email + ": " + data.response);
         });
     }
 
