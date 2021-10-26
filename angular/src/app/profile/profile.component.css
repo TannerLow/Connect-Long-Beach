@@ -70,3 +70,16 @@ it will not allow us to click on the dialog button*/
   margin: 20%;
   bottom:0px;
 }
+
+.container-info{
+  position:absolute;
+  top:20px;
+  left: 80px;
+}
+
+.container-other{
+  display: flex;
+}
+.container-other p{
+  margin: 10px;
+}

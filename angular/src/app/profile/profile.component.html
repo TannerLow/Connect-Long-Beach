@@ -1,11 +1,11 @@
-<mat-grid-list cols="4" rows="5">
+<mat-grid-list cols="4" rows="3">
   <mat-grid-tile class ="mat-grid-tile" colspan="4" rows="1" rowspan="1" class ="upper-left" >
     <img mat-card-image src="/static/assets/anonymous.png" alt="Profile Picture" >
     <button mat-raised-button class="button-upper" (click)="openDialog()">Customize Profile</button>
 
   </mat-grid-tile>
 
-  <mat-grid-tile class ="mat-grid-tile" cols="1" rows="3" rowspan="3">
+  <mat-grid-tile class ="mat-grid-tile" cols="1" rows="3" rowspan="2">
 
     <mat-card class="card-container-top">
       <mat-card-title>GENDER</mat-card-title>
@@ -36,7 +36,19 @@
   </mat-grid-tile>
 
 
- <mat-grid-tile class ="mat-grid-tile" cols="3" colspan="3"  rowspan="3"></mat-grid-tile>
+ <mat-grid-tile class ="mat-grid-tile" cols="3" colspan="3"  rowspan="2">
+
+   <div class="container-info">
+     <div class ="container-name">
+       <p> Name</p>
+     </div>
+     <div class ="container-other">
+       <p>Major</p>
+       <p>Year</p>
+     </div>
+   </div>
+
+ </mat-grid-tile>
 
 </mat-grid-list>
 
