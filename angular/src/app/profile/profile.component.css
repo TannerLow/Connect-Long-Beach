@@ -8,3 +8,65 @@ it will not allow us to click on the dialog button*/
   background-size: 100% 100%;
   z-index: -1;
 }
+
+.button-upper{
+  position:absolute;
+  top: 0;
+  right: 0;
+  margin: 20px;
+}
+
+.mat-grid-tile{
+  border-color: black;
+  border-style: solid;
+}
+
+.mat-card-image:first-child {
+  margin:20px;
+  height: 80%;
+  width: 30%;
+  border-radius: 50%;
+}
+
+.card-container-top{
+  padding-left: 40px;
+  padding-right: 40px;
+  padding-bottom: 40px;
+  color: black;
+  position: absolute;
+  top: 0;
+  display: block;
+  justify-content: space-between;
+  border-style: solid;
+  border-color: black;
+  margin: 20%;
+}
+
+.card-container-middle{
+
+  padding-left: 40px;
+  padding-right: 40px;
+  padding-bottom: 40px;
+  color: black;
+  position: absolute;
+  display: block;
+  justify-content: space-between;
+  border-style: solid;
+  border-color: black;
+  margin: 20%
+}
+
+.card-container-low{
+
+  padding-left: 40px;
+  padding-right: 40px;
+  padding-bottom: 40px;
+  color: black;
+  position: absolute;
+  display: block;
+  justify-content: space-between;
+  border-style: solid;
+  border-color: black;
+  margin: 20%;
+  bottom:0px;
+}

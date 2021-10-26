@@ -44,7 +44,7 @@ export class ProfileComponent implements  OnInit{
       console.log(this.gender);
       console.log(this.interest);
       console.log(this.courses);
-      
+
     });
   }
 
@@ -64,8 +64,5 @@ export class DialogOverviewExampleDialog implements OnInit{
   ngOnInit(): void {
   }
 
-  onNoClick(): void {
-   this.dialogRef.close();
-  }
 
 }

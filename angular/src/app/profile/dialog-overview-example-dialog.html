@@ -1,6 +1,9 @@
 <h1 mat-dialog-title>NAME</h1>
 <div mat-dialog-content>
   <img mat-card-image src="/static/assets/anonymous.png" alt="Profile Picture" style="border-radius: 50%">
+
+
+
   <mat-form-field appearance="fill">
     <mat-label>Major</mat-label>
     <input matInput [(ngModel)]="data.major">
@@ -29,6 +32,5 @@
 </div>
 
 <div mat-dialog-actions>
-  <button mat-button (click)="onNoClick()">No Thanks</button>
-  <button mat-button [mat-dialog-close]="[data.major, data.year, data.gender, data.interest, data.courses]" cdkFocusInitial>Ok</button>
+  <button mat-button [mat-dialog-close]="[data.major, data.year, data.gender, data.interest, data.courses]" cdkFocusInitial>SAVE</button>
 </div>

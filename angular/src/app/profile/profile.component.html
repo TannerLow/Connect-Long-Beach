@@ -1,23 +1,42 @@
-<mat-grid-list cols="1" rowHeight="6:1">
-  <mat-grid-tile class ="upper-left" >
-    <img mat-card-image src="/static/assets/anonymous.png" alt="Profile Picture" style="border-radius: 50%">
-    <button mat-raised-button (click)="openDialog()">Pick one</button>
-  </mat-grid-tile>
-  <mat-divider></mat-divider>
+<mat-grid-list cols="4" rows="5">
+  <mat-grid-tile class ="mat-grid-tile" colspan="4" rows="1" rowspan="1" class ="upper-left" >
+    <img mat-card-image src="/static/assets/anonymous.png" alt="Profile Picture" >
+    <button mat-raised-button class="button-upper" (click)="openDialog()">Customize Profile</button>
 
-<!--</mat-grid-list>-->
-<!--<ol>-->
-<!--  <li>-->
-<!--    <mat-form-field appearance="fill">-->
-<!--      <mat-label>What's your name?</mat-label>-->
-<!--      <input matInput [(ngModel)]="name">-->
-<!--    </mat-form-field>-->
-<!--  </li>-->
-<!--  <li>-->
-<!--    <button mat-raised-button (click)="openDialog()">Pick one</button>-->
-<!--  </li>-->
-<!--  <li *ngIf="animal">-->
-<!--    You chose: <i>{{animal}}</i>-->
-<!--  </li>-->
-<!--</ol>-->
+  </mat-grid-tile>
+
+  <mat-grid-tile class ="mat-grid-tile" cols="1" rows="3" rowspan="3">
+
+    <mat-card class="card-container-top">
+      <mat-card-title>GENDER</mat-card-title>
+      <mat-card-content>
+        <p>MALE</p>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-divider inset></mat-divider>
+
+    <mat-card class="card-container-middle">
+      <mat-card-title>INTEREST</mat-card-title>
+      <mat-card-content>
+        <p>SOCCER</p>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-divider inset></mat-divider>
+
+    <mat-card class="card-container-low">
+      <mat-card-title>COURSES</mat-card-title>
+      <mat-card-content>
+        <p>CECS 323</p>
+        <p>CECS 426</p>
+      </mat-card-content>
+    </mat-card>
+
+  </mat-grid-tile>
+
+
+ <mat-grid-tile class ="mat-grid-tile" cols="3" colspan="3"  rowspan="3"></mat-grid-tile>
+
+</mat-grid-list>
 
