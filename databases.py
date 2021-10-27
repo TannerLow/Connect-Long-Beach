@@ -88,14 +88,21 @@ def create_unique_id():
 
 
 def generate_unique_id(mysql):
+    uid = create_unique_id()
+    cur = mysql.connection.cursor()
+    cur.execute(f"SELECT pathUrl FROM users u WHERE u.pathUrl='{uid}';")
+    while cur.fetchone():
+        uid = create_unique_id()
+        cur.execute(f"SELECT pathUrl FROM users u WHERE u.pathUrl='{uid}';")
+    cur.colse()
+    return uid
 
-    
-
-def register(mysql, email, password, fname, lname, gender, path_url):
+def register(mysql, email, password, fname, lname, gender):
     # Fail if email already in use
     if is_email_in_use(mysql, email)["response"]:
         return {"response": False}
 
+    pathUrl = generate_unique_id(mysql)
     cur = mysql.connection.cursor()
     cur.execute(f"INSERT INTO accounts(email, password) VALUES('{email}', '{password}');")
     cur.execute(f"INSERT INTO users(userID, fname, lname, gender, pathUrl) VALUES(1, '{fname}', '{lname}', '{gender}', '{path_url}');")

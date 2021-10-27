@@ -28,8 +28,7 @@ def register():
     fname = data["firstName"]
     lname = data["lastName"]
     gender = data["gender"]
-    pathUrl = "temporary"
-    return databases.register(mysql, email, pass_hash, fname, lname, gender, pathUrl)
+    return databases.register(mysql, email, pass_hash, fname, lname, gender)
 
 
 @app.route('/api/emailCheck/<email>')
