@@ -1,6 +1,6 @@
 <h1 mat-dialog-title>NAME</h1>
 <div mat-dialog-content>
-  <img mat-card-image src="{{data.pa}}" alt="Profile Picture" style="border-radius: 50%">
+  <img mat-card-image class="mat-card-image-dialog" src="{{data.pa}}" alt="Profile Picture">
 
   <input type = "file" (change)="onFileSelected($event)">
 
@@ -15,8 +15,10 @@
   </mat-form-field>
 
   <mat-form-field appearance="fill">
-    <mat-label>Gender & Pronouns</mat-label>
-    <input matInput [(ngModel)]="data.gender">
+    <mat-label>GENDER</mat-label>
+    <mat-select multiple>
+      <mat-option *ngFor="let gender of genderNames" [value]="genderNames">{{gender}}</mat-option>
+    </mat-select>
   </mat-form-field>
 
   <mat-form-field appearance="fill">
@@ -24,11 +26,13 @@
     <input matInput [(ngModel)]="data.interest">
   </mat-form-field>
 
-  <mat-form-field appearance="fill">
-    <mat-label>Courses</mat-label>
-    <input matInput [(ngModel)]="data.courses">
-  </mat-form-field>
 
+  <mat-form-field appearance="fill">
+    <mat-label>COURSES</mat-label>
+    <mat-select  multiple>
+      <mat-option *ngFor="let class of classCourses" [value]="class">{{class}}</mat-option>
+    </mat-select>
+  </mat-form-field>
 </div>
 
 <div mat-dialog-actions>

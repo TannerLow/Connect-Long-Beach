@@ -28,6 +28,14 @@ it will not allow us to click on the dialog button*/
   border-radius: 50%;
 }
 
+.mat-card-image-dialog{
+  height: 40%;
+  width: 30%;
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+}
+
 .card-container-top{
   padding-left: 40px;
   padding-right: 40px;

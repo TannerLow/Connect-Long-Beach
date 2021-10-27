@@ -31,7 +31,6 @@ export class ProfileComponent implements  OnInit{
   openDialog(): void {
     const dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
       width: '30%',
-      height: '70%',
       data: {major: this.major, year: this.year, gender: this.gender, interest: this.interest, courses: this.courses, pa: this.pa}
     });
 
@@ -57,9 +56,11 @@ export class ProfileComponent implements  OnInit{
 @Component({
   selector: 'dialog-overview-example-dialog',
   templateUrl: 'dialog-overview-example-dialog.html',
+  styleUrls: ['./profile.component.css']
 })
 export class DialogOverviewExampleDialog implements OnInit{
-
+  classCourses : string[] = ['CECS 324', 'CECS 225', 'CECS 328', 'CECS 343', 'CECS 451', 'CECS 453'];
+  genderNames : string[] = ['MALE', 'FEMALE', 'LESBIAN', 'GAY', 'HETEROSEXUAL', 'BISEXUAL'];
   constructor(
     public dialogRef: MatDialogRef<DialogOverviewExampleDialog>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData) {}

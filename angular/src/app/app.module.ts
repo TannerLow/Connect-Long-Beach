@@ -66,6 +66,7 @@ import {OverlayModule} from '@angular/cdk/overlay';
     MatInputModule,
     MatDialogModule,
     MatCardModule,
+    MatSelectModule
   ],
   exports: [
     MatAutocompleteModule,
