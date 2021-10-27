@@ -9,6 +9,9 @@ import {NgForm} from "@angular/forms";
 })
 export class SignUpComponent implements OnInit {
 
+  emailPattern = "^[a-z0-9._-]+@student\.csulb\.edu$";
+  passPattern = "(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&]).{8,20}";
+
   constructor() { }
 
   onInfoItem(form: NgForm){
