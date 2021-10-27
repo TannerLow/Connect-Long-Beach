@@ -10,8 +10,8 @@
      <form (ngSubmit)="onInfoItem(f)" #f="ngForm">
        <div class = "form-row">
          <div class="col-lg-12" style="margin-left: 160px;">
-           <input type="FirstName" placeholder="First Name" ngModel required #fname="ngModel" style="width: 500px;" class="form-control my-3 p-4" >
-             <div *ngIf="(fname.dirty || fname.touched)" class="alert" [ngClass] = "'error'">
+           <input type="FirstName" placeholder="First Name" ngModel required #fname="ngModel" style="width: 500px;" class="form-control my-3 p-4"  >
+             <div *ngIf="(f.submitted && fname.invalid)" [ngClass] = "'error'">
                <div *ngIf="fname.errors?.required">
                  First name is required.
                </div>
@@ -22,7 +22,7 @@
        <div class = "form-row">
          <div class="col-lg-12" style="margin-left: 160px;margin-right: 160px;">
            <input type="lastName" placeholder="Last Name" ngModel required #lname="ngModel" style="width: 500px;" class="form-control my-3 p-4">
-             <div *ngIf="(lname.dirty || lname.touched)" class="alert" [ngClass] = "'error'">
+             <div *ngIf="(f.submitted && lname.invalid)" [ngClass] = "'error'">
                <div *ngIf="lname.errors?.required">
                  Last name is required.
                </div>
@@ -33,12 +33,12 @@
        <div class = "form-row">
          <div class="col-lg-12" style="margin-left: 160px;">
            <input type="Email" placeholder="Email" ngModel required [pattern]="emailPattern" #emailAddress="ngModel" style="width: 500px;" class="form-control my-3 p-4">
-             <div *ngIf="emailAddress.invalid && (emailAddress.dirty || emailAddress.touched)" class="alert" [ngClass] = "'error'">
-               <div *ngIf="emailAddress.errors?.pattern">
+             <div *ngIf="emailAddress.invalid && f.submitted" [ngClass] = "'error'">
+                <div *ngIf="emailAddress.errors?.required">
+                    Email is required.
+                  </div> 
+              <div *ngIf="emailAddress.errors?.pattern">
                  Email is invalid. Please use a CSULB student email.
-               </div>
-               <div *ngIf="emailAddress.errors?.required">
-                 Email is required.
                </div>
              </div>
          </div>
@@ -47,13 +47,18 @@
        <div class = "form-row">
          <div class="col-lg-12" style="margin-left: 160px;">
            <input type="Password" placeholder="Password" ngModel required [pattern]="passPattern" name="passwordFieldName" #pass="ngModel" style="width: 500px;" class="form-control my-3 p-4">
-             <div *ngIf="pass.invalid && (pass.dirty || pass.touched)" class="alert" [ngClass] = "'error'">
+             <!-- <div *ngIf="pass.invalid && (pass.dirty || pass.touched)" [ngClass] = "'error'">
                <div *ngIf="pass.errors?.pattern">
                  Password is invalid. Please ensure that it meets the requirements.
                </div>
+              </div> -->
+              <div *ngIf="pass.invalid && (pass.dirty || pass.touched)" [ngClass] = "'error'">
                <div *ngIf="pass.errors?.required">
                  Password is required.
                </div>
+               <div *ngIf="pass.errors?.pattern">
+                  Password is invalid. Please ensure that it meets the requirements.
+                </div>
              </div>
          </div>
        </div>
@@ -61,20 +66,25 @@
        <div class = "form-control">
          <div class="col-lg-12" style="margin-left: 160px;">
            <input type="Password" placeholder="Confirm password" ngModel required ngValidateEqual="passwordFieldName" #pass2="ngModel" style="width: 500px;" class="form-control my-3 p-4">
-             <div *ngIf="pass2.invalid && (pass2.dirty || pass2.touched)" class="alert" [ngClass] = "'error'">
-               <div *ngIf="pass2.errors?.required">
-                 Password is required.
-               </div>
-               <div *ngIf="pass2.hasError('notEqual') && pass.valid">
+             <!-- <div *ngIf="pass2.invalid && (pass2.dirty || pass2.touched)" [ngClass] = "'error'">
+               <div *ngIf="pass2.hasError('notEqual')">
                   Passwords don't match.
                </div>
-             </div>
+             </div> -->
+             <div *ngIf="pass2.invalid && (pass2.dirty || pass2.touched)" [ngClass] = "'error'">
+                <div *ngIf="pass2.errors?.required">
+                  Password is required.
+                </div>
+                <div *ngIf="pass2.hasError('notEqual') && !pass2.errors?.required">
+                    Passwords don't match.
+                 </div>
+              </div>
          </div>
        </div>
 
-       <div class="form-row">
+       <!-- <div class="form-row"> -->
 
-        <div class="form-group col">
+        <!-- <div class="form-group col"> -->
 
           <select class="Month" style="margin-left: 250px;" ngModel required #month="ngModel">
             <option value="" disabled selected>Month</option>
@@ -83,17 +93,17 @@
             <option>August</option> <option>September</option> <option>October</option>
             <option>November</option> <option>December</option>
           </select>
-          <div *ngIf="(month.dirty || month.touched)" class="alert" [ngClass] = "'error'">
+          <div *ngIf="(f.submitted && month.invalid)" [ngClass] = "'error'">
               <div *ngIf="month.errors?.required">
                   Month is required.
               </div>
           </div>
 
-        </div>
+        <!-- </div> -->
 
-        <div class="form-group col-5">
+        <!-- <div class="form-group col"> -->
 
-          <select class="Day" style="margin-left: 50px;" ngModel required #day="ngModel">
+          <select class="Day" style="margin-left: 50px;" ngModel required #day="ngModel" >
             <option value="" disabled selected>Day</option>
             <option>1</option> <option>2</option> <option>3</option> <option>4</option> <option>5</option> <option>6</option>
             <option>7</option> <option>8</option> <option>9</option> <option>10</option> <option>11</option> <option>13</option>
@@ -101,15 +111,15 @@
             <option>20</option> <option>21</option> <option>22</option> <option>23</option> <option>24</option> <option>25</option>
             <option>26</option> <option>27</option> <option>28</option> <option>29</option> <option>30</option> <option>31</option>
           </select>
-          <div *ngIf="(day.dirty || day.touched)" class="alert" [ngClass] = "'error'">
+          <div *ngIf="(f.submitted && day.invalid)" [ngClass] = "'error'">
               <div *ngIf="day.errors?.required">
                 Day is required.
               </div>
           </div>
-        </div>
+        <!-- </div> -->
 
 
-        <div class="form-group col-5">
+        <!-- <div class="form-group col"> -->
 
         <!-- <div> -->
           <select class="year" style="margin-left: 50px;" ngModel required #year="ngModel">
@@ -120,16 +130,16 @@
             <option>1998</option> <option>1999</option> <option>2000</option> <option>2001</option> <option>2002</option> <option>2003</option>
             <option>2004</option> <option>2005</option> <option>2006</option> <option>2007</option> <option>2008</option> <option>2009</option>
           </select>
-          <div *ngIf="(year.dirty || year.touched)" class="alert" [ngClass] = "'error'">
+          <div *ngIf="(f.submitted && year.invalid)" [ngClass] = "'error'">
             <div *ngIf="year.errors?.required">
               Year is required.
             </div>
           </div>
         <!-- </div> -->
-        </div>
+        <!-- </div> -->
 
 
-      </div>
+      <!-- </div> -->
 
 
        <div class = "form-row mt-3">
@@ -138,7 +148,7 @@
            <option>Female</option> <option>Male</option> <option>Non-binary</option>
            <option>Other</option> <option>Prefer not to say</option>
          </select>
-           <div *ngIf="(gender.dirty || gender.touched)" class="alert" [ngClass] = "'error'">
+           <div *ngIf="(f.submitted && gender.invalid)" [ngClass] = "'error'">
              <div *ngIf="gender.errors?.required">
                Gender is required.
              </div>
