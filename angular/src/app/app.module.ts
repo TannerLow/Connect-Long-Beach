@@ -9,17 +9,22 @@ import { LogInComponent } from './log-in/log-in.component';
 
 import {HttpClientModule} from "@angular/common/http";
 
+import { ValidateEqualModule } from  'ng-validate-equal';
+import { SignUpComponent } from './sign-up/sign-up.component';
+
 @NgModule({
   declarations: [
     AppComponent,
     routingComponents,
-    LogInComponent
+    LogInComponent,
+    SignUpComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ValidateEqualModule
   ],
   providers: [],
   bootstrap: [AppComponent]
