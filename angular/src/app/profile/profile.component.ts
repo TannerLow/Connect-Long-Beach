@@ -7,6 +7,7 @@ export interface DialogData {
   gender: string;
   interest: string;
   courses: string;
+  pa: string;
 }
 
 
@@ -22,14 +23,16 @@ export class ProfileComponent implements  OnInit{
   gender = ""
   interest = ""
   courses = ""
+  pa = "/static/assets/anonymous.png"
   constructor(public dialog: MatDialog) {}
   ngOnInit(): void {
   }
 
   openDialog(): void {
     const dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
-      width: '250px',
-      data: {major: this.major, year: this.year, gender: this.gender, interest: this.interest, courses: this.courses}
+      width: '30%',
+      height: '70%',
+      data: {major: this.major, year: this.year, gender: this.gender, interest: this.interest, courses: this.courses, pa: this.pa}
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -64,5 +67,8 @@ export class DialogOverviewExampleDialog implements OnInit{
   ngOnInit(): void {
   }
 
+  onFileSelected(event){
+    console.log(event);
+  }
 
 }

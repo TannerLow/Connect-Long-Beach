@@ -1,8 +1,8 @@
 <h1 mat-dialog-title>NAME</h1>
 <div mat-dialog-content>
-  <img mat-card-image src="/static/assets/anonymous.png" alt="Profile Picture" style="border-radius: 50%">
+  <img mat-card-image src="{{data.pa}}" alt="Profile Picture" style="border-radius: 50%">
 
-
+  <input type = "file" (change)="onFileSelected($event)">
 
   <mat-form-field appearance="fill">
     <mat-label>Major</mat-label>
