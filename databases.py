@@ -1,5 +1,6 @@
 import mysql.connector
 import json
+import random
 
 def initialize(app):
     # Read database credentials file to login to the database
@@ -73,6 +74,23 @@ def is_email_in_use(mysql, email):
     return {"response": email_in_use}
 
 
+#helper function
+def create_unique_id():
+    unique_id = ""
+    for _ in range(10):
+        x = random.randint(0,35)
+        if x < 10:
+            unique_id += str(x)
+        else:
+            unique_id += chr(x + ord('a') - 10)
+
+    return unique_id
+
+
+def generate_unique_id(mysql):
+
+    
+
 def register(mysql, email, password, fname, lname, gender, path_url):
     # Fail if email already in use
     if is_email_in_use(mysql, email)["response"]:
@@ -86,8 +104,6 @@ def register(mysql, email, password, fname, lname, gender, path_url):
     return {"response": True}
 
 
-def test(mysql):
-    print(fetchTables(mysql))
-    print(login(mysql, "fake_email@test.gov", "9285ab8def09c863d8a68824c31f4404f1cd004029d2af30e62576149d9a652c"))
-    print(register(mysql, "another_fake@flylo.fm", "9285ab8def09c863d8a68824c31f4404f1cd004029d2af30e62576149d9a652d"))
-    print(login(mysql, "another_fake@flylo.fm", "9285ab8def09c863d8a68824c31f4404f1cd004029d2af30e62576149d9a652d"))
+if __name__ == "__main__":
+    #insert test driver code
+    pass
