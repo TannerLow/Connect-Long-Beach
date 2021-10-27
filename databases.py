@@ -113,4 +113,4 @@ def register(mysql, email, password, fname, lname, gender):
 
 if __name__ == "__main__":
     #insert test driver code
-    pass
+    print(create_unique_id())
