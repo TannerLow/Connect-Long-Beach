@@ -1,5 +1,6 @@
 import mysql.connector
 import json
+import random
 
 def initialize(app):
     # Read database credentials file to login to the database
@@ -61,6 +62,55 @@ def login(mysql, email, password):
     response = { "response": access_granted }
     return response
 
+
+def is_email_in_use(mysql, email):
+    cur = mysql.connection.cursor()
+    email_in_use = False
+    cur.execute(f"SELECT id FROM accounts a WHERE a.email = '{email}';")
+    if cur.fetchone():
+        email_in_use = True
+
+    cur.close()
+    return {"response": email_in_use}
+
+
+#helper function
+def create_unique_id():
+    unique_id = ""
+    for _ in range(10):
+        x = random.randint(0,35)
+        if x < 10:
+            unique_id += str(x)
+        else:
+            unique_id += chr(x + ord('a') - 10)
+
+    return unique_id
+
+
+def generate_unique_id(mysql):
+    uid = create_unique_id()
+    cur = mysql.connection.cursor()
+    cur.execute(f"SELECT pathUrl FROM users u WHERE u.pathUrl='{uid}';")
+    while cur.fetchone():
+        uid = create_unique_id()
+        cur.execute(f"SELECT pathUrl FROM users u WHERE u.pathUrl='{uid}';")
+    cur.colse()
+    return uid
+
+def register(mysql, email, password, fname, lname, gender):
+    # Fail if email already in use
+    if is_email_in_use(mysql, email)["response"]:
+        return {"response": False}
+
+    pathUrl = generate_unique_id(mysql)
+    cur = mysql.connection.cursor()
+    cur.execute(f"INSERT INTO accounts(email, password) VALUES('{email}', '{password}');")
+    cur.execute(f"INSERT INTO users(userID, fname, lname, gender, pathUrl) VALUES(1, '{fname}', '{lname}', '{gender}', '{path_url}');")
+    mysql.connection.commit()
+    cur.close()
+    return {"response": True}
+
+
 if __name__ == "__main__":
-    print(fetchTables())
-    print(login("fake_email@test.gov", "9285ab8def09c863d8a68824c31f4404f1cd004029d2af30e62576149d9a652c"))
+    #insert test driver code
+    print(create_unique_id())
