@@ -8,14 +8,27 @@
 
     <div class=" row col-lg-3 pl-5 pt-5 pb-5" style="margin-top: 10%; margin-right: 5% ;width: 100%;">
       <form (ngSubmit)="onInfoItem(f)" #f="ngForm">
-        <div class = "form-row">
-          <div class="col-lg-12" style="margin-left: 8%;margin-right:4%;">
-            <input type="email"  name= "emailAddress" placeholder="Email Adress" ngModel class="form-control my-3 p-4" style="width: 90%;" >
-          </div>
+        <div class = "form-row ">
+          <div class="col-lg-12" style="margin-left: 8%;margin-right:4%">
+            <input type="email"  name= "emailAddress" placeholder="Email Address" required [pattern]="emailPattern" ngModel class="form-control my-3 p-4" #emailAddress="ngModel" style="width: 90%;" >
+                <div *ngIf="emailAddress.invalid && (emailAddress.dirty || emailAddress.touched)" class="alert" [ngClass] = "'error'">
+                  <div *ngIf="emailAddress.errors?.pattern">
+                    Email is invalid. Please use a CSULB student email.
+                  </div>
+                  <div *ngIf="emailAddress.errors?.required">
+                    Email address is required.
+                  </div>
+              </div>          
+            </div>
         </div>
         <div class = "form-row ">
           <div class="col-lg-12"style="margin-left: 8%;margin-right:4%;">
-            <input type="password" name="password" placeholder="********" ngModel style="width: 90%;" class="form-control my-3 p-4">
+            <input type="password" name="password" placeholder="********" required ngModel #pass="ngModel" style="width: 90%;" class="form-control my-3 p-4">
+              <div *ngIf="(pass.dirty || pass.touched)" class="alert" [ngClass] = "'error'">
+                <div *ngIf="pass.errors?.required">
+                  Password is required.
+                </div>
+              </div>
           </div>
         </div>
         <div class = "form-row ">

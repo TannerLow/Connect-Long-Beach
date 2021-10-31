@@ -41,6 +41,9 @@ OTHER DEALINGS IN THE SOFTWARE.
 For more information, please refer to <http://unlicense.org>
 
 
+ng-validate-equal
+MIT
+
 rxjs
 Apache-2.0
                                Apache License

@@ -51,3 +51,7 @@ h2{
   border: 1px solid;
   color: black;
 }
+
+.error{
+  color: red;
+}

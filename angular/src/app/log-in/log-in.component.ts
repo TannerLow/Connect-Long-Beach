@@ -8,6 +8,8 @@ import {NgForm} from "@angular/forms";
 })
 export class LogInComponent implements OnInit {
 
+  emailPattern = "^[a-z0-9._-]+@student\.csulb\.edu$";
+
   constructor() { }
 
   onInfoItem(form: NgForm){
