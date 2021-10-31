@@ -1,0 +1,37 @@
+*{
+    margin: 0%;
+    padding: 0%;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+body{
+    background: antiquewhite;
+}
+nav{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #3f3f3f;
+    padding: 5px 2%;
+}
+.logo{
+    width: 130px;
+    height: 60px;
+}
+.nav-left{
+
+}
+.nav-mid{
+
+}
+.nav-right{
+    display: flex;
+    align-items: center;
+}
+.nav-right ul li {
+    list-style: none;
+    display: inline-block;
+}
+.nav-.nav-right ul li img{
+    width: 28%;
+    margin: 0 15%;
+}
