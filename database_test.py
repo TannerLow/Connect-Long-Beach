@@ -1,4 +1,18 @@
 import mysql.connector
+import datetime
+
+def monthToInt(month):
+    months = ["January", "February", "March", "April", "May", "June", "July",
+              "August", "September", "October", "November", "December"]
+    return months.index(month) + 1
+
+
+day = "7"
+year = "2000"
+monthInt = monthToInt("March")
+bday = datetime.datetime(int(year), monthInt, int(day)).strftime('%Y-%m-%d %H:%M:%S')
+print(bday)
+
 
 # Read database credentials file to login to the database
 dbCredentialsFile = open("credentials.txt","r")

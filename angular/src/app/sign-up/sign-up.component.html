@@ -7,10 +7,10 @@
    </div>
    <div class="row col-lg-9" style="left: 300px;bottom: 320px;margin-top: 150px;margin-bottom: 50px;margin-right: 15px;">
      
-     <form (ngSubmit)="onInfoItem(f)" #f="ngForm">
+    <form (ngSubmit)="onInfoItem(f)" #f="ngForm">
        <div class = "form-row">
          <div class="col-lg-12" style="margin-left: 160px;">
-           <input type="FirstName" placeholder="First Name" ngModel required #fname="ngModel" style="width: 500px;" class="form-control my-3 p-4"  >
+           <input type="FirstName" name="fname" placeholder="First Name" ngModel required #fname="ngModel" style="width: 500px;" class="form-control my-3 p-4"  >
              <div *ngIf="(f.submitted && fname.invalid)" [ngClass] = "'error'">
                <div *ngIf="fname.errors?.required">
                  First name is required.
@@ -21,7 +21,7 @@
 
        <div class = "form-row">
          <div class="col-lg-12" style="margin-left: 160px;margin-right: 160px;">
-           <input type="lastName" placeholder="Last Name" ngModel required #lname="ngModel" style="width: 500px;" class="form-control my-3 p-4">
+           <input type="lastName" name="lname" placeholder="Last Name" ngModel required #lname="ngModel" style="width: 500px;" class="form-control my-3 p-4">
              <div *ngIf="(f.submitted && lname.invalid)" [ngClass] = "'error'">
                <div *ngIf="lname.errors?.required">
                  Last name is required.
@@ -32,7 +32,7 @@
 
        <div class = "form-row">
          <div class="col-lg-12" style="margin-left: 160px;">
-           <input type="Email" placeholder="Email" ngModel required [pattern]="emailPattern" #emailAddress="ngModel" style="width: 500px;" class="form-control my-3 p-4">
+           <input type="Email" name="email" placeholder="Email" ngModel required [pattern]="emailPattern" #emailAddress="ngModel" style="width: 500px;" class="form-control my-3 p-4">
              <div *ngIf="emailAddress.invalid && f.submitted" [ngClass] = "'error'">
                 <div *ngIf="emailAddress.errors?.required">
                     Email is required.
@@ -86,7 +86,7 @@
 
         <!-- <div class="form-group col"> -->
 
-          <select class="Month" style="margin-left: 250px;" ngModel required #month="ngModel">
+          <select class="Month" name="month" style="margin-left: 250px;" ngModel required #month="ngModel">
             <option value="" disabled selected>Month</option>
             <option>January</option> <option>February</option> <option>March</option>
             <option>April</option> <option>May</option> <option>June</option> <option>July</option>
@@ -103,7 +103,7 @@
 
         <!-- <div class="form-group col"> -->
 
-          <select class="Day" style="margin-left: 50px;" ngModel required #day="ngModel" >
+          <select class="Day" name="day" style="margin-left: 50px;" ngModel required #day="ngModel" >
             <option value="" disabled selected>Day</option>
             <option>1</option> <option>2</option> <option>3</option> <option>4</option> <option>5</option> <option>6</option>
             <option>7</option> <option>8</option> <option>9</option> <option>10</option> <option>11</option> <option>13</option>
@@ -122,7 +122,7 @@
         <!-- <div class="form-group col"> -->
 
         <!-- <div> -->
-          <select class="year" style="margin-left: 50px;" ngModel required #year="ngModel">
+          <select class="year" name="year" style="margin-left: 50px;" ngModel required #year="ngModel">
             <option value="" disabled selected>Year</option>
             <option>1980</option> <option>1981</option> <option>1982</option> <option>1983</option> <option>1984</option> <option>1985</option>
             <option>1986</option> <option>1987</option> <option>1988</option> <option>1989</option> <option>1990</option> <option>1991</option>
@@ -143,16 +143,16 @@
 
 
        <div class = "form-row mt-3">
-         <select class="Gender" style="margin-left: 350px;" ngModel required #gender="ngModel">
-           <option value="" disabled selected>Gender</option>
-           <option>Female</option> <option>Male</option> <option>Non-binary</option>
-           <option>Other</option> <option>Prefer not to say</option>
-         </select>
-           <div *ngIf="(f.submitted && gender.invalid)" [ngClass] = "'error'">
-             <div *ngIf="gender.errors?.required">
-               Gender is required.
-             </div>
-           </div>
+            <select class="Gender" name="gender" style="margin-left: 350px;" ngModel required #gender="ngModel">
+                <option value="" disabled selected>Gender</option>
+                <option>Female</option> <option>Male</option> <option>Non-binary</option>
+                <option>Other</option> <option>Prefer not to say</option>
+            </select>
+            <div *ngIf="(f.submitted && gender.invalid)" [ngClass] = "'error'">
+                <div *ngIf="gender.errors?.required">
+                Gender is required.
+                </div>
+            </div>
        </div>
 
        <div class = "form-row mt-3">
@@ -171,7 +171,7 @@
              <button type="submit" class="btn1 mt-3 mb-5">Submit</button></a>
          </div>
        </div>
-     </form>
+    </form>
     <!-- </div> -->
    </div>
 <!--  </div>-->
