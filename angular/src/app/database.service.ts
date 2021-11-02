@@ -7,6 +7,7 @@ import { LoginResponse } from './api-objects/LoginResponse';
 import { RegistrationInfo } from './api-objects/RegistrationInfo';
 import { RegistrationResponse } from './api-objects/RegistrationResponse';
 import { EmailCheckResponse } from './api-objects/EmailCheckResponse';
+import sha256 from "fast-sha256";
 
 const URL = 'api/';
 
@@ -55,5 +56,27 @@ export class DatabaseService {
             // Let the app keep running by returning an empty result.
             return of(result as T);
         };
+    }
+
+    hashPassword(password: string): string {
+        let encoder = new TextEncoder();
+        let view = encoder.encode(password);
+        view = sha256(view);
+        return this.hexEncode(view);
+    }
+
+    private hexEncode(arr: Uint8Array){
+        var hex;
+        var result = "";
+
+        arr.forEach( character => {
+            //only use least significant 8 bits
+            for(var i = 1; i >= 0; i--) {
+                hex = (character >> (4 * i)) & 0xF;
+                result += hex.toString(16);
+            }
+        });
+
+        return result
     }
 }

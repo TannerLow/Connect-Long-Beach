@@ -1,6 +1,7 @@
 import mysql.connector
 import json
 import random
+import datetime
 
 def initialize(app):
     # Read database credentials file to login to the database
@@ -94,18 +95,37 @@ def generate_unique_id(mysql):
     while cur.fetchone():
         uid = create_unique_id()
         cur.execute(f"SELECT pathUrl FROM users u WHERE u.pathUrl='{uid}';")
-    cur.colse()
+    cur.close()
     return uid
 
-def register(mysql, email, password, fname, lname, gender):
+
+def monthToInt(month):
+    months = ["January", "February", "March", "April", "May", "June", "July",
+              "August", "September", "October", "November", "December"]
+    return months.index(month) + 1
+
+
+def register(mysql, email, password, fname, lname, gender, month, day, year):
     # Fail if email already in use
     if is_email_in_use(mysql, email)["response"]:
         return {"response": False}
 
+    monthInt = monthToInt(month)
+    bday = datetime.datetime(int(year), monthInt, int(day)).strftime('%Y-%m-%d %H:%M:%S')
     pathUrl = generate_unique_id(mysql)
+    
+    # create entry in accounts
     cur = mysql.connection.cursor()
     cur.execute(f"INSERT INTO accounts(email, password) VALUES('{email}', '{password}');")
-    cur.execute(f"INSERT INTO users(userID, fname, lname, gender, pathUrl) VALUES(1, '{fname}', '{lname}', '{gender}', '{path_url}');")
+    mysql.connection.commit()
+    cur.close()
+
+    # create entry in users
+    cur = mysql.connection.cursor()
+    cur.execute(f"SELECT ID FROM accounts WHERE email='{email}';")
+    id = cur.fetchone()[0]
+    print(id)
+    cur.execute(f"INSERT INTO users(userID, fname, lname, gender, pathUrl, bday) VALUES('{id}', '{fname}', '{lname}', '{gender}', '{pathUrl}', '{bday}');")
     mysql.connection.commit()
     cur.close()
     return {"response": True}

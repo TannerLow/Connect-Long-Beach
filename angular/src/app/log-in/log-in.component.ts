@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {NgForm} from "@angular/forms";
+import { Router } from '@angular/router';
+import { LoginCredentials } from '../api-objects/LoginCredentials';
+import { LoginResponse } from '../api-objects/LoginResponse';
+import { DatabaseService } from '../database.service';
 
 @Component({
   selector: 'app-log-in',
@@ -10,13 +14,26 @@ export class LogInComponent implements OnInit {
 
   emailPattern = "^[a-z0-9._-]+@student\.csulb\.edu$";
 
-  constructor() { }
+  constructor(private router: Router, private database: DatabaseService) { }
 
+  ngOnInit(): void {
+
+  }
+
+  // attempt login with Credentials from login form
+  // TAKES USER TO SIGN UP PAGE AS PLACEHOLDER
   onInfoItem(form: NgForm){
     const value = form.value;
     console.log(value);
-  }
-  ngOnInit(): void {
+    let password = this.database.hashPassword(value.password);
+    let credentials: LoginCredentials = {email: value.emailAddress, password: password};
+    console.log(credentials);
+    this.database.login(credentials).subscribe((data: LoginResponse) => {
+        console.log("Login response: " + data.response);
+        if(data.response) {
+            this.router.navigate(['/sign-up']);
+        }
+    });
   }
 
 }

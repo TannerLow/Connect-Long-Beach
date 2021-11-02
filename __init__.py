@@ -28,7 +28,10 @@ def register():
     fname = data["firstName"]
     lname = data["lastName"]
     gender = data["gender"]
-    return databases.register(mysql, email, pass_hash, fname, lname, gender)
+    month = data["month"]
+    day = data["day"]
+    year = data["year"]
+    return databases.register(mysql, email, pass_hash, fname, lname, gender, month, day, year)
 
 
 @app.route('/api/emailCheck/<email>')
