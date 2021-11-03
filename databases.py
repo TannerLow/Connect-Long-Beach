@@ -131,6 +131,17 @@ def register(mysql, email, password, fname, lname, gender, month, day, year):
     return {"response": True}
 
 
+def create_post(mysql, user_id, message):
+    cur = mysql.connection.cursor()
+    cur.execute(f"INSERT INTO messages(author, date, message) values({user_id}, NOW(), '{message}');")
+    mysql.connection.commit()
+    cur.close()
+    
+
 if __name__ == "__main__":
     #insert test driver code
-    print(create_unique_id())
+    create_post("", 0, "hello")
+
+
+def test(mysql):
+    create_post(mysql, 22, "This is a test message. Working on posts.")

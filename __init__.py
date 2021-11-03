@@ -9,6 +9,7 @@ mysql = MySQL(app)
 @app.route('/', defaults={'path': ''})
 @app.route('/<path:path>')
 def home(path):
+    databases.test(mysql)
     return render_template('index.html')
 
 
