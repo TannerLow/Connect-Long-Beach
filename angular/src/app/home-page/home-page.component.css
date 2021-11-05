@@ -18,10 +18,41 @@ nav{
     height: 60px;
 }
 .nav-left{
-
+    
 }
 .nav-mid{
+    display: inline;
+    align-items: center;
+}
+.search{
+    background: white;
+    width: 350px;
+    border-radius: 7px;
+    display: flex;
+    align-items: center;
+    padding:0 15px;
+    margin-right: 20%;
+}
 
+.search input{
+    width: 100%;
+    background: transparent;
+    padding: 10px;
+    outline: none;
+    border: 0;
+}
+.btn
+{
+    background-color: #3f3f3f; 
+    color: #ffc107;; 
+    border: 2px solid #ffc107;
+    width: 60px;
+    height: 29px;
+    border-radius: 7px;
+}
+.btn:hover{
+    background-color: #ffc107;
+    color: black;
 }
 .nav-right{
     display: flex;
@@ -31,7 +62,21 @@ nav{
     list-style: none;
     display: inline-block;
 }
-.nav-.nav-right ul li img{
-    width: 28%;
-    margin: 0 15%;
+.mssg{
+    filter: invert(63%) sepia(62%) saturate(517%) hue-rotate(4deg) brightness(90%) contrast(83%);
 }
+.mssg:hover{
+    filter: invert(100%) sepia(100%) saturate(2%) hue-rotate(164deg) brightness(102%) contrast(100%);            }
+.notif{
+    filter: invert(100%) sepia(100%) saturate(2%) hue-rotate(164deg) brightness(102%) contrast(100%);
+}
+.notif:hover{
+    filter: invert(63%) sepia(62%) saturate(517%) hue-rotate(4deg) brightness(90%) contrast(83%);   
+}
+.user{
+    filter: invert(100%) sepia(100%) saturate(2%) hue-rotate(164deg) brightness(102%) contrast(100%);
+}
+.user:hover{
+    filter: invert(63%) sepia(62%) saturate(517%) hue-rotate(4deg) brightness(90%) contrast(83%);   
+}
+
