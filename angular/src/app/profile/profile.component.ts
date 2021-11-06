@@ -70,5 +70,7 @@ export class DialogOverviewExampleDialog implements OnInit{
   onFileSelected(event){
     console.log(event);
   }
+  getGender(){
+  }
 
 }
