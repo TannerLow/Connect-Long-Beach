@@ -48,6 +48,7 @@ it will not allow us to click on the dialog button*/
   border-style: solid;
   border-color: black;
   margin: 20%;
+  overflow: hidden;
 }
 
 .card-container-middle{
@@ -61,7 +62,8 @@ it will not allow us to click on the dialog button*/
   justify-content: space-between;
   border-style: solid;
   border-color: black;
-  margin: 20%
+  margin: 20%;
+  overflow: hidden;
 }
 
 .card-container-low{
@@ -77,6 +79,8 @@ it will not allow us to click on the dialog button*/
   border-color: black;
   margin: 20%;
   bottom:0px;
+  overflow: hidden;
+  overflow-y: scroll;
 }
 
 .container-info{
@@ -91,3 +95,5 @@ it will not allow us to click on the dialog button*/
 .container-other p{
   margin: 10px;
 }
+
+

@@ -9,8 +9,8 @@
 
     <mat-card class="card-container-top">
       <mat-card-title>GENDER</mat-card-title>
-      <mat-card-content>
-        <p>MALE</p>
+      <mat-card-content *ngFor="let gender of selectedGender" >
+        <p>{{gender}}</p>
       </mat-card-content>
     </mat-card>
 
@@ -27,9 +27,8 @@
 
     <mat-card class="card-container-low">
       <mat-card-title>COURSES</mat-card-title>
-      <mat-card-content>
-        <p>CECS 323</p>
-        <p>CECS 426</p>
+      <mat-card-content *ngFor="let class of selectedCourses" >
+        <p>{{class}}</p>
       </mat-card-content>
     </mat-card>
 
@@ -40,11 +39,11 @@
 
    <div class="container-info">
      <div class ="container-name">
-       <p> Name</p>
+       <p> {{firstName}} {{lastName}}</p>
      </div>
      <div class ="container-other">
-       <p>Major</p>
-       <p>Year</p>
+       <p>{{major}}</p>
+       <p>{{year}}</p>
      </div>
    </div>
 
