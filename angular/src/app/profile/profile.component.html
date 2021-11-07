@@ -1,9 +1,10 @@
 <mat-grid-list cols="4" rows="3">
-  <mat-grid-tile class ="mat-grid-tile" colspan="4" rows="1" rowspan="1" class ="upper-left" >
+
+  <mat-grid-tile class ="mat-grid-tile" colspan="4" rows="1" rowspan="1" class ="upper-left"   [style.background-image]="'url(' + background + ')'">
     <img mat-card-image src="{{pa}}" alt="Profile Picture" >
     <button mat-raised-button class="button-upper" (click)="openDialog()">Customize Profile</button>
-
   </mat-grid-tile>
+
 
   <mat-grid-tile class ="mat-grid-tile" cols="1" rows="3" rowspan="2">
 

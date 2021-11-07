@@ -10,7 +10,7 @@ export interface DialogData {
   interest: string;
   selectedCourses: string [];
   pa: any;
-  url: any;
+  background: any;
 }
 
 
@@ -27,6 +27,7 @@ export class ProfileComponent implements  OnInit{
   selectedGender = [];
   interest = ""
   selectedCourses = [];
+  background = "/static/assets/Walter_Pyramid.jpg"
   pa = "/static/assets/anonymous.png"
   constructor(public dialog: MatDialog) {}
   ngOnInit(): void {
@@ -35,7 +36,7 @@ export class ProfileComponent implements  OnInit{
   openDialog(): void {
     const dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
       width: '30%',
-      data: {firstName: this.firstName, lastName: this.lastName,major: this.major, year: this.year, selectedGender: this.selectedGender, interest: this.interest, selectedCourses: this.selectedCourses, pa: this.pa}
+      data: {firstName: this.firstName, lastName: this.lastName,major: this.major, year: this.year, selectedGender: this.selectedGender, interest: this.interest, selectedCourses: this.selectedCourses, pa: this.pa, background: this.background}
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -49,6 +50,7 @@ export class ProfileComponent implements  OnInit{
       this.interest = result[5];
       this.selectedCourses = result[6];
       this.pa = result[7];
+      this.background = result[8];
       console.log(this.firstName);
       console.log(this.lastName);
       console.log(this.major);
@@ -85,6 +87,15 @@ export class DialogOverviewExampleDialog implements OnInit{
     reader.readAsDataURL(files[0]);
     reader.onload = (_event) => {
       this.data.pa = reader.result;
+    }
+  }
+
+  backgroundChanged(event){
+    const files = event.target.files;
+    const reader = new FileReader();
+    reader.readAsDataURL(files[0]);
+    reader.onload = (_event) => {
+      this.data.background = reader.result;
     }
   }
 

@@ -2,7 +2,11 @@
 <div mat-dialog-content>
   <img mat-card-image class="mat-card-image-dialog" src="{{data.pa}}" alt="Profile Picture">
 
-  <input type = "file" (change)="onFileSelected($event)">
+  <mat-label>Profile picture </mat-label>
+    <input type = "file" (change)="onFileSelected($event)">
+
+  <mat-label>Background Picture</mat-label>
+  <input type = "file" (change)="backgroundChanged($event)">
 
   <mat-form-field appearance="fill">
     <mat-label>First Name</mat-label>
@@ -46,5 +50,5 @@
 </div>
 
 <div mat-dialog-actions>
-  <button mat-button [mat-dialog-close]="[data.firstName, data.lastName,data.major, data.year, data.selectedGender, data.interest, data.selectedCourses,data.pa]" cdkFocusInitial>SAVE</button>
+  <button mat-button [mat-dialog-close]="[data.firstName, data.lastName,data.major, data.year, data.selectedGender, data.interest, data.selectedCourses,data.pa, data.background]" cdkFocusInitial>SAVE</button>
 </div>
