@@ -2,6 +2,7 @@ import mysql.connector
 import json
 import random
 import datetime
+from profile_data import ProfileData
 
 def initialize(app):
     # Read database credentials file to login to the database
@@ -138,9 +139,46 @@ def create_post(mysql, user_id, message):
     cur.close()
     
 
+# needs profile database table to be made before use
+# will need to be updated 
+def update_profile(mysql, user_id, profile):
+    query_head = "UPDATE profiles SET "
+    query_tail = f"WHERE userID={user_id};"
+    columns = []
+    if profile.fname:
+        columns.append(f"fname='{profile.fname}' ")
+    if profile.lname:
+        columns.append(f"lname='{profile.lname}' ")
+    if profile.major:
+        columns.append(f"major='{profile.major}' ")
+    if profile.year:
+        columns.append(f"year={profile.year} ")
+    if profile.gender:
+        columns.append(f"gender='{profile.gender}' ")
+    if profile.interests:
+        columns.append(f"interests='{profile.interests}' ")
+
+    query = query_head
+    for column in columns:
+        query += column
+    query += query_tail
+    print(query)
+
+    if len(columns) != 0:
+        cur = mysql.connection.cursor()
+        cur.execute(query)
+        mysql.connection.commit()
+        cur.close()
+        return {"response": True}
+    else:
+        return {"response": False}
+
 if __name__ == "__main__":
     #insert test driver code
-    create_post("", 0, "hello")
+    profile = ProfileData()
+    profile.set_first_name("Mike")
+    profile.set_interests("Skateboarding")
+    update_profile("", 9, profile)
 
 
 def test(mysql):
