@@ -12,14 +12,22 @@ nav{
     justify-content: space-between;
     background: #3f3f3f;
     padding: 5px 2%;
+    position: sticky;
+    top:0;
+    z-index: 100;
 }
 .logo{
     width: 130px;
     height: 60px;
 }
+
+
 .nav-left{
-    
+    display: flex;
+    align-items: center;
 }
+
+
 .nav-mid{
     display: inline;
     align-items: center;
@@ -27,7 +35,7 @@ nav{
 .search{
     background: white;
     width: 350px;
-    border-radius: 7px;
+    border-radius: 30px;
     display: flex;
     align-items: center;
     padding:0 15px;
@@ -43,17 +51,11 @@ nav{
 }
 .btn
 {
-    background-color: #3f3f3f; 
-    color: #ffc107;; 
-    border: 2px solid #ffc107;
-    width: 60px;
-    height: 29px;
-    border-radius: 7px;
+    background-color: transparent; 
+    filter: brightness(50%);
 }
-.btn:hover{
-    background-color: #ffc107;
-    color: black;
-}
+
+
 .nav-right{
     display: flex;
     align-items: center;
@@ -63,20 +65,44 @@ nav{
     display: inline-block;
 }
 .mssg{
-    filter: invert(63%) sepia(62%) saturate(517%) hue-rotate(4deg) brightness(90%) contrast(83%);
+    filter: brightness(5);
 }
 .mssg:hover{
-    filter: invert(100%) sepia(100%) saturate(2%) hue-rotate(164deg) brightness(102%) contrast(100%);            }
+    filter: invert(63%) sepia(62%) saturate(517%) hue-rotate(4deg) brightness(200%) contrast(83%);   
+}
 .notif{
-    filter: invert(100%) sepia(100%) saturate(2%) hue-rotate(164deg) brightness(102%) contrast(100%);
+    filter: brightness(5);
 }
 .notif:hover{
-    filter: invert(63%) sepia(62%) saturate(517%) hue-rotate(4deg) brightness(90%) contrast(83%);   
+    filter: invert(63%) sepia(62%) saturate(517%) hue-rotate(4deg) brightness(200%) contrast(83%);   
 }
 .user{
-    filter: invert(100%) sepia(100%) saturate(2%) hue-rotate(164deg) brightness(102%) contrast(100%);
+    filter: brightness(5);
 }
 .user:hover{
-    filter: invert(63%) sepia(62%) saturate(517%) hue-rotate(4deg) brightness(90%) contrast(83%);   
+    filter: invert(63%) sepia(62%) saturate(517%) hue-rotate(4deg) brightness(200%) contrast(83%);   
 }
 
+
+.container{
+    display: flex;
+    justify-content: space-between;
+    padding: 13px 5%;
+}
+.left-side{
+    background: #cbdffa;
+    flex-basis: 25%;
+    position: sticky;
+    top: 70px;
+    align-self: flex-start;
+}
+.right-side{
+    background: #cbdffa;
+    flex-basis: 25%;
+    position: sticky;
+    top: 70px;
+    align-self: flex-start;
+}
+.main{
+    flex-basis: 47%;
+}
