@@ -18,7 +18,7 @@
   border-style: solid;
 }
 
-.mat-card-image:first-child {
+.mainPicture{
   margin:20px;
   height: 80%;
   width: 30%;
@@ -45,7 +45,7 @@
   border-style: solid;
   border-color: black;
   margin: 20%;
-  overflow: hidden;
+  overflow-y: scroll;
 }
 
 .card-container-middle{
@@ -60,7 +60,7 @@
   border-style: solid;
   border-color: black;
   margin: 20%;
-  overflow: hidden;
+  overflow-y: scroll;
 }
 
 .card-container-low{
@@ -76,7 +76,6 @@
   border-color: black;
   margin: 20%;
   bottom:0px;
-  overflow: hidden;
   overflow-y: scroll;
 }
 
@@ -93,4 +92,43 @@
   margin: 10px;
 }
 
+.posting{
+  width: 90%;
+  max-height: 200px;
+  margin-left: -8px;
+}
+
+.mat-card-image:first-child {
+  border-radius: 50%;
+  margin-top: 10px;
+}
+
+
+
+.poster{
+  margin: 20px;
+  height: 10%;
+  width: 10%;
+  border-radius: 50%;
+}
+
+/**/
+.mat-card{
+  overflow-y: scroll;
+}
+
+/*extend the comments to full width*/
+.comments{
+  width: 100%;
+}
+
+.scrollable {
+  overflow-y: auto;
+  box-sizing: border-box;
+  position: absolute;
+  right: 0;
+  /*top: 0;*/
+  width: 100%;
+  height: 100%;
+}
 

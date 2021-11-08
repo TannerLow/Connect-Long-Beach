@@ -4,10 +4,11 @@
 
   <mat-label>Profile picture </mat-label>
     <input type = "file" (change)="onFileSelected($event)">
+    <br>
 
   <mat-label>Background Picture</mat-label>
   <input type = "file" (change)="backgroundChanged($event)">
-
+  <br>
   <mat-form-field appearance="fill">
     <mat-label>First Name</mat-label>
     <input matInput [(ngModel)]="data.firstName">

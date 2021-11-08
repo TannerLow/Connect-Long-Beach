@@ -27,6 +27,7 @@ export class ProfileComponent implements  OnInit{
   selectedGender = [];
   interest = ""
   selectedCourses = [];
+  //default values for the image since the profile hasnt been assigned images
   background = "/static/assets/Walter_Pyramid.jpg"
   pa = "/static/assets/anonymous.png"
   constructor(public dialog: MatDialog) {}
@@ -35,10 +36,11 @@ export class ProfileComponent implements  OnInit{
 
   openDialog(): void {
     const dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
-      width: '30%',
+      width: '25%',
       data: {firstName: this.firstName, lastName: this.lastName,major: this.major, year: this.year, selectedGender: this.selectedGender, interest: this.interest, selectedCourses: this.selectedCourses, pa: this.pa, background: this.background}
     });
 
+    //once the dialog closes.. the elements get saved into the result and then assign each value accordingly
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
       console.log(result)
@@ -70,17 +72,21 @@ export class ProfileComponent implements  OnInit{
   styleUrls: ['./profile.component.css']
 })
 export class DialogOverviewExampleDialog implements OnInit{
+  //hard code list.. classes should be getting from the databases according to the major
   classCourses : string[] = ['CECS 324', 'CECS 225', 'CECS 328', 'CECS 343', 'CECS 451', 'CECS 453'];
-  genderNames : string[] = ['MALE', 'FEMALE', 'LESBIAN', 'GAY', 'HETEROSEXUAL', 'BISEXUAL'];
+  genderNames : string[] = ['MALE', 'FEMALE', 'NONBINARY', 'OTHER'];
 
 
+  //data from interface DailogData is injected into the Dialog (the component that pops out)
   constructor(
     public dialogRef: MatDialogRef<DialogOverviewExampleDialog>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData) {}
 
+  //inherits libraries from app root
   ngOnInit(): void {
   }
 
+  //main picture is uploaded and then displayed as the profile picture
   onFileSelected(event){
     const files = event.target.files;
     const reader = new FileReader();
@@ -90,6 +96,7 @@ export class DialogOverviewExampleDialog implements OnInit{
     }
   }
 
+  //background picture is uploaded and then displayed as the background picture
   backgroundChanged(event){
     const files = event.target.files;
     const reader = new FileReader();
