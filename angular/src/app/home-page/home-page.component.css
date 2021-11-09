@@ -1,10 +1,10 @@
 *{
     margin: 0%;
     padding: 0%;
-    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-family: 'Courier New', Courier, monospace;
 }
 body{
-    background: antiquewhite;
+    background: #efefef;
 }
 nav{
     display: flex;
@@ -20,14 +20,10 @@ nav{
     width: 130px;
     height: 60px;
 }
-
-
 .nav-left{
     display: flex;
     align-items: center;
 }
-
-
 .nav-mid{
     display: inline;
     align-items: center;
@@ -39,9 +35,7 @@ nav{
     display: flex;
     align-items: center;
     padding:0 15px;
-    margin-right: 20%;
 }
-
 .search input{
     width: 100%;
     background: transparent;
@@ -54,8 +48,6 @@ nav{
     background-color: transparent; 
     filter: brightness(50%);
 }
-
-
 .nav-right{
     display: flex;
     align-items: center;
@@ -63,6 +55,10 @@ nav{
 .nav-right ul li {
     list-style: none;
     display: inline-block;
+}
+.nav-right ul li img{
+    width: 28px;
+    margin: 0 15px;
 }
 .mssg{
     filter: brightness(5);
@@ -84,11 +80,13 @@ nav{
 }
 
 
+
 .container{
     display: flex;
     justify-content: space-between;
     padding: 13px 5%;
 }
+
 .left-side{
     background: #cbdffa;
     flex-basis: 25%;
@@ -96,6 +94,31 @@ nav{
     top: 70px;
     align-self: flex-start;
 }
+.sidenav a {
+    position: absolute;
+    left: -80px;
+    transition: 0.3s;
+    padding: 15px;
+    width: 130px;
+    text-decoration: none;
+    font-size: 15px;
+    color: #cbdffa;
+    border-radius: 0 5px 5px 0;
+}
+.Global {
+    top: 130px;
+    background-color: rgb(238, 179, 31);
+}
+.Announcements{
+    top: 204px;
+    background-color: rgb(134, 134, 134);
+}
+.Friends{
+    top: 256px;
+    background-color: rgb(61, 61, 61);
+}
+
+
 .right-side{
     background: #cbdffa;
     flex-basis: 25%;
@@ -105,4 +128,29 @@ nav{
 }
 .main{
     flex-basis: 47%;
+}
+.post-buttons{
+    filter: grayscale(1);
+}
+.post-buttons img {
+    width: 20px;
+}
+.postings{
+    padding: 13px 5%;
+}
+.users-header{
+    background-image: url('/static/assets/logo.png');
+    background-size: cover;
+}
+.post-template{
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+}
+.message-input-box{
+    width: 100%;
+}
+.post-actions img{
+    width: 20px;
+    margin-right: 12%;
 }
