@@ -47,6 +47,12 @@ import {MatTreeModule} from '@angular/material/tree';
 import {OverlayModule} from '@angular/cdk/overlay';
 
 
+import {HttpClientModule} from "@angular/common/http";
+
+import { ValidateEqualModule } from  'ng-validate-equal';
+
+import { SignUpComponent } from './sign-up/sign-up.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -54,6 +60,7 @@ import {OverlayModule} from '@angular/cdk/overlay';
     LogInComponent,
     ProfileComponent,
     DialogOverviewExampleDialog,
+    SignUpComponent
   ],
   imports: [
     BrowserModule,
@@ -105,6 +112,8 @@ import {OverlayModule} from '@angular/cdk/overlay';
     MatTooltipModule,
     MatTreeModule,
     OverlayModule,
+    HttpClientModule,
+    ValidateEqualModule
   ],
   providers: [],
   bootstrap: [AppComponent],
