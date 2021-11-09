@@ -1,0 +1,55 @@
+<h1 mat-dialog-title>{{data.firstName}} {{data.lastName}}</h1>
+<div mat-dialog-content>
+  <img mat-card-image class="mat-card-image-dialog" src="{{data.pa}}" alt="Profile Picture">
+
+  <mat-label>Profile picture </mat-label>
+    <input type = "file" (change)="onFileSelected($event)">
+    <br>
+
+  <mat-label>Background Picture</mat-label>
+  <input type = "file" (change)="backgroundChanged($event)">
+  <br>
+  <mat-form-field appearance="fill">
+    <mat-label>First Name</mat-label>
+    <input matInput [(ngModel)]="data.firstName">
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Last Name</mat-label>
+    <input matInput [(ngModel)]="data.lastName">
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Major</mat-label>
+    <input matInput [(ngModel)]="data.major">
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Year</mat-label>
+    <input matInput [(ngModel)]="data.year">
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Gender</mat-label>
+    <mat-select multiple name="selectedGender" [(ngModel)]="data.selectedGender">
+      <mat-option *ngFor="let gender of genderNames" [value]="gender">{{gender}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Interest</mat-label>
+    <input matInput [(ngModel)]="data.interest">
+  </mat-form-field>
+
+
+  <mat-form-field appearance="fill">
+    <mat-label>Courses</mat-label>
+    <mat-select  multiple name="selectedCourses" [(ngModel)]="data.selectedCourses">
+      <mat-option *ngFor="let class of classCourses" [value]="class">{{class}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+
+<div mat-dialog-actions>
+  <button mat-button [mat-dialog-close]="[data.firstName, data.lastName,data.major, data.year, data.selectedGender, data.interest, data.selectedCourses,data.pa, data.background]" cdkFocusInitial>SAVE</button>
+</div>

@@ -1,0 +1,134 @@
+
+.upper-left{
+  background-size: cover;
+  position: absolute;
+  height: inherit;
+  width: inherit;
+}
+
+.button-upper{
+  position:absolute;
+  top: 0;
+  right: 0;
+  margin: 20px;
+}
+
+.mat-grid-tile{
+  border-color: black;
+  border-style: solid;
+}
+
+.mainPicture{
+  margin:20px;
+  height: 80%;
+  width: 30%;
+  border-radius: 50%;
+}
+
+.mat-card-image-dialog{
+  height: 40%;
+  width: 30%;
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.card-container-top{
+  padding-left: 40px;
+  padding-right: 40px;
+  padding-bottom: 40px;
+  color: black;
+  position: absolute;
+  top: 0;
+  display: block;
+  justify-content: space-between;
+  border-style: solid;
+  border-color: black;
+  margin: 20%;
+  overflow-y: scroll;
+}
+
+.card-container-middle{
+
+  padding-left: 40px;
+  padding-right: 40px;
+  padding-bottom: 40px;
+  color: black;
+  position: absolute;
+  display: block;
+  justify-content: space-between;
+  border-style: solid;
+  border-color: black;
+  margin: 20%;
+  overflow-y: scroll;
+}
+
+.card-container-low{
+
+  padding-left: 40px;
+  padding-right: 40px;
+  padding-bottom: 40px;
+  color: black;
+  position: absolute;
+  display: block;
+  justify-content: space-between;
+  border-style: solid;
+  border-color: black;
+  margin: 20%;
+  bottom:0px;
+  overflow-y: scroll;
+}
+
+.container-info{
+  position:absolute;
+  top:20px;
+  left: 80px;
+}
+
+.container-other{
+  display: flex;
+}
+.container-other p{
+  margin: 10px;
+}
+
+.posting{
+  width: 90%;
+  max-height: 200px;
+  margin-left: -8px;
+}
+
+.mat-card-image:first-child {
+  border-radius: 50%;
+  margin-top: 10px;
+}
+
+
+
+.poster{
+  margin: 20px;
+  height: 10%;
+  width: 10%;
+  border-radius: 50%;
+}
+
+/**/
+.mat-card{
+  overflow-y: scroll;
+}
+
+/*extend the comments to full width*/
+.comments{
+  width: 100%;
+}
+
+.scrollable {
+  overflow-y: auto;
+  box-sizing: border-box;
+  position: absolute;
+  right: 0;
+  /*top: 0;*/
+  width: 100%;
+  height: 100%;
+}
+
