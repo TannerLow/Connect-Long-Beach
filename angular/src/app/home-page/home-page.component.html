@@ -21,9 +21,9 @@
     <div class = 'container'> 
         <div class = 'left-side'>
             <div class="sidenav">
-                <a href="#" class="Global">Global Announcements </a> 
-                <a href="#" class="Announcements">Announcements</a>
-                <a href="#" class="Friends">Friends</a>
+                <a href="#"> <img src = '/static/assets/world.png'>Global Post</a> 
+                <a href="#"> <img src = '/static/assets/announc.png'>Announcments</a>
+                <a href="#"> <img src = '/static/assets/friends.png'>friends</a>
             </div>
         </div>
 
@@ -32,9 +32,10 @@
                 <mat-card>
                     <mat-card-header>
                         <div mat-card-avatar class="users-header"></div>
-                        <mat-card-title>CSULB College</mat-card-title>
+                        <mat-card-title>CONNECT LONG BEACH</mat-card-title>
                         <mat-card-subtitle>Public</mat-card-subtitle>
                     </mat-card-header>
+                    <p>Write your post below</p>
                     <form class="post-template">
                         <mat-form-field class="message-input-box" appearance="fill">
                           <mat-label>Write Post here</mat-label>
@@ -46,21 +47,63 @@
                       <button mat-button> <img src = '/static/assets/upload.png' ></button>
                       <button mat-button>POST</button>
                     </mat-card-actions>
-                  </mat-card>
+                </mat-card>
             </div>
-
-            <div class="postings">
-                <mat-card class="card-UI">
+            <div class="user-postbox">
+                <mat-card>
                     <mat-card-header>
-                        <div mat-card-avatar class="users-header"></div>
+                        <div mat-card-avatar class="users-header2"></div>
                         <mat-card-title>CSULB College</mat-card-title>
-                        <mat-card-subtitle>Public</mat-card-subtitle>
+                        <mat-card-subtitle>Public   Nov 10 2021, 2:00pm </mat-card-subtitle>
                     </mat-card-header>
                     <form class="post-template">
-                        <mat-form-field appearance = 'fill' >
-                            <img mat-card-image src="/static/assets/Walter_Pyramid.jpg" alt="Photo of a Shiba Inu">
+                        <mat-form-field class="inputed post" appearance="fill">
+                                <img src = "/static/assets/Walter_Pyramid.jpg">
                                 <p>
                                     Here is a picture of the Walter Pyramid at the University of Long Beach.
+                                </p>
+                        </mat-form-field>
+                    </form>
+                    <mat-card-actions class = 'post-actions'>
+                        <button mat-button><img src = '/static/assets/like.png'>LIKE</button>
+                        <button mat-button><img src = '/static/assets/comments.png'>COMMENT</button>
+                        <button mat-button><img src = '/static/assets/share.png'>SHARE</button>
+                    </mat-card-actions>
+                </mat-card>
+            </div>
+            <div class="user-postbox">
+                <mat-card>
+                    <mat-card-header>
+                        <div mat-card-avatar class="users-header3"></div>
+                        <mat-card-title>Mathew Martinez</mat-card-title>
+                        <mat-card-subtitle>Private   Nov 08 2021, 10:30am</mat-card-subtitle>
+                    </mat-card-header>
+                    <form class="post-template">
+                        <mat-form-field class="inputed post" appearance="fill">
+                                <img src = "/static/assets/meeting.png">
+                                <p>
+                                    Last nights meeting was a great success! 
+                                </p>
+                        </mat-form-field>
+                    </form>
+                    <mat-card-actions class = 'post-actions'>
+                        <button mat-button> 12 <img src = '/static/assets/like.png'>LIKE</button>
+                        <button mat-button><img src = '/static/assets/comments.png'>COMMENT</button>
+                        <button mat-button><img src = '/static/assets/share.png'>SHARE</button>
+                    </mat-card-actions>
+                </mat-card>
+            </div>
+            <div class="user-postbox">
+                <mat-card>
+                    <mat-card-header>
+                        <div mat-card-avatar class="users-header4"></div>
+                        <mat-card-title>Rachel Pena</mat-card-title>
+                        <mat-card-subtitle>Private   Nov 01 2021, 10:33am</mat-card-subtitle>
+                    </mat-card-header>
+                    <form class="post-template">
+                        <mat-form-field class="inputed post" appearance="fill">
+                                <p>
+                                    These classes are killing me! Anyone want to meet up at the library to study?
                                 </p>
                         </mat-form-field>
                     </form>
