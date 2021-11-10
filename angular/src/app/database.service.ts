@@ -9,6 +9,10 @@ import { RegistrationResponse } from './api-objects/RegistrationResponse';
 import { EmailCheckResponse } from './api-objects/EmailCheckResponse';
 import sha256 from "fast-sha256";
 import { Post } from './api-objects/Post';
+import { CommentInfo } from './api-objects/CommentInfo';
+import { Response } from './api-objects/Response';
+import { PostInfo } from './api-objects/PostInfo';
+import { PostResponse } from './api-objects/PostResponse';
 
 const URL = 'api/';
 
@@ -45,11 +49,44 @@ export class DatabaseService {
         );
     }
 
-    getPosts(amount: any): Observable<Post[]> {
+    createPost(user_id: number, message: string): Observable<PostResponse> {
+        let post: PostInfo = {
+            userID: user_id,
+            message: message
+        } 
+        return this.http.post<PostResponse>(URL + "post", post)
+            .pipe(
+                tap(_ => console.log('Posted with user id: ' + user_id)),
+                catchError(this.handleError<PostResponse>('post'))
+            );
+    }
+
+    getPosts(amount: number): Observable<Post[]> {
         return this.http.get<Post[]>(URL + "getPosts/" + amount)
             .pipe(
                 tap(_ => console.log('getting ' + amount + ' most recent posts')),
                 catchError(this.handleError<Post[]>('getPosts' + amount))
+            );
+    }
+
+    createComment(user_id: number, post_id: number, message: string): Observable<Response> {
+        let comment: CommentInfo = {
+            postID: post_id,
+            userID: user_id,
+            message: message
+        } 
+        return this.http.post<Response>(URL + "comment", comment)
+            .pipe(
+                tap(_ => console.log('Posted a comment on post with user id: ' + user_id)),
+                catchError(this.handleError<Response>('comment'))
+            );
+    }
+
+    getComments(post_id: number): Observable<Post[]> {
+        return this.http.get<Post[]>(URL + "getComments/" + post_id)
+            .pipe(
+                tap(_ => console.log('getting comments for post with id: ' + post_id)),
+                catchError(this.handleError<Post[]>('getComments' + post_id))
             );
     }
 

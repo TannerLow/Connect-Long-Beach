@@ -132,18 +132,24 @@ def register(mysql, email, password, fname, lname, gender, month, day, year):
 
 
 def create_post(mysql, user_id, message):
+    post_id = None
     cur = mysql.connection.cursor()
-    cur.execute(f"INSERT INTO messages(author, date, message) values({user_id}, NOW(), '{message}');")
+    cur.execute(f"INSERT INTO messages(author, date, message) VALUES({user_id}, NOW(), '{message}');")
+    post_id = mysql.connection.insert_id()
+    cur.execute(f"INSERT INTO posts(post_id, group_id) VALUES({post_id}, 1);") # use default group for general posts
     mysql.connection.commit()
     cur.close()
+    return {
+        "postID": post_id
+    }
 
 
 def get_posts(mysql, amount):
-    response = {"posts": []}
+    response = []
     cur = mysql.connection.cursor()
     cur.execute(f"SELECT * FROM messages ORDER BY date DESC LIMIT {amount};")
     for message in cur.fetchall():
-        response["posts"].append({
+        response.append({
             "postID": message[0],
             "author": message[1],
             "timestamp": int(message[2].timestamp()),
@@ -154,8 +160,31 @@ def get_posts(mysql, amount):
     return response
 
 
+def comment(mysql, parent_post_id, user_id, message):
+    response = {"response": False}
+    comment_id = create_post(mysql, user_id, message)["postID"]
+    cur = mysql.connection.cursor()
+    cur.execute(f"INSERT INTO comments(post_id, parent_host) VALUES({comment_id}, {parent_post_id});")
+    mysql.connection.commit()
+    response["response"] = True
+    cur.close()
+    return response
 
 
+def get_comments(mysql, post_id):
+    response = []
+    cur = mysql.connection.cursor()
+    cur.execute(f"SELECT * FROM messages m WHERE m.post_id IN (SELECT post_id FROM comments c WHERE c.parent_host={post_id});")
+    for comment in cur.fetchall():
+        response.append({
+            "postID": comment[0],
+            "author": comment[1],
+            "timestamp": int(comment[2].timestamp()),
+            "message": comment[3]
+        })
+
+    cur.close()
+    return response
 
 if __name__ == "__main__":
     #insert test driver code
@@ -164,4 +193,5 @@ if __name__ == "__main__":
 
 def test(mysql):
     pass
-    # get_posts(mysql, 3)
+    create_post(mysql, 22, "A post that you should comment on.")
+    comment(mysql, 51, 22, "My thoughtful comment.")
