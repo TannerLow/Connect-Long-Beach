@@ -8,6 +8,7 @@ import { RegistrationInfo } from './api-objects/RegistrationInfo';
 import { RegistrationResponse } from './api-objects/RegistrationResponse';
 import { EmailCheckResponse } from './api-objects/EmailCheckResponse';
 import sha256 from "fast-sha256";
+import { Post } from './api-objects/Post';
 
 const URL = 'api/';
 
@@ -42,6 +43,14 @@ export class DatabaseService {
             tap(_ => console.log('email check for ' + email)),
             catchError(this.handleError<EmailCheckResponse>('isEmailInUse'))
         );
+    }
+
+    getPosts(amount: any): Observable<Post[]> {
+        return this.http.get<Post[]>(URL + "getPosts/" + amount)
+            .pipe(
+                tap(_ => console.log('getting ' + amount + ' most recent posts')),
+                catchError(this.handleError<Post[]>('getPosts' + amount))
+            );
     }
 
     private handleError<T>(operation = 'operation', result?: T) {

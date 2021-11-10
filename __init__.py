@@ -40,4 +40,9 @@ def check_email(email):
     return databases.is_email_in_use(mysql, email)
 
 
+@app.route('/api/getPosts/<amount>')
+def get_posts(amount):
+    return databases.get_posts(mysql, int(amount))
+
+
 app.run()

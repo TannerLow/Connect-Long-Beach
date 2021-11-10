@@ -136,7 +136,26 @@ def create_post(mysql, user_id, message):
     cur.execute(f"INSERT INTO messages(author, date, message) values({user_id}, NOW(), '{message}');")
     mysql.connection.commit()
     cur.close()
-    
+
+
+def get_posts(mysql, amount):
+    response = {"posts": []}
+    cur = mysql.connection.cursor()
+    cur.execute(f"SELECT * FROM messages ORDER BY date DESC LIMIT {amount};")
+    for message in cur.fetchall():
+        response["posts"].append({
+            "postID": message[0],
+            "author": message[1],
+            "timestamp": int(message[2].timestamp()),
+            "message": message[3]
+        })
+
+    cur.close()
+    return response
+
+
+
+
 
 if __name__ == "__main__":
     #insert test driver code
@@ -144,4 +163,5 @@ if __name__ == "__main__":
 
 
 def test(mysql):
-    create_post(mysql, 22, "This is a test message. Working on posts.")
+    pass
+    # get_posts(mysql, 3)
