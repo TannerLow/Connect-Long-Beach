@@ -61,10 +61,21 @@ export class DatabaseService {
             );
     }
 
-    getPosts(amount: number): Observable<Post[]> {
-        return this.http.get<Post[]>(URL + "getPosts/" + amount)
+    getPosts(amount: number, user_id?: number): Observable<Post[]> {
+        let path = URL + "getPosts/" + amount;
+        if(user_id !== undefined) {
+            path += "/" + user_id;
+        }
+        return this.http.get<Post[]>(path)
             .pipe(
-                tap(_ => console.log('getting ' + amount + ' most recent posts')),
+                tap(_ => {
+                    if(user_id === undefined) {
+                        console.log('getting ' + amount + ' most recent posts');
+                    }
+                    else{
+                        console.log('getting ' + amount + ' most recent posts from user with id ' + user_id)
+                    }
+                }),
                 catchError(this.handleError<Post[]>('getPosts' + amount))
             );
     }

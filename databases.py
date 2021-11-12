@@ -144,10 +144,14 @@ def create_post(mysql, user_id, message):
     }
 
 
-def get_posts(mysql, amount):
+def get_posts(mysql, amount, user_id=-1):
     response = []
     cur = mysql.connection.cursor()
-    cur.execute(f"SELECT * FROM messages ORDER BY date DESC LIMIT {amount};")
+    if user_id != -1: # -1 indicates no user specified
+        cur.execute(f"SELECT * FROM messages WHERE author={user_id} ORDER BY date DESC LIMIT {amount};")
+    else:
+        cur.execute(f"SELECT * FROM messages ORDER BY date DESC LIMIT {amount};")
+
     for message in cur.fetchall():
         response.append({
             "postID": message[0],

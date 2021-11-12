@@ -15,14 +15,14 @@ export class AppComponent {
     constructor(private databaseService: DatabaseService) {}
 
     ngOnInit() {
-        this.post_test();
+        //this.post_test();
         this.getPosts_test();
-        this.comment_test();
+        //this.comment_test();
         this.getComments_test();
     }
 
     getPosts_test(): void {
-        this.databaseService.getPosts(5).subscribe(data => {
+        this.databaseService.getPosts(5, 22).subscribe(data => {
             console.log(data);
         });
     }

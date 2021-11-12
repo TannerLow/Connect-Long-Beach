@@ -48,9 +48,10 @@ def post():
     return databases.create_post(mysql, user_id, message)
 
 
-@app.route('/api/getPosts/<amount>')
-def get_posts(amount):
-    return jsonify(databases.get_posts(mysql, int(amount)))
+@app.route('/api/getPosts/<amount>', defaults={'user_id': -1})
+@app.route('/api/getPosts/<amount>/<user_id>')
+def get_posts(amount, user_id):
+    return jsonify(databases.get_posts(mysql, int(amount), int(user_id)))
 
 
 @app.route('/api/comment', methods=['POST'])
