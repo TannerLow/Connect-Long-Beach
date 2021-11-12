@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { LogInComponent } from './log-in/log-in.component';
 
 @Component({
     selector: 'app-root',
@@ -15,5 +16,12 @@ export class AppComponent {
 
     ngOnInit() {
 
+    }
+
+    // test to show cross component variables, specifically user ID
+    getUID() {
+        if(LogInComponent.loggedIn){
+            console.log("user id from retrieval: " + LogInComponent.userID);
+        }
     }
 }
