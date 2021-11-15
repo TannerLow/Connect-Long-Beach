@@ -190,6 +190,20 @@ def get_comments(mysql, post_id):
     cur.close()
     return response
 
+
+def get_about_me(mysql,user_id):
+    response = []
+    cur = mysql.connection.cursor()
+    cur.execute(f"SELECT about FROM users u WHERE u.userID = {user_id};")
+    for aboutMe in cur.fetchall():
+        response.append({
+            "about": aboutMe[0]
+        })
+
+    cur.close()
+    return response
+
+
 if __name__ == "__main__":
     #insert test driver code
     create_post("", 0, "hello")
