@@ -190,9 +190,37 @@ def get_comments(mysql, post_id):
     cur.close()
     return response
 
+
+def get_image(mysql, path):
+    response = {"retrieved": False, "image": "null"}
+    with open("images/" + path, "r") as file:
+        image_data = file.read()
+        response["image"] = image_data
+        response["retrieved"] = True
+        
+    return response
+
+
+def generate_image_path():
+    return create_unique_id()
+
+def store_image(mysql, image, path):
+    response = {"response": False, "path": "null"}
+
+    if path == "null":
+        path = generate_image_path()
+        response["path"] = path
+
+    with open("images/" + path, "w") as file:
+        file.write(image)
+        response["response"] = True
+
+    return response
+
+
 if __name__ == "__main__":
     #insert test driver code
-    create_post("", 0, "hello")
+    get_image("", "test")
 
 
 def test(mysql):

@@ -68,4 +68,16 @@ def get_comments(post_id):
     return jsonify(databases.get_comments(mysql, int(post_id)))
 
 
+@app.route('/api/getImage/<path>')
+def get_image(path):
+    return databases.get_image(mysql, path)
+
+
+@app.route('/api/storeImage', methods=['POST'])
+def store_image():
+    data = request.get_json()
+    image = data["image"]
+    path = data["path"]
+    return databases.store_image(mysql, image, path)
+
 app.run()

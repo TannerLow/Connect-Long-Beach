@@ -13,6 +13,9 @@ import { CommentInfo } from './api-objects/CommentInfo';
 import { Response } from './api-objects/Response';
 import { PostInfo } from './api-objects/PostInfo';
 import { PostResponse } from './api-objects/PostResponse';
+import { ImageResponse } from './api-objects/ImageResponse';
+import { StoreImageResponse } from './api-objects/StoreImageResponse';
+import { StoreImageRequest } from './api-objects/StoreImageRequest';
 
 const URL = 'api/';
 
@@ -98,6 +101,31 @@ export class DatabaseService {
             .pipe(
                 tap(_ => console.log('getting comments for post with id: ' + post_id)),
                 catchError(this.handleError<Post[]>('getComments' + post_id))
+            );
+    }
+
+    getImage(path: string): Observable<ImageResponse> {
+        return this.http.get<ImageResponse>(URL + "getImage/" + path)
+            .pipe(
+                tap(_ => console.log('getting image from path: ' + path)),
+                catchError(this.handleError<ImageResponse>('getImage ' + path))
+            );
+    }
+
+    storeImage(imageData: string, path?: string): Observable<StoreImageResponse> {
+        if(path === undefined) {
+            path = "null"
+        }
+
+        let imageRequest: StoreImageRequest = {
+            image: imageData,
+            path: path
+        }
+
+        return this.http.post<StoreImageResponse>(URL + "storeImage", imageRequest)
+            .pipe(
+                tap(_ => console.log('Request to store image')),
+                catchError(this.handleError<StoreImageResponse>('storeImage'))
             );
     }
 
