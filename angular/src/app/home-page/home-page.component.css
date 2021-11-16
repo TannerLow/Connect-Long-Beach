@@ -1,0 +1,168 @@
+*{
+    margin: 0%;
+    padding: 0%;
+    font-family: 'Courier New', Courier, monospace;
+}
+body{
+    background: #efefef;
+}
+nav{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #3f3f3f;
+    padding: 5px 2%;
+    position: sticky;
+    top:0;
+    z-index: 100;
+}
+.logo{
+    width: 130px;
+    height: 60px;
+}
+.nav-left{
+    display: flex;
+    align-items: center;
+}
+.nav-mid{
+    display: inline;
+    align-items: center;
+}
+.search{
+    background: white;
+    width: 350px;
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    padding:0 15px;
+}
+.search input{
+    width: 100%;
+    background: transparent;
+    padding: 10px;
+    outline: none;
+    border: 0;
+}
+.btn
+{
+    background-color: transparent; 
+    filter: brightness(50%);
+}
+.nav-right{
+    display: flex;
+    align-items: center;
+}
+.nav-right ul li {
+    list-style: none;
+    display: inline-block;
+}
+.nav-right ul li img{
+    width: 28px;
+    margin: 0 15px;
+}
+.mssg{
+    filter: brightness(5);
+}
+.mssg:hover{
+    filter: invert(63%) sepia(62%) saturate(517%) hue-rotate(4deg) brightness(200%) contrast(83%);   
+}
+.notif{
+    filter: brightness(5);
+}
+.notif:hover{
+    filter: invert(63%) sepia(62%) saturate(517%) hue-rotate(4deg) brightness(200%) contrast(83%);   
+}
+.user{
+    filter: brightness(5);
+}
+.user:hover{
+    filter: invert(63%) sepia(62%) saturate(517%) hue-rotate(4deg) brightness(200%) contrast(83%);   
+}
+
+
+
+.container{
+    display: flex;
+    justify-content: space-between;
+    padding: 13px 5%;
+    background-color: #efefef;
+}
+
+.left-side{
+    flex-basis: 25%;
+    position: sticky;
+    top: 20%;
+    align-self: flex-start;
+}
+.main{
+    flex-basis: 47%;
+}
+.sidenav a {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+    color: black;
+    width: fit-content;
+}
+.sidenav a img{
+    background: transparent;
+    width: 25px;
+    margin-right: 15px;
+
+}
+.right-side{
+    flex-basis: 25%;
+    position: sticky;
+    top: 70px;
+    align-self: flex-start;
+}
+.post-buttons{
+    filter: grayscale(1);
+}
+.post-buttons img {
+    width: 20px;
+}
+.postings{
+    padding: 13px 5%;
+}
+.user-postbox{
+    margin-top: 5%;
+}
+.user-postbox p{
+    margin-left: 9%;
+    margin-bottom: 2%;
+}
+.users-header{
+    background-image: url('/static/assets/logo.png');
+    background-size: cover;
+}
+.users-header2{
+    background-image: url('/static/assets/download.png');
+    background-size: cover;
+}
+.users-header3{
+    background-image: url('/static/assets/user2.png');
+    background-size: cover;
+}
+.users-header4{
+    background-image: url('/static/assets/user4.png');
+    background-size: cover;
+}
+.post-template{
+    min-width: 150px;
+    max-width: 500px;
+    display: grid;
+    margin-left: 7.5%;
+}
+.message-input-box{
+    width: 100%;
+}
+.post-actions img{
+    width: 20px;
+    margin-right: 12%;
+}
+.post-template img{
+    width: -webkit-fill-available;
+    margin-bottom: 25px;
+}

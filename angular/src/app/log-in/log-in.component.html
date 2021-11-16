@@ -10,7 +10,7 @@
       <form (ngSubmit)="onInfoItem(f)" #f="ngForm">
         <div class = "form-row ">
           <div class="col-lg-12" style="margin-left: 8%;margin-right:4%">
-            <input type="email"  name= "emailAddress" placeholder="Email Address" required [pattern]="emailPattern" ngModel class="form-control my-3 p-4" #emailAddress="ngModel" style="width: 90%;" >
+            <input matInput type="email"  name= "emailAddress" placeholder="Email Address" required [pattern]="emailPattern" ngModel class="form-control my-3 p-4" #emailAddress="ngModel" style="width: 90%;" >
                 <div *ngIf="emailAddress.invalid && (emailAddress.dirty || emailAddress.touched)" class="alert" [ngClass] = "'error'">
                   <div *ngIf="emailAddress.errors?.pattern">
                     Email is invalid. Please use a CSULB student email.
@@ -41,7 +41,7 @@
               <button type="button" class="btn1 mt-3 mx-5 mb-5">Create New Account</button></a>
           </div>
         </div>
-        <a href ="# " style ="color: rgb(20, 89, 236); margin-left: 13%;">Forgot Password?</a>
+        <a routerLink ="/home-page" style ="color: rgb(20, 89, 236); margin-left: 13%;">Forgot Password?</a>
       </form>
   </div>
 </div>

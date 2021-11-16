@@ -7,18 +7,13 @@ import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
 import { LogInComponent } from './log-in/log-in.component';
 import {DialogOverviewExampleDialog, ProfileComponent} from './profile/profile.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatGridListModule} from "@angular/material/grid-list";
 import {MatDividerModule} from "@angular/material/divider";
 import {MatFormFieldModule} from "@angular/material/form-field";
-import {MatInputModule} from "@angular/material/input";
-
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatBadgeModule} from '@angular/material/badge';
 import {MatBottomSheetModule} from '@angular/material/bottom-sheet';
-import {MatButtonModule} from '@angular/material/button';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
-import {MatCardModule} from '@angular/material/card';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatChipsModule} from '@angular/material/chips';
 import {MatStepperModule} from '@angular/material/stepper';
@@ -27,7 +22,6 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatIconModule} from '@angular/material/icon';
 import {MatListModule} from '@angular/material/list';
-import {MatMenuModule} from '@angular/material/menu';
 import {MatNativeDateModule, MatRippleModule} from '@angular/material/core';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
@@ -52,6 +46,12 @@ import {HttpClientModule} from "@angular/common/http";
 import { ValidateEqualModule } from  'ng-validate-equal';
 
 import { SignUpComponent } from './sign-up/sign-up.component';
+import { HomePageComponent } from './home-page/home-page.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatCardModule} from '@angular/material/card';
+import {MatButtonModule} from '@angular/material/button';
+import {MatInputModule} from '@angular/material/input';
+import {MatMenuModule} from '@angular/material/menu';
 
 @NgModule({
   declarations: [
@@ -60,7 +60,8 @@ import { SignUpComponent } from './sign-up/sign-up.component';
     LogInComponent,
     ProfileComponent,
     DialogOverviewExampleDialog,
-    SignUpComponent
+    SignUpComponent,
+    HomePageComponent
   ],
   imports: [
     BrowserModule,
@@ -113,7 +114,12 @@ import { SignUpComponent } from './sign-up/sign-up.component';
     MatTreeModule,
     OverlayModule,
     HttpClientModule,
-    ValidateEqualModule
+    ValidateEqualModule,
+    BrowserAnimationsModule,
+    MatCardModule,
+    MatButtonModule,
+    MatInputModule,
+    MatMenuModule
   ],
   providers: [],
   bootstrap: [AppComponent],
