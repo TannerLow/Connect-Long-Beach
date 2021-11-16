@@ -69,7 +69,7 @@ export class ProfileComponent implements  OnInit{
 @Component({
   selector: 'dialog-overview-example-dialog',
   templateUrl: 'dialog-overview-example-dialog.html',
-  styleUrls: ['./profile.component.css']
+  styleUrls: ['./profileDialog.component.css']
 })
 export class DialogOverviewExampleDialog implements OnInit{
   //hard code list.. classes should be getting from the databases according to the major

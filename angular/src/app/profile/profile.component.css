@@ -25,13 +25,6 @@
   border-radius: 50%;
 }
 
-.mat-card-image-dialog{
-  height: 40%;
-  width: 30%;
-  display: block;
-  margin-right: auto;
-  margin-left: auto;
-}
 
 .card-container-top{
   padding-left: 40px;
@@ -79,19 +72,6 @@
   overflow-y: scroll;
 }
 
-.container-info{
-  position:absolute;
-  top:20px;
-  left: 80px;
-}
-
-.container-other{
-  display: flex;
-}
-.container-other p{
-  margin: 10px;
-}
-
 .posting{
   width: 90%;
   max-height: 200px;
@@ -101,8 +81,8 @@
 .mat-card-image:first-child {
   border-radius: 50%;
   margin-top: 10px;
-}
 
+}
 
 
 .poster{

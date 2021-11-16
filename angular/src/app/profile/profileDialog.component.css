@@ -1,0 +1,34 @@
+
+
+.mat-card-image-dialog{
+  height: 50%;
+  width: 50%;
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+  border-radius: 50%;
+  margin-top: 10px;
+}
+
+.mat-form-field{
+  display: flex;
+  position: relative;
+  text-align: center;
+  padding-left: 35px;
+}
+
+.mat-dialog-actions {
+  padding: 8px 0;
+  display: flex;
+  flex-wrap: wrap;
+  min-height: 52px;
+  align-items: center;
+  box-sizing: content-box;
+  margin-bottom: -24px;
+  justify-content: center;
+}
+
+.mat-dialog-title{
+  display:flex;
+  justify-content: center;
+}
