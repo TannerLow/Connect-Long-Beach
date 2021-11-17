@@ -194,7 +194,7 @@ def get_comments(mysql, post_id):
 def get_about_me(mysql,user_id):
     response = []
     cur = mysql.connection.cursor()
-    cur.execute(f"SELECT about FROM users u WHERE u.userID = {user_id};")
+    cur.execute(f"SELECT p.about FROM users u INNER JOIN profile p ON u.pathURL = p.pathURL WHERE u.userID = {user_id};")
     for aboutMe in cur.fetchall():
         response.append({
             "about": aboutMe[0]
