@@ -206,6 +206,8 @@ def get_about_me(mysql,user_id):
 def create_about(mysql,user_id,message):
     response = {"response": False}
     cur = mysql.connection.cursor()
+    cur.execute(f"INSERT INTO profile(pathURL,about) SELECT u.pathURL,{message} FROM users u WHERE userID = {user_id};")
+    mysql.connection.commit()
     response["response"] = True
     cur.close()
     return response
