@@ -14,7 +14,7 @@ import { Response } from './api-objects/Response';
 import { PostInfo } from './api-objects/PostInfo';
 import { PostResponse } from './api-objects/PostResponse';
 import { About } from './api-objects/About';
-import { aboutInfo } from './api-objects/aboutInfo';
+import { AboutInfo } from './api-objects/AboutInfo';
 
 const URL = 'api/';
 
@@ -105,13 +105,13 @@ export class DatabaseService {
 
     //TODO: come back and verify bottom is correct
     createAbout(user_id: number, message:string): Observable<Response>{
-        let about: aboutInfo = {
+        let about: AboutInfo = {
             userID: user_id,
-            message: message
+            aboutMe: message
         }
-        return this.http.post<Response>(URL + "about",about)
+        return this.http.post<Response>(URL + "about", about)
         .pipe(
-            tap(_=> console.log("Created about me on profile with user id: " + user_id)),
+            tap(_=> console.log("Updated about me on profile with user id: " + user_id)),
             catchError(this.handleError<Response>('About'))
         );
     }

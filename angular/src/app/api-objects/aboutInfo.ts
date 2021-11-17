@@ -1,4 +1,4 @@
-export interface aboutInfo{
+export interface AboutInfo{
     userID: number;
-    message: string;
+    aboutMe: string;
 }

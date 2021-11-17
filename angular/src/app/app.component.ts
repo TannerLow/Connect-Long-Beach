@@ -47,7 +47,7 @@ export class AppComponent {
     }
 
     about_test(): void{
-        this.databaseService.createAbout(22,"Bofa leader testing!").subscribe(data => {
+        this.databaseService.createAbout(1,"Mayor of Sardignia!_").subscribe(data => {
             console.log("about created: " + data.response);
         });
     }
