@@ -5,6 +5,9 @@
   font-family: cursive;
 }
 
+.aligning-mat{
+  vertical-align: auto;
+}
 .bio-info{
   display: flex;
   justify-content: unset;
@@ -58,45 +61,44 @@
   padding-right: 40px;
   padding-bottom: 40px;
   color: black;
-  position: absolute;
+  /*position: absolute;*/
   top: 0;
   display: block;
-  justify-content: space-between;
   border-style: solid;
   border-color: black;
-  margin: 20%;
+  margin: auto auto 20%;
 }
 
-.card-container-middle{
+/*.card-container-middle{*/
 
-  padding-left: 40px;
-  padding-right: 40px;
-  padding-bottom: 40px;
-  color: black;
-  position: absolute;
-  display: block;
-  justify-content: space-between;
-  border-style: solid;
-  border-color: black;
-  margin: 20%;
-  overflow-y: hidden;
-}
+/*  padding-left: 40px;*/
+/*  padding-right: 40px;*/
+/*  padding-bottom: 40px;*/
+/*  color: black;*/
+/*  position: absolute;*/
+/*  display: block;*/
+/*  justify-content: space-between;*/
+/*  border-style: solid;*/
+/*  border-color: black;*/
+/*  margin: 20%;*/
+/*  overflow-y: hidden;*/
+/*}*/
 
-.card-container-low{
+/*.card-container-low{*/
 
-  padding-left: 40px;
-  padding-right: 40px;
-  padding-bottom: 40px;
-  color: black;
-  position: absolute;
-  display: block;
-  justify-content: space-between;
-  border-style: solid;
-  border-color: black;
-  margin: 20%;
-  /*bottom:0px;*/
-  overflow-y: hidden;
-}
+/*  padding-left: 40px;*/
+/*  padding-right: 40px;*/
+/*  padding-bottom: 40px;*/
+/*  color: black;*/
+/*  position: absolute;*/
+/*  display: block;*/
+/*  justify-content: space-between;*/
+/*  border-style: solid;*/
+/*  border-color: black;*/
+/*  margin: 20%;*/
+/*  !*bottom:0px;*!*/
+/*  overflow-y: hidden;*/
+/*}*/
 
 .posting{
   width: 90%;

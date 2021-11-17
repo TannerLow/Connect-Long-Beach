@@ -88,7 +88,7 @@ export class ProfileComponent implements  OnInit{
 })
 export class DialogOverviewExampleDialog implements OnInit{
   //hard code list.. classes should be getting from the databases according to the major
-  classCourses : string[] = ['CECS 324', 'CECS 225', 'CECS 328', 'CECS 343', 'CECS 451', 'CECS 453'];
+  classCourses : string[] = ['CECS 324', 'CECS 225', 'CECS 328', 'CECS 343', 'CECS 451', 'CECS 453', 'd', 'd', 'd', 'f', 'fs', 'CECS 324', 'CECS 225', 'CECS 328', 'CECS 343', 'CECS 451', 'CECS 453', 'd', 'd', 'd', 'f', 'fs'];
   genderNames : string[] = ['MALE', 'FEMALE', 'NONBINARY', 'OTHER'];
 
 
