@@ -203,6 +203,13 @@ def get_about_me(mysql,user_id):
     cur.close()
     return response
 
+def create_about(mysql,user_id,message):
+    response = {"response": False}
+    cur = mysql.connection.cursor()
+    response["response"] = True
+    cur.close()
+    return response
+
 
 if __name__ == "__main__":
     #insert test driver code
