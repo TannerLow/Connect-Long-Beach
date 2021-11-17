@@ -14,6 +14,7 @@ import { Response } from './api-objects/Response';
 import { PostInfo } from './api-objects/PostInfo';
 import { PostResponse } from './api-objects/PostResponse';
 import { About } from './api-objects/About';
+import { aboutInfo } from './api-objects/aboutInfo';
 
 const URL = 'api/';
 
