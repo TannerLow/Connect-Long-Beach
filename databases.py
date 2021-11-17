@@ -206,13 +206,15 @@ def get_about_me(mysql,user_id):
 def create_about(mysql,user_id,message):
     response = {"response": False}
     
-    # Check if user already has about me section
+    # get users path url
     cur = mysql.connection.cursor()
     cur.execute(f"SELECT pathURL FROM users WHERE userID={user_id};")
     data = cur.fetchone()
+    # if path url was found
     if data:
-        path_url = data[0] #extract path_url if data existed
+        path_url = data[0] #extract path_url from raw data
         cur.execute(f"SELECT * FROM profile WHERE pathURL='{path_url}';")
+        # udpate if exists, insert otherwise
         if cur.fetchone():
             cur.execute(f"UPDATE profile SET about='{message}' WHERE pathURL='{path_url}';")
         else:
