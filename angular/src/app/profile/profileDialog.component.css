@@ -32,3 +32,9 @@
   display:flex;
   justify-content: center;
 }
+
+.text-area-edit{
+  height: 100px;
+  font-family: emoji;
+  width: 100%;
+}

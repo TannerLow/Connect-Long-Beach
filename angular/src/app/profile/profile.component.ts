@@ -20,8 +20,9 @@ export interface DialogData {
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements  OnInit{
-  firstName = ""
-  lastName = ""
+  //firstName, lastName, should be defeault since we are getting it from the database
+  firstName = "Default"
+  lastName = "Name"
   major = ""
   year = ""
   selectedGender = [];
@@ -30,6 +31,11 @@ export class ProfileComponent implements  OnInit{
   //default values for the image since the profile hasnt been assigned images
   background = "/static/assets/Walter_Pyramid.jpg"
   pa = "/static/assets/anonymous.png"
+
+  //biography variables
+  biography: any = "";
+  signalContent: boolean = true;
+
   constructor(public dialog: MatDialog) {}
   ngOnInit(): void {
   }
@@ -64,6 +70,15 @@ export class ProfileComponent implements  OnInit{
     });
   }
 
+ //edit button
+  allowEdit(){
+    this.signalContent = false;
+  }
+
+  allowSave(){
+    this.signalContent = true;
+    console.log(this.biography);
+  }
 }
 
 @Component({
