@@ -19,6 +19,7 @@ export class AppComponent {
         this.getPosts_test();
         //this.comment_test();
         this.getComments_test();
+        this.about_test();
     }
 
     getPosts_test(): void {
@@ -42,6 +43,12 @@ export class AppComponent {
     post_test(): void {
         this.databaseService.createPost(22, "This is a test of the post system.").subscribe(data => {
             console.log("New post id: " + data.postID);
+        });
+    }
+
+    about_test(): void{
+        this.databaseService.createAbout(22,"Bofa leader testing!").subscribe(data => {
+            console.log("about created: " + data.response);
         });
     }
 }
