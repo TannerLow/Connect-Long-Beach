@@ -8,6 +8,7 @@ import { RegistrationInfo } from './api-objects/RegistrationInfo';
 import { RegistrationResponse } from './api-objects/RegistrationResponse';
 import { EmailCheckResponse } from './api-objects/EmailCheckResponse';
 import sha256 from "fast-sha256";
+import { ProfileData } from './api-objects/ProfileData';
 
 const URL = 'api/';
 
@@ -33,6 +34,14 @@ export class DatabaseService {
             .pipe(
             tap(_ => console.log('registration requested for ' + registrationInfo.email)),
             catchError(this.handleError<RegistrationResponse>('register'))
+        );
+    }
+
+    getProfile(pathURL: string): Observable<ProfileData> {
+        return this.http.get<ProfileData>(URL + "getProfile/" + pathURL)
+            .pipe(
+            tap(_ => console.log('profile retrieved for url: ' + pathURL)),
+            catchError(this.handleError<ProfileData>('getProfile'))
         );
     }
 

@@ -173,6 +173,25 @@ def update_profile(mysql, user_id, profile):
     else:
         return {"response": False}
 
+
+def get_profile(mysql, path_url):
+    response = {}
+    cur = mysql.connection.cursor()
+    cur.execute(f"SELECT * FROM profile WHERE pathURL='{path_url}';")
+    data = cur.fetchone()
+    cur.close()
+    if data:
+        response["pathURL"] = path_url
+        response["grade"] = data[1]
+        response["gender"] = data[2]
+        response["about"] = data[3]
+        response["profilePic"] = data[4]
+        response["coverPic"] = data[5]
+        return response
+    else:
+        print("Error in get_profile: no profile found")
+
+
 if __name__ == "__main__":
     #insert test driver code
     profile = ProfileData()

@@ -56,4 +56,9 @@ def update_profile():
     return databases.update_profile(mysql, user_id, profile)
 
 
+@app.route('/api/getProfile/<path_url>')
+def get_profile(path_url):
+    return databases.get_profile(mysql, path_url)
+
+
 app.run()

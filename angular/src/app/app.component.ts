@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { DatabaseService } from './database.service';
 
 @Component({
     selector: 'app-root',
@@ -11,9 +12,15 @@ export class AppComponent {
 
     password = "";
 
-    constructor() {}
+    constructor(private databaseService: DatabaseService) {}
 
     ngOnInit() {
+        this.getProfile_test();
+    }
 
+    getProfile_test(): void {
+        this.databaseService.getProfile("gsjfrudrab").subscribe(data => {
+            console.log(data);
+        });
     }
 }
