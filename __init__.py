@@ -67,5 +67,12 @@ def comment():
 def get_comments(post_id):
     return jsonify(databases.get_comments(mysql, int(post_id)))
 
+@app.route('api/about', methods=['POST'])
+def about():
+    data = request.get_json()
+    user_id = data["userID"]
+    message = data["message"]
+    return databases.create_about(mysql,user_id, message)
+
 
 app.run()
