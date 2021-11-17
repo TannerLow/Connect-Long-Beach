@@ -102,6 +102,19 @@ export class DatabaseService {
             );
     }
 
+    //TODO: come back and verify bottom is correct
+    createAbout(user_id: number, message:string): Observable<Response>{
+        let about: aboutInfo = {
+            userID: user_id,
+            message: message
+        }
+        return this.http.post<Response>(URL + "about",about)
+        .pipe(
+            tap(_=> console.log("Created about me on profile with user id: " + user_id)),
+            catchError(this.handleError<Response>('About'))
+        );
+    }
+
     private handleError<T>(operation = 'operation', result?: T) {
         return (error: any): Observable<T> => {
 
