@@ -6,7 +6,8 @@
 }
 
 .aligning-mat{
-  vertical-align: auto;
+  display: flex;
+  margin-top: 2%;
 }
 .bio-info{
   display: flex;
@@ -20,10 +21,11 @@
   height: 180px;
   display: block;
   max-width: 90%;
-  margin: 1%;
+  margin-left: 2%;
+  margin-right: 2%;
   padding: 2%;
   top: 2%;
-  position: absolute;
+  position: inherit;
 }
 
 .button-upper{
@@ -57,16 +59,8 @@
 }
 
 .card-container-top{
-  padding-left: 40px;
-  padding-right: 40px;
-  padding-bottom: 40px;
-  color: black;
-  /*position: absolute;*/
-  top: 0;
-  display: block;
-  border-style: solid;
-  border-color: black;
-  margin: auto auto 20%;
+  height: 50px;
+  margin: 6% 2% 2%;
 }
 
 /*.card-container-middle{*/
@@ -101,9 +95,9 @@
 /*}*/
 
 .posting{
-  width: 90%;
-  max-height: 200px;
-  margin-left: -8px;
+  width: 70%;
+  height: auto;
+  margin: 20px auto auto;
 }
 
 .mat-card-image:first-child {
@@ -136,13 +130,9 @@ textarea.mat-input-element{
   height: inherit;
   width: inherit;
 }
-/*.scrollable {*/
-/*  overflow-y: auto;*/
-/*  box-sizing: border-box;*/
-/*  position: absolute;*/
-/*  right: 0;*/
-/*  !*top: 0;*!*/
-/*  width: 100%;*/
-/*  height: 100%;*/
-/*}*/
+.scrollable {
+  overflow-y: auto;
+  box-sizing: border-box;
+  position: absolute;
+}
 
