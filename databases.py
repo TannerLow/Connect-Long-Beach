@@ -249,6 +249,18 @@ def like_unlike_post(mysql, user_id, post_id):
     cur.close()
     return response
 
+def get_likes(mysql,post_id):
+    response = []
+    cur = mysql.connection.cursor()
+    cur.execute(f"SELECT COUNT(*) FROM userLikes WHERE post_id = {post_id};")
+    for likes in cur.fetchall():
+        response.append({
+            "likes": likes[0]
+        })
+
+    cur.close()
+    return response
+
 
 if __name__ == "__main__":
     #insert test driver code
