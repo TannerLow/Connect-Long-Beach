@@ -41,23 +41,6 @@
   height: 2%;
 }
 
-/*extend the comments to full width*/
-.comments{
-  width: 100%;
-}
-
-.mat-grid-tile{
-  border-color: black;
-  border-style: solid;
-}
-
-.mainPicture{
-  margin:20px;
-  height: 80%;
-  width: 30%;
-  border-radius: 50%;
-}
-
 .card-container-top{
   height: 50px;
   margin: 6% 2% 2%;
@@ -73,6 +56,22 @@
   color: black;
   right: 5%;
   height: 180px;
+}
+/*extend the comments to full width*/
+.comments{
+  width: 100%;
+}
+
+/*.mat-grid-tile{*/
+/*  border-color: black;*/
+/*  border-style: solid;*/
+/*}*/
+
+.mainPicture{
+  margin:20px;
+  height: 80%;
+  width: 30%;
+  border-radius: 50%;
 }
 
 .posting{

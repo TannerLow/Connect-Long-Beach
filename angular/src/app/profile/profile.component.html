@@ -11,8 +11,8 @@
     <div class="aligning-mat">
     <mat-card class="card-container-top">
       <mat-card-title>GENDER</mat-card-title>
-      <mat-card-content *ngFor="let gender of selectedGender" >
-        <p>{{gender}}</p>
+      <mat-card-content >
+        <p>{{selectedGender}}</p>
       </mat-card-content>
     </mat-card>
 
@@ -20,9 +20,11 @@
 
     <mat-card class="card-container-middle">
       <mat-card-title>INTEREST</mat-card-title>
-      <mat-card-content>
-        <p>SOCCER</p>
-      </mat-card-content>
+      <div class="scrollable">
+        <mat-card-content *ngFor="let inter of interest">
+          <p>{{inter}}</p>
+        </mat-card-content>
+      </div>
     </mat-card>
 
     <mat-divider inset></mat-divider>

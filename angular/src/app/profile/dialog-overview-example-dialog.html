@@ -31,14 +31,16 @@
 
   <mat-form-field appearance="fill">
     <mat-label>Gender</mat-label>
-    <mat-select multiple name="selectedGender" [(ngModel)]="data.selectedGender">
+    <mat-select name="selectedGender" [(ngModel)]="data.selectedGender">
       <mat-option *ngFor="let gender of genderNames" [value]="gender">{{gender}}</mat-option>
     </mat-select>
   </mat-form-field>
 
   <mat-form-field appearance="fill">
     <mat-label>Interest</mat-label>
-    <input matInput [(ngModel)]="data.interest">
+    <mat-select multiple [(ngModel)]="data.interest">
+      <mat-option *ngFor="let interest of interestOptions" [value]="interest">{{interest}}</mat-option>
+    </mat-select>
   </mat-form-field>
 
 
