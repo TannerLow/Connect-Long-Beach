@@ -16,6 +16,7 @@ import { PostResponse } from './api-objects/PostResponse';
 import { About } from './api-objects/About';
 import { AboutInfo } from './api-objects/AboutInfo';
 import { LikePost } from './api-objects/LikePost';
+import { Likes } from './api-objects/Likes';
 
 const URL = 'api/';
 
@@ -127,6 +128,14 @@ export class DatabaseService {
         .pipe(
             tap(_=> console.log("Created like on post: " + post_id + " With user id: " + user_id)),
             catchError(this.handleError<Response>('Like'))
+        );
+    }
+
+    getLikes(post_id: number): Observable<Likes[]>{
+        return this.http.get<Likes[]>(URL + "getLikes/"+ post_id)
+        .pipe(
+          tap(_ => console.log("Getting amount of likes for post with id: " + post_id)),
+          catchError(this.handleError<Likes[]>("getLikes" + post_id))  
         );
     }
 
