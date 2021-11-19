@@ -226,6 +226,26 @@ def create_about(mysql,user_id,message):
     cur.close()
     return response
 
+def like_unlike_post(mysql, user_id, post_id):
+    response = {"response": False}
+
+    cur = mysql.connection.cursor()
+    
+    cur.execute(f"SELECT * FROM posts WHERE post_id={post_id};")
+
+    #Checks to see if it exists or not within the database
+    if cur.fetchone():
+        #Since it exists, we are going to "Unlike" the post
+        cur.execute(f"DELETE FROM userLikes WHERE post_id = {post_id} AND user_id = {user_id};")
+    else:
+        #Post hasn't been liked by user, so we create an entry into the database for it
+        cur.execute(f"INSERT INTO userLikes(user_id,post_id) VALUES ({user_id},{post_id});")
+
+    mysql.connection.commit()
+    response["response"] = True
+    cur.close()
+    return response
+
 
 if __name__ == "__main__":
     #insert test driver code
