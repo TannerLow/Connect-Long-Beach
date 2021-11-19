@@ -81,5 +81,8 @@ def like_unlike_post():
     post_id = data["postID"]
     return databases.like_unlike_post(mysql, int(user_id), int(post_id))
 
+@app.route('/api/getLikes/<post_id>')
+def get_likes(post_id):
+    return jsonify(databases.get_likes(mysql, int(post_id)))
 
 app.run()
