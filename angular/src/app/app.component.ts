@@ -20,6 +20,7 @@ export class AppComponent {
         //this.comment_test();
         this.getComments_test();
         this.about_test();
+        this.like_test();
     }
 
     getPosts_test(): void {
@@ -51,4 +52,11 @@ export class AppComponent {
             console.log("about created: " + data.response);
         });
     }
+
+    like_test(): void{
+        this.databaseService.likeUnlikePost(1,65).subscribe(data => {
+            console.log("like created: " + data.response);
+        });
+    }
+
 }
