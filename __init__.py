@@ -74,11 +74,11 @@ def set_about():
     message = data["aboutMe"]
     return databases.create_about(mysql,int(user_id), message)
 
-@app.route('/api/like', moethods=['POST'])
+@app.route('/api/like', methods=['POST'])
 def like_unlike_post():
     data = request.get_json()
     user_id = data['userID']
-    post_id = data["post_id"]
+    post_id = data["postID"]
     return databases.like_unlike_post(mysql, int(user_id), int(post_id))
 
 
