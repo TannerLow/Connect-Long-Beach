@@ -63,36 +63,17 @@
   margin: 6% 2% 2%;
 }
 
-/*.card-container-middle{*/
+.card-container-middle{
+  color: black;
+  right: 5%;
+  height: 180px;
+}
 
-/*  padding-left: 40px;*/
-/*  padding-right: 40px;*/
-/*  padding-bottom: 40px;*/
-/*  color: black;*/
-/*  position: absolute;*/
-/*  display: block;*/
-/*  justify-content: space-between;*/
-/*  border-style: solid;*/
-/*  border-color: black;*/
-/*  margin: 20%;*/
-/*  overflow-y: hidden;*/
-/*}*/
-
-/*.card-container-low{*/
-
-/*  padding-left: 40px;*/
-/*  padding-right: 40px;*/
-/*  padding-bottom: 40px;*/
-/*  color: black;*/
-/*  position: absolute;*/
-/*  display: block;*/
-/*  justify-content: space-between;*/
-/*  border-style: solid;*/
-/*  border-color: black;*/
-/*  margin: 20%;*/
-/*  !*bottom:0px;*!*/
-/*  overflow-y: hidden;*/
-/*}*/
+.card-container-low{
+  color: black;
+  right: 5%;
+  height: 180px;
+}
 
 .posting{
   width: 70%;
@@ -134,5 +115,7 @@ textarea.mat-input-element{
   overflow-y: auto;
   box-sizing: border-box;
   position: absolute;
+  height: 160px;
+  padding: inherit;
 }
 
