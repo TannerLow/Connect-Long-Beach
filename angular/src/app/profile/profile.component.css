@@ -1,9 +1,31 @@
 
-.upper-left{
-  background-size: cover;
-  position: absolute;
-  height: inherit;
-  width: inherit;
+.adjust-info{
+  display: flex;
+  justify-content: space-between;
+  font-family: cursive;
+}
+
+.aligning-mat{
+  display: flex;
+  margin-top: 2%;
+}
+.bio-info{
+  display: flex;
+  justify-content: unset;
+  font-family: cursive;
+  margin-top:2px;
+}
+
+.biography-post{
+  width: 90%;
+  height: 180px;
+  display: block;
+  max-width: 90%;
+  margin-left: 2%;
+  margin-right: 2%;
+  padding: 2%;
+  top: 2%;
+  position: inherit;
 }
 
 .button-upper{
@@ -13,10 +35,37 @@
   margin: 20px;
 }
 
-.mat-grid-tile{
-  border-color: black;
-  border-style: solid;
+.button-bio{
+  border-radius: 50%;
+  margin-left: 5%;
+  height: 2%;
 }
+
+.card-container-top{
+  height: 50px;
+  margin: 6% 2% 2%;
+}
+
+.card-container-middle{
+  color: black;
+  right: 5%;
+  height: 180px;
+}
+
+.card-container-low{
+  color: black;
+  right: 5%;
+  height: 180px;
+}
+/*extend the comments to full width*/
+.comments{
+  width: 100%;
+}
+
+/*.mat-grid-tile{*/
+/*  border-color: black;*/
+/*  border-style: solid;*/
+/*}*/
 
 .mainPicture{
   margin:20px;
@@ -25,85 +74,27 @@
   border-radius: 50%;
 }
 
-.mat-card-image-dialog{
-  height: 40%;
-  width: 30%;
-  display: block;
-  margin-right: auto;
-  margin-left: auto;
-}
-
-.card-container-top{
-  padding-left: 40px;
-  padding-right: 40px;
-  padding-bottom: 40px;
-  color: black;
-  position: absolute;
-  top: 0;
-  display: block;
-  justify-content: space-between;
-  border-style: solid;
-  border-color: black;
-  margin: 20%;
-  overflow-y: scroll;
-}
-
-.card-container-middle{
-
-  padding-left: 40px;
-  padding-right: 40px;
-  padding-bottom: 40px;
-  color: black;
-  position: absolute;
-  display: block;
-  justify-content: space-between;
-  border-style: solid;
-  border-color: black;
-  margin: 20%;
-  overflow-y: scroll;
-}
-
-.card-container-low{
-
-  padding-left: 40px;
-  padding-right: 40px;
-  padding-bottom: 40px;
-  color: black;
-  position: absolute;
-  display: block;
-  justify-content: space-between;
-  border-style: solid;
-  border-color: black;
-  margin: 20%;
-  bottom:0px;
-  overflow-y: scroll;
-}
-
-.container-info{
-  position:absolute;
-  top:20px;
-  left: 80px;
-}
-
-.container-other{
-  display: flex;
-}
-.container-other p{
-  margin: 10px;
-}
-
 .posting{
-  width: 90%;
-  max-height: 200px;
-  margin-left: -8px;
+  width: 70%;
+  height: auto;
+  margin: 20px auto auto;
 }
 
 .mat-card-image:first-child {
   border-radius: 50%;
   margin-top: 10px;
+
 }
 
-
+textarea.mat-input-element{
+  font-family: emoji;
+  padding: 5px 5px;
+  margin: -2px 0;
+  height: 100px;
+  width: 100%;
+  font-size: 15px;
+  border-style: inherit ;
+}
 
 .poster{
   margin: 20px;
@@ -112,23 +103,18 @@
   border-radius: 50%;
 }
 
-/**/
-.mat-card{
-  overflow-y: scroll;
-}
 
-/*extend the comments to full width*/
-.comments{
-  width: 100%;
+.upper-left{
+  background-size: cover;
+  position: absolute;
+  height: inherit;
+  width: inherit;
 }
-
 .scrollable {
   overflow-y: auto;
   box-sizing: border-box;
   position: absolute;
-  right: 0;
-  /*top: 0;*/
-  width: 100%;
-  height: 100%;
+  height: 160px;
+  padding: inherit;
 }
 

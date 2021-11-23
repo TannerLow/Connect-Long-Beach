@@ -6,8 +6,8 @@ export interface DialogData {
   lastName: string;
   major: string;
   year: string;
-  selectedGender: string [];
-  interest: string;
+  selectedGender: string;
+  interest: string [];
   selectedCourses: string [];
   pa: any;
   background: any;
@@ -20,16 +20,22 @@ export interface DialogData {
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements  OnInit{
-  firstName = ""
-  lastName = ""
+  //firstName, lastName, should be defeault since we are getting it from the database
+  firstName = "Default"
+  lastName = "Name"
   major = ""
   year = ""
-  selectedGender = [];
-  interest = ""
+  selectedGender =  ""
+  interest = [];
   selectedCourses = [];
   //default values for the image since the profile hasnt been assigned images
   background = "/static/assets/Walter_Pyramid.jpg"
   pa = "/static/assets/anonymous.png"
+
+  //biography variables
+  biography: any = "";
+  signalContent: boolean = true;
+
   constructor(public dialog: MatDialog) {}
   ngOnInit(): void {
   }
@@ -64,17 +70,27 @@ export class ProfileComponent implements  OnInit{
     });
   }
 
+ //edit button
+  allowEdit(){
+    this.signalContent = false;
+  }
+
+  allowSave(){
+    this.signalContent = true;
+    console.log(this.biography);
+  }
 }
 
 @Component({
   selector: 'dialog-overview-example-dialog',
   templateUrl: 'dialog-overview-example-dialog.html',
-  styleUrls: ['./profile.component.css']
+  styleUrls: ['./profileDialog.component.css']
 })
 export class DialogOverviewExampleDialog implements OnInit{
   //hard code list.. classes should be getting from the databases according to the major
-  classCourses : string[] = ['CECS 324', 'CECS 225', 'CECS 328', 'CECS 343', 'CECS 451', 'CECS 453'];
+  classCourses : string[] = ['CECS 324', 'CECS 225', 'CECS 328', 'CECS 343', 'CECS 451', 'CECS 453', 'd', 'd', 'd', 'f', 'fs', 'CECS 324', 'CECS 225', 'CECS 328', 'CECS 343', 'CECS 451', 'CECS 453', 'd', 'd', 'd', 'f', 'fs'];
   genderNames : string[] = ['MALE', 'FEMALE', 'NONBINARY', 'OTHER'];
+  interestOptions: string[] = ['SPORTS','VIDEO GAMES','TRAVEL', 'ART', 'MUSIC', 'MOVIES','FOOD'];
 
 
   //data from interface DailogData is injected into the Dialog (the component that pops out)
