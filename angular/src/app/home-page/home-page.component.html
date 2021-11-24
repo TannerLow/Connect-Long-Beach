@@ -54,13 +54,13 @@
                     <mat-card-header>
                         <div mat-card-avatar class="users-header2"></div>
                         <mat-card-title>CSULB College</mat-card-title>
-                        <mat-card-subtitle>Public   Nov 10 2021, 2:00pm </mat-card-subtitle>
+                        <mat-card-subtitle>{{privacy}}   {{currentDate}} </mat-card-subtitle>
                     </mat-card-header>
                     <form class="post-template">
                         <mat-form-field class="inputed post" appearance="fill">
                                 <img src = "/static/assets/Walter_Pyramid.jpg">
                                 <p>
-                                    Here is a picture of the Walter Pyramid at the University of Long Beach.
+                                    {{postText}}
                                 </p>
                         </mat-form-field>
                     </form>
@@ -87,7 +87,7 @@
                         </mat-form-field>
                     </form>
                     <mat-card-actions class = 'post-actions'>
-                        <button mat-button> 12 <img src = '/static/assets/like.png'>LIKE</button>
+                        <button mat-button> {{likes}} <img src = '/static/assets/like.png'>LIKE</button>
                         <button mat-button><img src = '/static/assets/comments.png'>COMMENT</button>
                         <button mat-button><img src = '/static/assets/share.png'>SHARE</button>
                     </mat-card-actions>

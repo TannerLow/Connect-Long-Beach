@@ -54,32 +54,29 @@
    <mat-card class="posting">
      <img mat-card-image class ="poster" src="{{pa}}" alt="{{firstName}}" [style.boder-radius]="'50%;'">
      <mat-card-subtitle>{{firstName}} {{lastName}}</mat-card-subtitle>
-     <mat-card-title>SUBJECT????</mat-card-title>
-     <mat-card-content class="insidePost">
-       <p>Testing </p>
-       <p>Testing </p>
-       <p>Testing </p>
-       <p>Testing </p><p>Testing </p>
-       <p>Testing </p>
-       <p>Testing </p>
-       <p>Testing </p>
-       <p>Testing </p>
-       <p>Testing </p>
-     </mat-card-content>
-
-     <mat-card-actions>
-       <button mat-button>Like</button>
-       <button mat-button>Comment</button>
-     </mat-card-actions>
-<!-- comment section-->
-     <form>
-       <mat-form-field class="comments" appearance="fill">
-         <mat-label>Leave a comment</mat-label>
-         <textarea matInput placeholder="Comment"></textarea>
-       </mat-form-field>
-     </form>
+     <div class="user-postbox">
+      <mat-card>
+          <mat-card-header>
+              <div mat-card-avatar class="users-header2"></div>
+              <mat-card-title>{{firstName}} {{lastName}}</mat-card-title>
+              <mat-card-subtitle>{{privacy}}   {{currentDate}} </mat-card-subtitle>
+          </mat-card-header>
+          <form class="post-template">
+              <mat-form-field class="inputed post" appearance="fill">
+                      <img src = "/static/assets/Walter_Pyramid.jpg">
+                      <p>
+                          {{postText}}
+                      </p>
+              </mat-form-field>
+          </form>
+          <mat-card-actions class = 'post-actions'>
+              <button mat-button><img src = '/static/assets/like.png'>LIKE</button>
+              <button mat-button><img src = '/static/assets/comments.png'>COMMENT</button>
+              <button mat-button><img src = '/static/assets/share.png'>SHARE</button>
+          </mat-card-actions>
+      </mat-card>
+    </div>
    </mat-card>
-
  </mat-grid-tile>
 
 </mat-grid-list>

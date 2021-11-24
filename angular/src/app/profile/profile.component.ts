@@ -30,6 +30,10 @@ export class ProfileComponent implements  OnInit{
   //default values for the image since the profile hasnt been assigned images
   background = "/static/assets/Walter_Pyramid.jpg"
   pa = "/static/assets/anonymous.png"
+
+  postText = "Here is a picture of the Walter Pyramid at the University of Long Beach."
+  privacy = "Public"
+  currentDate = "Nov 10 2021, 2:00pm"
   constructor(public dialog: MatDialog) {}
   ngOnInit(): void {
   }

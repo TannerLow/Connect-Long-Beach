@@ -132,3 +132,40 @@
   height: 100%;
 }
 
+.post-buttons{
+  filter: grayscale(1);
+}
+.post-buttons img {
+  width: 20px;
+}
+.postings{
+  padding: 13px 5%;
+}
+.user-postbox{
+  margin-top: 5%;
+}
+.user-postbox p{
+  margin-left: 9%;
+  margin-bottom: 2%;
+}
+.users-header2{
+  background-image: url('/static/assets/download.png');
+  background-size: cover;
+}
+.post-template{
+  min-width: 150px;
+  max-width: 500px;
+  display: grid;
+  margin-left: 7.5%;
+}
+.message-input-box{
+  width: 100%;
+}
+.post-actions img{
+  width: 20px;
+  margin-right: 12%;
+}
+.post-template img{
+  width: -webkit-fill-available;
+  margin-bottom: 25px;
+}
