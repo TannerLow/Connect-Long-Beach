@@ -226,5 +226,3 @@ if __name__ == "__main__":
 
 def test(mysql):
     pass
-    create_post(mysql, 22, "A post that you should comment on.")
-    comment(mysql, 51, 22, "My thoughtful comment.")
