@@ -50,17 +50,19 @@ def fetchTables(mysql):
 
 
 def login(mysql, email, password):
+    user_id = -1
     cur = mysql.connection.cursor()
-    cur.execute(f"SELECT password FROM accounts a WHERE a.email = '{email}';")
+    cur.execute(f"SELECT ID,password FROM accounts a WHERE a.email = '{email}';")
     dbResult = cur.fetchone()
     cur.close()
 
     # verify password hashes match
     access_granted = False
-    if dbResult != None and dbResult[0] == password:
+    if dbResult != None and dbResult[1] == password:
         access_granted = True
+        user_id = dbResult[0]
 
-    response = { "response": access_granted }
+    response = { "response": access_granted, "userID": user_id }
     return response
 
 
