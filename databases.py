@@ -2,6 +2,7 @@ import mysql.connector
 import json
 import random
 import datetime
+from sendEmail import emailTo
 
 def initialize(app):
     # Read database credentials file to login to the database
@@ -120,6 +121,8 @@ def register(mysql, email, password, fname, lname, gender, month, day, year):
     mysql.connection.commit()
     cur.close()
 
+    #method from the sendEmail file is called to send a link to the user, who is signing up into the website
+    emailTo(email, fname, lname)
     # create entry in users
     cur = mysql.connection.cursor()
     cur.execute(f"SELECT ID FROM accounts WHERE email='{email}';")
