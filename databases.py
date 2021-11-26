@@ -214,6 +214,7 @@ def store_image(mysql, image, path):
     with open("images/" + path, "w") as file:
         file.write(image)
         response["response"] = True
+        response["path"] = path
 
     return response
 
