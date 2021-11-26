@@ -15,7 +15,6 @@ export class AppComponent {
     constructor() {}
 
     ngOnInit() {
-
     }
 
     // test to show cross component variables, specifically user ID
@@ -23,5 +22,9 @@ export class AppComponent {
         if(LogInComponent.loggedIn){
             console.log("user id from retrieval: " + LogInComponent.userID);
         }
+        else {
+            console.log("user not logged in")
+        }
+        return LogInComponent.userID;
     }
 }
