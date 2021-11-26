@@ -218,6 +218,76 @@ def store_image(mysql, image, path):
 
     return response
 
+def get_about_me(mysql,user_id):
+    response = []
+    cur = mysql.connection.cursor()
+    cur.execute(f"SELECT p.about FROM users u INNER JOIN profile p ON u.pathURL = p.pathURL WHERE u.userID = {user_id};")
+    for aboutMe in cur.fetchall():
+        response.append({
+            "about": aboutMe[0]
+        })
+
+    cur.close()
+    return response
+
+def create_about(mysql,user_id,message):
+    response = {"response": False}
+    
+    # get users path url
+    cur = mysql.connection.cursor()
+    cur.execute(f"SELECT pathURL FROM users WHERE userID={user_id};")
+    data = cur.fetchone()
+    # if path url was found
+    if data:
+        path_url = data[0] #extract path_url from raw data
+        cur.execute(f"SELECT * FROM profile WHERE pathURL='{path_url}';")
+        # udpate if exists, insert otherwise
+        if cur.fetchone():
+            cur.execute(f"UPDATE profile SET about='{message}' WHERE pathURL='{path_url}';")
+        else:
+            cur.execute(f"INSERT INTO profile(pathURL, about) VALUES('{path_url}', '{message}');")
+
+        mysql.connection.commit()
+        response["response"] = True
+    
+    cur.close()
+    return response
+
+def like_unlike_post(mysql, user_id, post_id):
+    response = {"response": False}
+
+    cur = mysql.connection.cursor()
+    
+    cur.execute(f"SELECT * FROM posts WHERE post_id={post_id};")
+    data = cur.fetchone()
+    
+    #Checks to see if it exists or not within the database
+    if data:
+        #Since it exists, we are going to "Unlike" the post
+        cur.execute(f"DELETE FROM userLikes WHERE post_id = {post_id} AND user_id = {user_id};")
+        response["response"] = True
+    else:
+        #Post hasn't been liked by user, so we create an entry into the database for it
+        cur.execute(f"INSERT INTO userLikes(user_id,post_id) VALUES ({user_id},{post_id});")
+        response["response"] = True
+
+    mysql.connection.commit()
+    
+    cur.close()
+    return response
+
+def get_likes(mysql,post_id):
+    response = []
+    cur = mysql.connection.cursor()
+    cur.execute(f"SELECT COUNT(*) FROM userLikes WHERE post_id = {post_id};")
+    for likes in cur.fetchall():
+        response.append({
+            "likes": likes[0]
+        })
+
+    cur.close()
+    return response
+
 
 if __name__ == "__main__":
     #insert test driver code

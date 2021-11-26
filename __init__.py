@@ -67,6 +67,23 @@ def comment():
 def get_comments(post_id):
     return jsonify(databases.get_comments(mysql, int(post_id)))
 
+@app.route('/api/about', methods=['POST'])
+def set_about():
+    data = request.get_json()
+    user_id = data["userID"]
+    message = data["aboutMe"]
+    return databases.create_about(mysql,int(user_id), message)
+
+@app.route('/api/like', methods=['POST'])
+def like_unlike_post():
+    data = request.get_json()
+    user_id = data['userID']
+    post_id = data["postID"]
+    return databases.like_unlike_post(mysql, int(user_id), int(post_id))
+
+@app.route('/api/getLikes/<post_id>')
+def get_likes(post_id):
+    return jsonify(databases.get_likes(mysql, int(post_id)))
 
 @app.route('/api/getImage/<path>')
 def get_image(path):

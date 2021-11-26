@@ -16,6 +16,10 @@ import { PostResponse } from './api-objects/PostResponse';
 import { ImageResponse } from './api-objects/ImageResponse';
 import { StoreImageResponse } from './api-objects/StoreImageResponse';
 import { StoreImageRequest } from './api-objects/StoreImageRequest';
+import { About } from './api-objects/About';
+import { AboutInfo } from './api-objects/AboutInfo';
+import { LikePost } from './api-objects/LikePost';
+import { Likes } from './api-objects/Likes';
 
 const URL = 'api/';
 
@@ -127,6 +131,39 @@ export class DatabaseService {
                 tap(_ => console.log('Request to store image')),
                 catchError(this.handleError<StoreImageResponse>('storeImage'))
             );
+    }
+    //TODO: come back and verify bottom is correct
+    createAbout(user_id: number, message:string): Observable<Response>{
+        let about: AboutInfo = {
+            userID: user_id,
+            aboutMe: message
+        }
+        return this.http.post<Response>(URL + "about", about)
+        .pipe(
+            tap(_=> console.log("Updated about me on profile with user id: " + user_id)),
+            catchError(this.handleError<Response>('About'))
+        );
+    }
+
+
+    likeUnlikePost(user_id: number, post_id:number): Observable<Response>{
+        let like: LikePost = {
+            userID: user_id,
+            postID: post_id
+        }
+        return this.http.post<Response>(URL + "like",like)
+        .pipe(
+            tap(_=> console.log("Created like on post: " + post_id + " With user id: " + user_id)),
+            catchError(this.handleError<Response>('Like'))
+        );
+    }
+
+    getLikes(post_id: number): Observable<Likes[]>{
+        return this.http.get<Likes[]>(URL + "getLikes/"+ post_id)
+        .pipe(
+          tap(_ => console.log("Getting amount of likes for post with id: " + post_id)),
+          catchError(this.handleError<Likes[]>("getLikes" + post_id))  
+        );
     }
 
     private handleError<T>(operation = 'operation', result?: T) {

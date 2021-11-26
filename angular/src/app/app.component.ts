@@ -23,6 +23,9 @@ export class AppComponent {
         this.getComments_test();
         this.storeImage_test();
         this.getImage_test();
+        this.about_test();
+        this.like_test();
+        this.getLikes_test();
     }
 
     getPosts_test(): void {
@@ -61,4 +64,22 @@ export class AppComponent {
             console.log(data);
         });
     }
+    about_test(): void{
+        this.databaseService.createAbout(1,"Mayor of Sardignia!_").subscribe(data => {
+            console.log("about created: " + data.response);
+        });
+    }
+
+    like_test(): void{
+        this.databaseService.likeUnlikePost(1,65).subscribe(data => {
+            console.log("like created: " + data.response);
+        });
+    }
+
+    getLikes_test(): void{
+        this.databaseService.getLikes(65).subscribe(data => {
+            console.log(data);
+        });
+    }
+
 }
