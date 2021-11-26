@@ -12,6 +12,8 @@ export class AppComponent {
 
     password = "";
 
+    image = "static/assets/logo.png";
+
     constructor(private databaseService: DatabaseService) {}
 
     ngOnInit() {
@@ -19,6 +21,8 @@ export class AppComponent {
         this.getPosts_test();
         //this.comment_test();
         this.getComments_test();
+        this.storeImage_test();
+        this.getImage_test();
     }
 
     getPosts_test(): void {
@@ -42,6 +46,19 @@ export class AppComponent {
     post_test(): void {
         this.databaseService.createPost(22, "This is a test of the post system.").subscribe(data => {
             console.log("New post id: " + data.postID);
+        });
+    }
+
+    getImage_test(): void {
+        this.databaseService.getImage("wd0abw7c7l").subscribe(data => {
+            console.log(data);
+            this.image = data.image;
+        });
+    }
+
+    storeImage_test(): void {
+        this.databaseService.storeImage("imagine this is image data", "wd0abw7c7l").subscribe(data => {
+            console.log(data);
         });
     }
 }
