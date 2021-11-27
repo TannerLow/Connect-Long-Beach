@@ -13,7 +13,6 @@ def emailTo(emailAddress, fname, lname):
     port = 587
     password = ""
     username = ""
-
     sentFrom = username
     to = emailAddress
     subject = "Please click on the following link to activate your account"
@@ -29,7 +28,7 @@ def emailTo(emailAddress, fname, lname):
       <body>
         <p>Hello There<br>
            Click here to activate your account <br>
-           <a href="https://www.python.org">%s</a>
+           <a href="http://127.0.0.1:5000/email-creation">%s</a>
         </p>
       </body>
     </html>
@@ -49,6 +48,6 @@ def emailTo(emailAddress, fname, lname):
     except:
         print('something went wrong')
 
-
+#generate a random value of 10
 def randomValue():
-    return ''.join(random.choices(string.ascii_uppercase + string.digits, k=100))
+    return ''.join(random.choices(string.ascii_uppercase + string.digits, k=10))
