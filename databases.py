@@ -111,7 +111,7 @@ def register(mysql, email, password, fname, lname, gender, month, day, year):
     #method from the sendEmail file is called to send a link to the user, who is signing up into the website
     print(email)
     emailTo(email, fname, lname)
-    
+
     # Fail if email already in use
     if is_email_in_use(mysql, email)["response"]:
         return {"response": False}

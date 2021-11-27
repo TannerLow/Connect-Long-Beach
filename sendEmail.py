@@ -27,7 +27,7 @@ def emailTo(emailAddress, fname, lname):
       <head></head>
       <body>
         <p>Hello There<br>
-           Click here to activate your account <br>
+           Click here and enter the value to activate your account <br>
            <a href="http://127.0.0.1:5000/email-creation">%s</a>
         </p>
       </body>
