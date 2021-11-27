@@ -12,28 +12,32 @@ import { DatabaseService } from '../database.service';
 })
 export class LogInComponent implements OnInit {
 
-  emailPattern = "^[a-z0-9._-]+@student\.csulb\.edu$";
+    emailPattern = "^[a-z0-9._-]+@student\.csulb\.edu$";
 
-  constructor(private router: Router, private database: DatabaseService) { }
+    static loggedIn = false;
+    static userID = -1;
 
-  ngOnInit(): void {
+    constructor(private router: Router, private database: DatabaseService) { }
 
-  }
+    ngOnInit(): void {
 
-  // attempt login with Credentials from login form
-  // TAKES USER TO SIGN UP PAGE AS PLACEHOLDER
-  onInfoItem(form: NgForm){
-    const value = form.value;
-    console.log(value);
-    let password = this.database.hashPassword(value.password);
-    let credentials: LoginCredentials = {email: value.emailAddress, password: password};
-    console.log(credentials);
-    this.database.login(credentials).subscribe((data: LoginResponse) => {
-        console.log("Login response: " + data.response);
-        if(data.response) {
-            this.router.navigate(['/sign-up']);
-        }
-    });
-  }
+    }
 
+    // attempt login with Credentials from login form
+    // TAKES USER TO SIGN UP PAGE AS PLACEHOLDER
+    onInfoItem(form: NgForm){
+        const value = form.value;
+        console.log(value);
+        let password = this.database.hashPassword(value.password);
+        let credentials: LoginCredentials = {email: value.emailAddress, password: password};
+        console.log(credentials);
+        this.database.login(credentials).subscribe((data: LoginResponse) => {
+            console.log("Login response: " + data.response);
+            LogInComponent.userID = data.userID;
+            LogInComponent.loggedIn = true;
+            if(data.response) {
+                this.router.navigate(['/sign-up']);
+            }
+        });
+    }
 }
