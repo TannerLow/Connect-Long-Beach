@@ -13,15 +13,25 @@ export class HomePageComponent implements OnInit {
   currentDate = "Nov 10 2021, 2:00pm" 
   likes = "12"
 
-  uploadedFile = null;
+  uploadedFile? = "";
 
   constructor() { }
   
   ngOnInit(): void {
   }
 
-  onFileSelected(event){ //takes element(file) and 
-    this.uploadedFile = event.target.files[0];
+//   onFileSelected(event){ //takes element(file) and 
+//     this.uploadedFile = event.target.files[0];
+//     console.log(this.uploadedFile);
+//   }
+  onFileSelected(event){
+    const files = event.target.files;
+    const reader = new FileReader();
+    reader.readAsDataURL(files[0]);
+    reader.onload = (_event) => {
+        console.log(reader.result?.toString());
+        this.uploadedFile = reader.result?.toString();
+    }
   }
   onUpload()//function will upload file onto database when post is clicked 
   {
