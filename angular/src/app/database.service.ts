@@ -20,6 +20,7 @@ import { About } from './api-objects/About';
 import { AboutInfo } from './api-objects/AboutInfo';
 import { LikePost } from './api-objects/LikePost';
 import { Likes } from './api-objects/Likes';
+import { ProfileData } from './api-objects/ProfileData';
 
 const URL = 'api/';
 
@@ -45,6 +46,14 @@ export class DatabaseService {
             .pipe(
             tap(_ => console.log('registration requested for ' + registrationInfo.email)),
             catchError(this.handleError<RegistrationResponse>('register'))
+        );
+    }
+
+    getProfile(pathURL: string): Observable<ProfileData> {
+        return this.http.get<ProfileData>(URL + "getProfile/" + pathURL)
+            .pipe(
+            tap(_ => console.log('profile retrieved for url: ' + pathURL)),
+            catchError(this.handleError<ProfileData>('getProfile'))
         );
     }
 

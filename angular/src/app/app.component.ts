@@ -64,6 +64,12 @@ export class AppComponent {
             console.log(data);
         });
     }
+
+    getProfile_test(): void {
+        this.databaseService.getProfile("gsjfrudrab").subscribe(data => {
+            console.log(data);
+        });
+    }
     about_test(): void{
         this.databaseService.createAbout(1,"Mayor of Sardignia!_").subscribe(data => {
             console.log("about created: " + data.response);

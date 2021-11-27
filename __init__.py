@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, jsonify
 from flask_mysqldb import MySQL 
 import databases
+from profile_data import ProfileData
 
 app = Flask(__name__)
 databases.initialize(app)
@@ -96,5 +97,25 @@ def store_image():
     image = data["image"]
     path = data["path"]
     return databases.store_image(mysql, image, path)
+
+@app.route('/api/updateProfile', methods=['POST'])
+def update_profile():
+    data = request.get_json()
+    user_id = data["userID"]
+    profile = ProfileData()
+    profile.set_first_name(data["firstName"])
+    profile.set_last_name(data["lastName"])
+    profile.set_major(data["major"])
+    profile.set_year(data["year"])
+    profile.set_gender(data["gender"])
+    profile.set_interests(data["interests"])
+    profile.set_courses(data["courses"])
+    return databases.update_profile(mysql, user_id, profile)
+
+
+@app.route('/api/getProfile/<path_url>')
+def get_profile(path_url):
+    return databases.get_profile(mysql, path_url)
+
 
 app.run()

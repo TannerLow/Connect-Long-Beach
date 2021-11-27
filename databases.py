@@ -2,6 +2,7 @@ import mysql.connector
 import json
 import random
 import datetime
+from profile_data import ProfileData
 
 def initialize(app):
     # Read database credentials file to login to the database
@@ -289,9 +290,66 @@ def get_likes(mysql,post_id):
     return response
 
 
+# needs profile database table to be made before use
+# will need to be updated 
+def update_profile(mysql, user_id, profile):
+    query_head = "UPDATE profiles SET "
+    query_tail = f"WHERE userID={user_id};"
+    columns = []
+    if profile.fname:
+        columns.append(f"fname='{profile.fname}' ")
+    if profile.lname:
+        columns.append(f"lname='{profile.lname}' ")
+    if profile.major:
+        columns.append(f"major='{profile.major}' ")
+    if profile.year:
+        columns.append(f"year={profile.year} ")
+    if profile.gender:
+        columns.append(f"gender='{profile.gender}' ")
+    if profile.interests:
+        columns.append(f"interests='{profile.interests}' ")
+
+    query = query_head
+    for column in columns:
+        query += column
+    query += query_tail
+    print(query)
+
+    if len(columns) != 0:
+        cur = mysql.connection.cursor()
+        cur.execute(query)
+        mysql.connection.commit()
+        cur.close()
+        return {"response": True}
+    else:
+        return {"response": False}
+
+
+def get_profile(mysql, path_url):
+    response = {}
+    cur = mysql.connection.cursor()
+    cur.execute(f"SELECT * FROM profile WHERE pathURL='{path_url}';")
+    data = cur.fetchone()
+    cur.close()
+    if data:
+        response["pathURL"] = path_url
+        response["grade"] = data[1]
+        response["gender"] = data[2]
+        response["about"] = data[3]
+        response["profilePic"] = data[4]
+        response["coverPic"] = data[5]
+        return response
+    else:
+        print("Error in get_profile: no profile found")
+
+
 if __name__ == "__main__":
     #insert test driver code
     get_image("", "test")
+    profile = ProfileData()
+    profile.set_first_name("Mike")
+    profile.set_interests("Skateboarding")
+    update_profile("", 9, profile)
 
 
 def test(mysql):
