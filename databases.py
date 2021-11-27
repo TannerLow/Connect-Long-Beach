@@ -2,6 +2,7 @@ import mysql.connector
 import json
 import random
 import datetime
+from sendEmail import emailTo
 
 def initialize(app):
     # Read database credentials file to login to the database
@@ -108,6 +109,11 @@ def monthToInt(month):
 
 
 def register(mysql, email, password, fname, lname, gender, month, day, year):
+
+    #method from the sendEmail file is called to send a link to the user, who is signing up into the website
+    print(email)
+    emailTo(email, fname, lname)
+
     # Fail if email already in use
     if is_email_in_use(mysql, email)["response"]:
         return {"response": False}
@@ -121,6 +127,7 @@ def register(mysql, email, password, fname, lname, gender, month, day, year):
     cur.execute(f"INSERT INTO accounts(email, password) VALUES('{email}', '{password}');")
     mysql.connection.commit()
     cur.close()
+
 
     # create entry in users
     cur = mysql.connection.cursor()
