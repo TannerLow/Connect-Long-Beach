@@ -52,6 +52,7 @@ def fetchTables(mysql):
 
 
 def login(mysql, email, password):
+    path_url = "null"
     user_id = -1
     cur = mysql.connection.cursor()
     cur.execute(f"SELECT ID,password FROM accounts a WHERE a.email = '{email}';")
@@ -64,7 +65,15 @@ def login(mysql, email, password):
         access_granted = True
         user_id = dbResult[0]
 
-    response = { "response": access_granted, "userID": user_id }
+    if access_granted:
+        cur = mysql.connection.cursor()
+        cur.execute(f"SELECT pathURL FROM users WHERE userID={user_id};")
+        dbResult = cur.fetchone()
+        cur.close()
+        if dbResult:
+            path_url = dbResult[0]
+
+    response = { "response": access_granted, "userID": user_id, "pathURL": path_url }
     return response
 
 
@@ -299,32 +308,237 @@ def get_likes(mysql,post_id):
     return response
 
 
-# needs profile database table to be made before use
-# will need to be updated 
-def update_profile(mysql, user_id, profile):
-    query_head = "UPDATE profiles SET "
+def create_profile(mysql, path_url):
+    cur = mysql.connection.cursor()
+    cur.execute(f"INSERT INTO profile(pathURL) values('{path_url}');")
+    mysql.connection.commit()
+    cur.close()
+    return {"response": True}
+
+
+def get_profile(mysql, user_id, path_url):
+    response = {}
+
+    # get user's general profile information
+    cur = mysql.connection.cursor()
+    cur.execute(f"SELECT * FROM profile WHERE pathURL='{path_url}';")
+    data = cur.fetchone()
+    cur.close()
+    if data:
+        response["pathURL"] = path_url
+        response["grade"] = data[1]      if data[1] else -1
+        response["gender"] = data[2]     if data[2] else "null"
+        response["about"] = data[3]      if data[3] else ""
+        response["profilePic"] = data[4] if data[4] else "/static/assets/anonymous.png"
+        response["coverPic"] = data[5]   if data[5] else "/static/assets/Walter_Pyramid.jpg"
+    else:
+        print("Error in get_profile: no profile found. Creating a new one.")
+        create_profile(mysql, path_url)
+        return get_profile(mysql, path_url)
+
+    # get user's first and last name
+    cur = mysql.connection.cursor()
+    cur.execute(f"SELECT * FROM users WHERE userID='{user_id}';")
+    data = cur.fetchone()
+    cur.close()
+    if data:
+        response["firstName"] = data[0]
+        response["lastName"] = data[1]
+    else:
+        print("Error in get_profile: user_id invalid.")
+        return response
+
+    # get user's major (singular for now)
+    cur = mysql.connection.cursor()
+    cur.execute(f"SELECT majorName FROM userMajors u INNER JOIN majors m ON u.major_id=m.course_id WHERE u.user_id={user_id};")
+    major = cur.fetchone()
+    cur.close()
+    if major:
+        response["major"] = major[0]
+    else:
+        print("Error get_profile: no major found")
+        response["major"] = ""
+
+    # get user's courses
+    response["courses"] = []
+    cur = mysql.connection.cursor()
+    cur.execute(f"SELECT dept,courseNum FROM userCourses u INNER JOIN courses c ON u.course_id=c.course_id WHERE u.user_id={user_id};")
+    courses = cur.fetchall()
+    cur.close()
+    if courses:
+        for course in courses:
+            response["courses"].append(course[0] + ' ' + str(course[1]))
+    else:
+        print("Error get_profile: no courses found")
+
+    # get user's interests
+    response["interests"] = []
+    cur = mysql.connection.cursor()
+    cur.execute(f"SELECT interest FROM userInterests WHERE userID={user_id};")
+    interests = cur.fetchall()
+    cur.close()
+    if interests:
+        for interest in interests:
+            response["interests"].append(interest[0])
+        return response
+    else:
+        print("Error get_profile: no interests found")
+        return response
+
+
+
+def get_path_url(mysql, user_id):
+    response = {"pathURL": "null"}
+    cur = mysql.connection.cursor()
+    cur.execute(f"SELECT pathURL FROM users WHERE userID={user_id};")
+    data = cur.fetchone()
+    cur.close()
+    if data:
+        response["pathURL"] = data[0]
+    
+    return response
+
+
+def insert_major(mysql, major):
+    response = {"response": False}
+    cur = mysql.connection.cursor()
+    cur.execute(f"SELECT * FROM majors WHERE majorName='{major}';")
+    if not cur.fetchone():
+        cur.execute(f"INSERT INTO majors(majorName) VALUES('{major}');")
+        mysql.connection.commit()
+        response["response"] = True
+
+    cur.close()
+    return response
+
+
+def get_courses(mysql):
+    response = []
+    cur = mysql.connection.cursor()
+    cur.execute(f"SELECT dept, courseNum FROM courses;")
+    courses = cur.fetchall()
+    cur.close()
+    if courses:
+        for course in courses:
+            response.append(course[0] + ' ' + str(course[1]))
+
+    return response
+
+
+def get_interests(mysql):
+    response = []
+    cur = mysql.connection.cursor()
+    cur.execute(f"SELECT interest FROM interests;")
+    interests = cur.fetchall()
+    cur.close()
+    if interests:
+        for interest in interests:
+            response.append(interest[0])
+
+    return response
+
+
+def set_user_interests(mysql, user_id, interests):
+    cur = mysql.connection.cursor()
+    for interest in interests:
+        cur.execute(f"INSERT IGNORE INTO userInterests(interest, userID) VALUES('{interest}', {user_id});")
+    mysql.connection.commit()
+    cur.close()
+
+
+def get_course_ids(mysql):
+    lookup = dict()
+    cur = mysql.connection.cursor()
+    cur.execute(f"SELECT course_id, dept, courseNum FROM courses;")
+    courses = cur.fetchall()
+    cur.close()
+    if courses:
+        for course in courses:
+            lookup[course[1] + ' ' + str(course[2])] = course[0]
+    
+    return lookup
+
+
+def set_user_courses(mysql, user_id, courses):
+    lookup = get_course_ids(mysql)
+    cur = mysql.connection.cursor()
+    for course in courses:
+        cur.execute(f"INSERT IGNORE INTO userCourses(course_id, user_id) VALUES({lookup[course]}, {user_id});")
+    mysql.connection.commit()
+    cur.close()
+
+
+def set_user_major(mysql, user_id, major):
+    insert_major(mysql, major)
+    cur = mysql.connection.cursor()
+    cur.execute(f"SELECT course_id FROM majors WHERE majorName='{major}';")
+    major_id = cur.fetchone()[0]
+    cur.execute(f"INSERT INTO userMajors(user_id, major_id) VALUES({user_id}, {major_id}) ON DUPLICATE KEY UPDATE major_id={major_id};")
+    mysql.connection.commit()
+    cur.close()
+    return {"response": True}
+
+
+# helper function for update_profile to reach into users table 
+def update_name(mysql, user_id, fname, lname):
+    query_head = "UPDATE users SET "
     query_tail = f"WHERE userID={user_id};"
     columns = []
-    if profile.fname:
-        columns.append(f"fname='{profile.fname}' ")
-    if profile.lname:
-        columns.append(f"lname='{profile.lname}' ")
-    if profile.major:
-        columns.append(f"major='{profile.major}' ")
+    if fname:
+        columns.append(f"fname='{fname}' ")
+    if lname:
+        columns.append(f"lname='{lname}' ")
+
+    if len(columns) > 0:
+        query = ','.join(columns)
+        cur = mysql.connection.cursor()
+        cur.execute(query_head + query + query_tail)
+        mysql.connection.commit()
+        cur.close()
+        return True
+    else:
+        return False
+
+
+def update_major(mysql, user_id, major):
+    if len(major) < 1: 
+        return False
+
+    insert_major(mysql, major)
+    set_user_major(mysql, user_id, major)
+    return True
+
+
+# needs profile database table to be made before use
+# will need to be updated 
+def update_profile(mysql, user_id, path_url, profile):
+    query_head = "UPDATE profile SET "
+    query_tail = f"WHERE pathURL='{path_url}';"
+    columns = []
+
+    # some fields have to be handled seperately since they house data in a different table
+    update_name(mysql, user_id, profile.fname, profile.lname)
+    update_major(mysql, user_id, profile.major)
+    set_user_interests(mysql, user_id, profile.interests)
+    set_user_courses(mysql, user_id, profile.courses)
+
+    # build up query
     if profile.year:
-        columns.append(f"year={profile.year} ")
+        columns.append(f"grade={profile.year} ")
     if profile.gender:
         columns.append(f"gender='{profile.gender}' ")
-    if profile.interests:
-        columns.append(f"interests='{profile.interests}' ")
+    if profile.profile_pic:
+        columns.append(f"profilePic='{profile.profile_pic}'")
+    if profile.background_pic:
+        columns.append(f"coverPic='{profile.background_pic}'")
 
+    # combine parts into whole query
     query = query_head
-    for column in columns:
-        query += column
+    query += ','.join(columns)
     query += query_tail
-    print(query)
 
-    if len(columns) != 0:
+    # only insert into db if new information was given
+    if len(columns) > 0:
         cur = mysql.connection.cursor()
         cur.execute(query)
         mysql.connection.commit()
@@ -332,24 +546,6 @@ def update_profile(mysql, user_id, profile):
         return {"response": True}
     else:
         return {"response": False}
-
-
-def get_profile(mysql, path_url):
-    response = {}
-    cur = mysql.connection.cursor()
-    cur.execute(f"SELECT * FROM profile WHERE pathURL='{path_url}';")
-    data = cur.fetchone()
-    cur.close()
-    if data:
-        response["pathURL"] = path_url
-        response["grade"] = data[1]
-        response["gender"] = data[2]
-        response["about"] = data[3]
-        response["profilePic"] = data[4]
-        response["coverPic"] = data[5]
-        return response
-    else:
-        print("Error in get_profile: no profile found")
 
 
 if __name__ == "__main__":
