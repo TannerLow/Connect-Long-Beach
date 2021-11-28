@@ -40,6 +40,7 @@ export class ProfileComponent implements  OnInit{
   pa = "/static/assets/anonymous.png"
   paFile = "";
 
+  
   //biography variables
   biography: any = "";
   signalContent: boolean = true;

@@ -32,8 +32,8 @@
                 <mat-card>
                     <mat-card-header>
                         <div mat-card-avatar class="users-header"></div>
-                        <mat-card-title>CONNECT LONG BEACH</mat-card-title>
-                        <mat-card-subtitle>Public</mat-card-subtitle>
+                        <mat-card-title>{{firstName}} {{lastName}}</mat-card-title>
+                        <mat-card-subtitle>{{privacy}}</mat-card-subtitle>
                     </mat-card-header>
                     <p>Write your post below</p>
                     <form class="post-template">
@@ -42,10 +42,14 @@
                           <input matInput #message maxlength="256" placeholder="Write post here!">
                         </mat-form-field>
                     </form>
+                    <div *ngIf="uploadedFile && uploadedFile != ''">
+                        <img src="{{uploadedFile}}">
+                    </div>
                     <mat-card-actions class = 'post-buttons'>
-                      <button mat-button><img src = '/static/assets/photo.png'></button>
-                      <button mat-button> <img src = '/static/assets/upload.png' ></button>
-                      <button mat-button>POST</button>
+                      <input style ="display: none" type ="file" (change)="onFileSelected($event)" #fileInput>
+                      <button mat-button ><img src = '/static/assets/photo.png'></button>
+                      <button mat-button (click) = "fileInput.click()"> <img src = '/static/assets/upload.png' ></button>
+                      <button mat-button (click) = "onUpload()">POST</button>
                     </mat-card-actions>
                 </mat-card>
             </div>
@@ -54,13 +58,13 @@
                     <mat-card-header>
                         <div mat-card-avatar class="users-header2"></div>
                         <mat-card-title>CSULB College</mat-card-title>
-                        <mat-card-subtitle>Public   Nov 10 2021, 2:00pm </mat-card-subtitle>
+                        <mat-card-subtitle>{{privacy}}   {{currentDate}} </mat-card-subtitle>
                     </mat-card-header>
                     <form class="post-template">
                         <mat-form-field class="inputed post" appearance="fill">
                                 <img src = "/static/assets/Walter_Pyramid.jpg">
                                 <p>
-                                    Here is a picture of the Walter Pyramid at the University of Long Beach.
+                                    {{postText}}                             
                                 </p>
                         </mat-form-field>
                     </form>
@@ -87,7 +91,7 @@
                         </mat-form-field>
                     </form>
                     <mat-card-actions class = 'post-actions'>
-                        <button mat-button> 12 <img src = '/static/assets/like.png'>LIKE</button>
+                        <button mat-button> {{likes}}<img src = '/static/assets/like.png'>LIKE</button>
                         <button mat-button><img src = '/static/assets/comments.png'>COMMENT</button>
                         <button mat-button><img src = '/static/assets/share.png'>SHARE</button>
                     </mat-card-actions>
