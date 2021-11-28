@@ -144,7 +144,7 @@ def register(mysql, email, password, fname, lname, gender, month, day, year):
     cur.execute(f"SELECT ID FROM accounts WHERE email='{email}';")
     id = cur.fetchone()[0]
     print(id)
-    cur.execute(f"INSERT INTO users(userID, fname, lname, gender, pathUrl, bday) VALUES('{id}', '{fname}', '{lname}', '{gender}', '{pathUrl}', '{bday}');")
+    cur.execute(f"INSERT INTO users(userID, fname, lname, pathUrl, bday) VALUES('{id}', '{fname}', '{lname}', '{pathUrl}', '{bday}');")
     mysql.connection.commit()
     cur.close()
     return {"response": True}

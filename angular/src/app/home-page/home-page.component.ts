@@ -6,12 +6,12 @@ import { Component, NgModule, OnInit } from '@angular/core';
   styleUrls: ['./home-page.component.css']
 })
 export class HomePageComponent implements OnInit {
-  firstName = "CONNECT LONG"
-  lastName = "BEACH"
-  postText = "Here is a picture of the Walter Pyramid at the University of Long Beach."
-  privacy = "Public"
-  currentDate = "Nov 10 2021, 2:00pm" 
-  likes = "12"
+  firstName = "CONNECT LONG";
+  lastName = "BEACH";
+  postText = "Here is a picture of the Walter Pyramid at the University of Long Beach.";
+  privacy = "Public";
+  currentDate = "Nov 10 2021, 2:00pm" ;
+  likes = "12";
 
   uploadedFile? = "";
 
