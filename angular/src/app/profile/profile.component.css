@@ -1,3 +1,83 @@
+*{
+  margin: 0%;
+  padding: 0%;
+  font-family: 'Courier New', Courier, monospace;
+}
+body{
+  background: #efefef;
+}
+nav{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #3f3f3f;
+  padding: 5px 2%;
+  position: sticky;
+  top:0;
+  z-index: 100;
+}
+.logo{
+  width: 130px;
+  height: 60px;
+}
+.nav-left{
+  display: flex;
+  align-items: center;
+}
+.nav-mid{
+  display: inline;
+  align-items: center;
+}
+.search{
+  background: white;
+  width: 350px;
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+  padding:0 15px;
+}
+.search input{
+  width: 100%;
+  background: transparent;
+  padding: 10px;
+  outline: none;
+  border: 0;
+}
+.btn
+{
+  background-color: transparent; 
+  filter: brightness(50%);
+}
+.nav-right{
+  display: flex;
+  align-items: center;
+}
+.nav-right ul li {
+  list-style: none;
+  display: inline-block;
+}
+.nav-right ul li img{
+  width: 28px;
+  margin: 0 15px;
+}
+.mssg{
+  filter: brightness(5);
+}
+.mssg:hover{
+  filter: invert(63%) sepia(62%) saturate(517%) hue-rotate(4deg) brightness(200%) contrast(83%);   
+}
+.notif{
+  filter: brightness(5);
+}
+.notif:hover{
+  filter: invert(63%) sepia(62%) saturate(517%) hue-rotate(4deg) brightness(200%) contrast(83%);   
+}
+.user{
+  filter: brightness(5);
+}
+.user:hover{
+  filter: invert(63%) sepia(62%) saturate(517%) hue-rotate(4deg) brightness(200%) contrast(83%);   
+}
 
 .adjust-info{
   display: flex;
@@ -118,3 +198,6 @@ textarea.mat-input-element{
   padding: inherit;
 }
 
+.mat-input-element:disabled {
+  color: black;
+}
