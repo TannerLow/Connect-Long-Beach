@@ -52,6 +52,7 @@ import {MatCardModule} from '@angular/material/card';
 import {MatButtonModule} from '@angular/material/button';
 import {MatInputModule} from '@angular/material/input';
 import {MatMenuModule} from '@angular/material/menu';
+import { EmailCreationComponent } from './email-creation/email-creation.component';
 
 @NgModule({
   declarations: [
@@ -61,7 +62,8 @@ import {MatMenuModule} from '@angular/material/menu';
     ProfileComponent,
     DialogOverviewExampleDialog,
     SignUpComponent,
-    HomePageComponent
+    HomePageComponent,
+    EmailCreationComponent
   ],
   imports: [
     BrowserModule,
