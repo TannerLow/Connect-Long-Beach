@@ -4,7 +4,9 @@ class ProfileData():
     major = None
     year = None
     gender = None
-    interests = None
+    profile_pic = None
+    background_pic = None
+    interests = []
     courses = []
 
     def __init__(self):
@@ -24,6 +26,12 @@ class ProfileData():
 
     def set_gender(self, gender):
         self.gender = gender
+
+    def set_profile_pic(self, profile_pic):
+        self.profile_pic = profile_pic
+
+    def set_background_pic(self, background_pic):
+        self.background_pic = background_pic
 
     def set_interests(self, interests):
         self.interests = interests

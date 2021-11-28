@@ -102,20 +102,43 @@ def store_image():
 def update_profile():
     data = request.get_json()
     user_id = data["userID"]
+    path_url = data["pathURL"]
     profile = ProfileData()
-    profile.set_first_name(data["firstName"])
-    profile.set_last_name(data["lastName"])
+    profile.set_first_name(data["fname"])
+    profile.set_last_name(data["lname"])
     profile.set_major(data["major"])
     profile.set_year(data["year"])
     profile.set_gender(data["gender"])
+    profile.set_profile_pic(data["profilePic"])
+    profile.set_background_pic(data["backgroundPic"])
     profile.set_interests(data["interests"])
     profile.set_courses(data["courses"])
-    return databases.update_profile(mysql, user_id, profile)
+    return databases.update_profile(mysql, user_id, path_url, profile)
 
 
-@app.route('/api/getProfile/<path_url>')
-def get_profile(path_url):
-    return databases.get_profile(mysql, path_url)
+@app.route('/api/createProfile/<path_url>')
+def create_profile(path_url):
+    return databases.create_profile(mysql, path_url)
+
+
+@app.route('/api/getProfile/<user_id>/<path_url>')
+def get_profile(user_id, path_url):
+    return databases.get_profile(mysql, user_id, path_url)
+
+
+@app.route('/api/getPathURL/<user_id>')
+def get_path_url(user_id):
+    return databases.get_path_url(mysql, int(user_id))
+
+
+@app.route('/api/getInterests')
+def get_interests():
+    return jsonify(databases.get_interests(mysql))
+
+
+@app.route('/api/getCourses')
+def get_courses():
+    return jsonify(databases.get_courses(mysql))
 
 
 app.run()

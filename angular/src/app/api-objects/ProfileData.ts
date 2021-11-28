@@ -5,4 +5,9 @@ export interface ProfileData {
     about: string;
     profilePic: string;
     coverPic: string;
+    firstName: string;
+    lastName: string;
+    major: string;
+    courses: string[];
+    interests: string[];
 }

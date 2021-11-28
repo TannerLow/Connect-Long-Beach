@@ -21,6 +21,8 @@ import { AboutInfo } from './api-objects/AboutInfo';
 import { LikePost } from './api-objects/LikePost';
 import { Likes } from './api-objects/Likes';
 import { ProfileData } from './api-objects/ProfileData';
+import { PathURL } from './api-objects/PathURL';
+import { ProfileUpdateData } from './api-objects/ProfileUpdateData';
 
 const URL = 'api/';
 
@@ -49,8 +51,16 @@ export class DatabaseService {
         );
     }
 
-    getProfile(pathURL: string): Observable<ProfileData> {
-        return this.http.get<ProfileData>(URL + "getProfile/" + pathURL)
+    createProfile(pathURL: string): Observable<Response> {
+        return this.http.get<Response>(URL + "createProfile/" + pathURL)
+            .pipe(
+            tap(_ => console.log('profile created for url: ' + pathURL)),
+            catchError(this.handleError<Response>('createProfile'))
+        );
+    }
+
+    getProfile(userID: number, pathURL: string): Observable<ProfileData> {
+        return this.http.get<ProfileData>(URL + "getProfile/" + userID + '/' + pathURL)
             .pipe(
             tap(_ => console.log('profile retrieved for url: ' + pathURL)),
             catchError(this.handleError<ProfileData>('getProfile'))
@@ -126,7 +136,7 @@ export class DatabaseService {
     }
 
     storeImage(imageData: string, path?: string): Observable<StoreImageResponse> {
-        if(path === undefined) {
+        if(path === undefined || path.substr(0,1) === "/") {
             path = "null"
         }
 
@@ -172,6 +182,38 @@ export class DatabaseService {
         .pipe(
           tap(_ => console.log("Getting amount of likes for post with id: " + post_id)),
           catchError(this.handleError<Likes[]>("getLikes" + post_id))  
+        );
+    }
+
+    getPathURL(user_id: number): Observable<PathURL> {
+        return this.http.get<PathURL>(URL + "getPathURL/"+ user_id)
+        .pipe(
+          tap(_ => console.log("Getting path url for user with id: " + user_id)),
+          catchError(this.handleError<PathURL>("getPathURL " + user_id))  
+        );
+    }
+
+    updateProfile(profileData: ProfileUpdateData): Observable<Response> {
+        return this.http.post<Response>(URL + "updateProfile", profileData)
+        .pipe(
+            tap(_=> console.log("Updating profile for user with ID: " + profileData.userID)),
+            catchError(this.handleError<Response>('updateProfile'))
+        );
+    }
+
+    getInterests(): Observable<string[]> {
+        return this.http.get<string[]>(URL + "getInterests")
+        .pipe(
+          tap(_ => console.log("Retrieving interests")),
+          catchError(this.handleError<string[]>("getInterests"))  
+        );
+    }
+
+    getCourses(): Observable<string[]> {
+        return this.http.get<string[]>(URL + "getCourses")
+        .pipe(
+          tap(_ => console.log("Retrieving courses")),
+          catchError(this.handleError<string[]>("getCourses"))  
         );
     }
 
