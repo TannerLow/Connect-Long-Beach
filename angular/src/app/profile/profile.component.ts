@@ -32,6 +32,7 @@ export class ProfileComponent implements  OnInit{
   background = "/static/assets/Walter_Pyramid.jpg"
   pa = "/static/assets/anonymous.png"
 
+  
   //biography variables
   biography: any = "";
   signalContent: boolean = true;
