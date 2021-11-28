@@ -42,6 +42,9 @@
                           <input matInput #message maxlength="256" placeholder="Write post here!">
                         </mat-form-field>
                     </form>
+                    <div *ngIf="uploadedFile && uploadedFile != ''">
+                        <img src="{{uploadedFile}}">
+                    </div>
                     <mat-card-actions class = 'post-buttons'>
                       <input style ="display: none" type ="file" (change)="onFileSelected($event)" #fileInput>
                       <button mat-button ><img src = '/static/assets/photo.png'></button>
