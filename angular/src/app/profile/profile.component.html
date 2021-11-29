@@ -6,7 +6,12 @@
     <div class = 'nav-right'>
         <ul> 
           <li> <a routerLink="/profile" ><img src= '/static/assets/profile-home.png' class = 'user'> </a></li>
-          <li> <a routerLink="/log-in" ><img src= '/static/assets/setting.png' class = 'settings'> </a></li>
+          <li><div class="dropdown">
+            <button class="dropbtn"><img src= '/static/assets/setting.png' class = 'settings'></button>
+            <div class="dropdown-content">
+              <a routerLink="/log-in">Log Out</a>
+            </div>
+          </div></li>
         </ul>
     </div>
   </nav>
@@ -98,3 +103,4 @@
   </form>
 </mat-card>
 </body>
+
