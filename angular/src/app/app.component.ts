@@ -26,7 +26,7 @@ export class AppComponent {
         //this.getImage_test();
         //this.about_test();
         //this.like_test();
-        this.getLikes_test();
+        //this.getLikes_test();
     }
 
     // test to show cross component variables, specifically user ID

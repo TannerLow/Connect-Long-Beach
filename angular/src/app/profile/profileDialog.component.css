@@ -1,8 +1,15 @@
 
+.images-files input{
+  margin-left: 18%;
+}
+.images-files mat-label{
+  margin-left: 18%;
+  margin-bottom: 1%;
 
+}
 .mat-card-image-dialog{
-  height: 50%;
-  width: 50%;
+  max-height: 50%;
+  max-width: 50%;
   display: block;
   margin-right: auto;
   margin-left: auto;
@@ -14,7 +21,7 @@
   display: flex;
   position: relative;
   text-align: center;
-  padding-left: 35px;
+  padding-left: 18%;
 }
 
 .mat-dialog-actions {

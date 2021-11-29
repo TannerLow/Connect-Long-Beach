@@ -8,15 +8,24 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
 
-def emailTo(emailAddress, fname, lname):
+def get_credentials():
+    file = open("email_credentials.txt")
+    contents = file.readlines()
+    credentials = {"email": "", "password": ""}
+    credentials["email"] = contents[0].strip()
+    credentials["password"] = contents[1].strip()
+    return credentials
+
+
+def emailTo(emailAddress, code, credentials):
     #enter your google gmail credentials here for testing. Do not upload them
     port = 587
-    password = ""
-    username = ""
+    password = credentials["password"]
+    username = credentials["email"]
     sentFrom = username
     to = emailAddress
     subject = "Please click on the following link to activate your account"
-    uniqueValue = fname+lname + str(randomValue())
+    uniqueValue = code
     msg = MIMEMultipart('alternative')
     msg['Subject'] = "Activate your account"
     msg['From'] = username
@@ -26,9 +35,8 @@ def emailTo(emailAddress, fname, lname):
     <html>
       <head></head>
       <body>
-        <p>Hello There<br>
-           Click here and enter the value to activate your account <br>
-           <a href="http://127.0.0.1:5000/email-creation">%s</a>
+        <p>
+            Hello from ConnectLB! Your verification code is <b>%s</b>
         </p>
       </body>
     </html>
