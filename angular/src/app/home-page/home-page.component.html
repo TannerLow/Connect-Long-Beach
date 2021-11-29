@@ -1,27 +1,27 @@
 <body>
-    <nav>
-        <div class = 'nav-left'>
-            <img src = '/static/assets/logo.png' class = 'logo'>
-        </div>
-        <div class = 'nav-mid'>
-            <div class="search">
-                <input type="text" placeholder=" Search">
-                <img class="btn my-1 my-sm-0" type="submit" src="/static/assets/search.png"> 
-            </div>
-        </div>
-        <div class = 'nav-right'>
-            <ul> 
-                <li> <img src = '/static/assets/message.png' class = 'mssg'> </li>
-                <li> <img src= '/static/assets/notification.png'class = 'notif'> </li>
-                <li> <img src= '/static/assets/profile-home.png' class = 'user'> </li>
-            </ul>
-        </div>
-    </nav>
-    
-    <div class = 'container'> 
+<!--    <nav>-->
+<!--        <div class = 'nav-left'>-->
+<!--            <img src = '/static/assets/logo.png' class = 'logo'>-->
+<!--        </div>-->
+<!--        <div class = 'nav-mid'>-->
+<!--            <div class="search">-->
+<!--                <input type="text" placeholder=" Search">-->
+<!--                <img class="btn my-1 my-sm-0" type="submit" src="/static/assets/search.png"> -->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class = 'decide'>-->
+<!--            <ul>-->
+<!--                <li> <img src = '/static/assets/message.png' class = 'mssg'> </li>-->
+<!--                <li> <img src= '/static/assets/notification.png'class = 'notif'> </li>-->
+<!--                <li> <img src= '/static/assets/profile-home.png' class = 'user'> </li>-->
+<!--            </ul>-->
+<!--        </div>-->
+<!--    </nav>-->
+
+    <div class = 'container'>
         <div class = 'left-side'>
             <div class="sidenav">
-                <a href="#"> <img src = '/static/assets/world.png'>Global Post</a> 
+                <a routerLink="/profile"> <img src = '/static/assets/anonymous.png'>Profile</a>
                 <a href="#"> <img src = '/static/assets/announc.png'>Announcments</a>
                 <a href="#"> <img src = '/static/assets/friends.png'>friends</a>
             </div>
@@ -82,7 +82,7 @@
                         <mat-form-field class="inputed post" appearance="fill">
                                 <img src = "/static/assets/meeting.png">
                                 <p>
-                                    Last nights meeting was a great success! 
+                                    Last nights meeting was a great success!
                                 </p>
                         </mat-form-field>
                     </form>

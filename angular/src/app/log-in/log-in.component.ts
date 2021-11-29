@@ -16,6 +16,7 @@ export class LogInComponent implements OnInit {
 
     static loggedIn = false;
     static userID = -1;
+    static signalBackButton: string = 'none'
 
     constructor(private router: Router, private database: DatabaseService) { }
 
@@ -39,5 +40,10 @@ export class LogInComponent implements OnInit {
                 this.router.navigate(['/sign-up']);
             }
         });
+    }
+
+    onClick(){
+      LogInComponent.signalBackButton = 'block'
+      console.log("acting"+LogInComponent.signalBackButton)
     }
 }

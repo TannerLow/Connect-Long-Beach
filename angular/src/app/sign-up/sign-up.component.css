@@ -1,10 +1,11 @@
 *{
   padding: 0px;
-  margin: 10px;
+  margin: 7px;
   box-sizing: border-box;
 }
 h2{
   text-align: center;
+  line-height: initial;
 }
 .container {
   position: relative;
@@ -22,7 +23,7 @@ h2{
   right: 0px;
   bottom: 0px;
   left: 0px;
-  opacity: 0.70;
+  opacity: 0.80;
   background-position: top 50% right 0%;
   z-index: -1;
 }

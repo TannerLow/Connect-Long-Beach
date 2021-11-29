@@ -6,6 +6,12 @@
 body{
     background: #efefef;
 }
+
+.decide{
+  display: flex;
+  top:0px;
+  right: 0px;
+}
 nav{
     display: flex;
     align-items: center;
@@ -45,7 +51,7 @@ nav{
 }
 .btn
 {
-    background-color: transparent; 
+    background-color: transparent;
     filter: brightness(50%);
 }
 .nav-right{
@@ -64,19 +70,19 @@ nav{
     filter: brightness(5);
 }
 .mssg:hover{
-    filter: invert(63%) sepia(62%) saturate(517%) hue-rotate(4deg) brightness(200%) contrast(83%);   
+    filter: invert(63%) sepia(62%) saturate(517%) hue-rotate(4deg) brightness(200%) contrast(83%);
 }
 .notif{
     filter: brightness(5);
 }
 .notif:hover{
-    filter: invert(63%) sepia(62%) saturate(517%) hue-rotate(4deg) brightness(200%) contrast(83%);   
+    filter: invert(63%) sepia(62%) saturate(517%) hue-rotate(4deg) brightness(200%) contrast(83%);
 }
 .user{
     filter: brightness(5);
 }
 .user:hover{
-    filter: invert(63%) sepia(62%) saturate(517%) hue-rotate(4deg) brightness(200%) contrast(83%);   
+    filter: invert(63%) sepia(62%) saturate(517%) hue-rotate(4deg) brightness(200%) contrast(83%);
 }
 
 

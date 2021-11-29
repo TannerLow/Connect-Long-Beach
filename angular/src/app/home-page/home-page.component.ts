@@ -1,5 +1,6 @@
 import { Component, NgModule, OnInit } from '@angular/core';
 
+
 @Component({
   selector: 'app-home-page',
   templateUrl: './home-page.component.html',
@@ -7,9 +8,12 @@ import { Component, NgModule, OnInit } from '@angular/core';
 })
 export class HomePageComponent implements OnInit {
 
+  static signalBackActivate: string = 'block'
   constructor() { }
 
   ngOnInit(): void {
   }
 
 }
+
+

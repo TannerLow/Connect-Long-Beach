@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { LogInComponent } from './log-in/log-in.component';
+import { GlobalConstants} from './common/global-constants';
+
 
 @Component({
     selector: 'app-root',
@@ -8,13 +10,17 @@ import { LogInComponent } from './log-in/log-in.component';
 })
 
 export class AppComponent {
-    title = 'angular';
+    title = 'angular'
+    signalButton: string;
 
-    password = "";
+    password = ""
 
-    constructor() {}
+    constructor() {
+      this.signalButton= GlobalConstants.activeButton
+    }
 
     ngOnInit() {
+      console.log("hello "+this.signalButton)
     }
 
     // test to show cross component variables, specifically user ID

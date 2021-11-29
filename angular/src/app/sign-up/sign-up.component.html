@@ -1,16 +1,16 @@
 <div class = "container">
 <!--  <div class ="no-gutters ">-->
-    <div class = "lefter col-lg-7 " style="margin-left: 2%; margin-top: 5%;width: 100%;">
+    <div class = "lefter col-lg-7 " style="margin-left: 2%; margin-top: 3%;width: 100%;">
      <img src="../../static/assets/logo.png" style="height: 50%;width: 50%;margin-left: 130px;margin-top: 30px;">
      <h1 class="font-weight-bold  py-3" style="font-size: 100px;">Connect LB:</h1>
      <h2 style="font-size: 50px;">Bringing students together one post at a time</h2>
    </div>
-   <div class="row col-lg-9" style="left: 300px;bottom: 320px;margin-top: 150px;margin-bottom: 50px;margin-right: 15px;">
-     
+   <div class="row col-lg-9" style="left: 300px;bottom: 320px;margin-top: 100px;margin-bottom: 50px;margin-right: 15px;">
+
     <form (ngSubmit)="onInfoItem(f)" #f="ngForm">
        <div class = "form-row">
          <div class="col-lg-12" style="margin-left: 160px;">
-           <input type="FirstName" name="fname" placeholder="First Name" ngModel required #fname="ngModel" style="width: 500px;" class="form-control my-3 p-4"  >
+           <input type="FirstName" name="fname" placeholder="First Name" ngModel required #fname="ngModel" class="form-control my-3 p-4"  >
              <div *ngIf="(f.submitted && fname.invalid)" [ngClass] = "'error'">
                <div *ngIf="fname.errors?.required">
                  First name is required.
@@ -21,7 +21,7 @@
 
        <div class = "form-row">
          <div class="col-lg-12" style="margin-left: 160px;margin-right: 160px;">
-           <input type="lastName" name="lname" placeholder="Last Name" ngModel required #lname="ngModel" style="width: 500px;" class="form-control my-3 p-4">
+           <input type="lastName" name="lname" placeholder="Last Name" ngModel required #lname="ngModel"  class="form-control my-3 p-4">
              <div *ngIf="(f.submitted && lname.invalid)" [ngClass] = "'error'">
                <div *ngIf="lname.errors?.required">
                  Last name is required.
@@ -32,11 +32,11 @@
 
        <div class = "form-row">
          <div class="col-lg-12" style="margin-left: 160px;">
-           <input type="Email" name="email" placeholder="Email" ngModel required [pattern]="emailPattern" #emailAddress="ngModel" style="width: 500px;" class="form-control my-3 p-4">
+           <input type="Email" name="email" placeholder="Email" ngModel required [pattern]="emailPattern" #emailAddress="ngModel"  class="form-control my-3 p-4">
              <div *ngIf="emailAddress.invalid && f.submitted" [ngClass] = "'error'">
                 <div *ngIf="emailAddress.errors?.required">
                     Email is required.
-                  </div> 
+                  </div>
               <div *ngIf="emailAddress.errors?.pattern">
                  Email is invalid. Please use a CSULB student email.
                </div>
@@ -45,13 +45,8 @@
        </div>
 
        <div class = "form-row">
-         <div class="col-lg-12" style="margin-right: 10%; margin-left: 20%;">
-           <input type="Password" placeholder="Password" ngModel required [pattern]="passPattern" name="passwordFieldName" #pass="ngModel" style="width: 80%;" class="form-control my-3 p-4">
-             <!-- <div *ngIf="pass.invalid && (pass.dirty || pass.touched)" [ngClass] = "'error'">
-               <div *ngIf="pass.errors?.pattern">
-                 Password is invalid. Please ensure that it meets the requirements.
-               </div>
-              </div> -->
+         <div class="col-lg-12" style="margin-left: 160px;">
+           <input type="Password" placeholder="Password" ngModel required [pattern]="passPattern" name="passwordFieldName" #pass="ngModel"  class="form-control my-3 p-4">
               <div *ngIf="pass.invalid && (pass.dirty || pass.touched)" [ngClass] = "'error'">
                <div *ngIf="pass.errors?.required">
                  Password is required.
@@ -64,13 +59,9 @@
        </div>
 
        <div class = "form-control">
-         <div class="col-lg-12" style="margin-right: 10%; margin-left: 20%">
-           <input type="Password" placeholder="Confirm password" ngModel required ngValidateEqual="passwordFieldName" #pass2="ngModel" style="width: 80%;" class="form-control my-3 p-4">
-             <!-- <div *ngIf="pass2.invalid && (pass2.dirty || pass2.touched)" [ngClass] = "'error'">
-               <div *ngIf="pass2.hasError('notEqual')">
-                  Passwords don't match.
-               </div>
-             </div> -->
+         <div class="col-lg-12" style="margin-left: 160px;">
+           <input type="Password" placeholder="Confirm password" ngModel required ngValidateEqual="passwordFieldName" #pass2="ngModel"  class="form-control my-3 p-4">
+
              <div *ngIf="pass2.invalid && (pass2.dirty || pass2.touched)" [ngClass] = "'error'">
                 <div *ngIf="pass2.errors?.required">
                   Password is required.
@@ -86,7 +77,7 @@
 
         <!-- <div class="form-group col"> -->
 
-          <select class="Month" name="month" style="margin-left: 250px;" ngModel required #month="ngModel">
+          <select class="Month" name="month" style="margin-left: 160px;" ngModel required #month="ngModel">
             <option value="" disabled selected>Month</option>
             <option>January</option> <option>February</option> <option>March</option>
             <option>April</option> <option>May</option> <option>June</option> <option>July</option>
@@ -103,7 +94,7 @@
 
         <!-- <div class="form-group col"> -->
 
-          <select class="Day" name="day" style="margin-left: 50px;" ngModel required #day="ngModel" >
+          <select class="Day" name="day"  ngModel required #day="ngModel" >
             <option value="" disabled selected>Day</option>
             <option>1</option> <option>2</option> <option>3</option> <option>4</option> <option>5</option> <option>6</option>
             <option>7</option> <option>8</option> <option>9</option> <option>10</option> <option>11</option> <option>13</option>
@@ -118,11 +109,10 @@
           </div>
         <!-- </div> -->
 
-
         <!-- <div class="form-group col"> -->
 
         <!-- <div> -->
-          <select class="year" name="year" style="margin-left: 50px;" ngModel required #year="ngModel">
+          <select class="year" name="year" ngModel required #year="ngModel">
             <option value="" disabled selected>Year</option>
             <option>1980</option> <option>1981</option> <option>1982</option> <option>1983</option> <option>1984</option> <option>1985</option>
             <option>1986</option> <option>1987</option> <option>1988</option> <option>1989</option> <option>1990</option> <option>1991</option>
@@ -143,7 +133,7 @@
 
 
        <div class = "form-row mt-3">
-            <select class="Gender" name="gender" style="margin-left: 350px;" ngModel required #gender="ngModel">
+            <select class="Gender" name="gender" style="margin-left: 190px;" ngModel required #gender="ngModel">
                 <option value="" disabled selected>Gender</option>
                 <option>Female</option> <option>Male</option> <option>Non-binary</option>
                 <option>Other</option> <option>Prefer not to say</option>
