@@ -146,18 +146,15 @@ nav{
 }
 
 .card-container-middle{
-  color: #000;
-  margin-left: 0;
-  height: auto;
+  margin: 0% 0% 10%;
+  height: 100%;
   width: 100%;
-  margin-bottom: 10%;
   text-align: center;
 }
 
 .card-container-low{
-  color: #000;
-  margin-left: 0%;
-  height: auto;
+  margin: 0% 0% 10%;
+  height: 100%;
   width: 100%;
   text-align: center;
 }
