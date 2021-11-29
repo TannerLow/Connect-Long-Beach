@@ -2,10 +2,13 @@ from flask import Flask, render_template, request, jsonify
 from flask_mysqldb import MySQL 
 import databases
 from profile_data import ProfileData
+from sendEmail import emailTo, get_credentials
 
 app = Flask(__name__)
 databases.initialize(app)
 mysql = MySQL(app)
+credentials = get_credentials()
+print(credentials)
 
 @app.route('/', defaults={'path': ''})
 @app.route('/<path:path>')
@@ -150,6 +153,12 @@ def get_name(user_id):
 @app.route('/api/getProfilePic/<user_id>')
 def get_profile_pic(user_id):
     return databases.get_profile_pic(mysql, int(user_id))
+
+
+@app.route('/api/sendCode/<email>/<code>')
+def send_code(email, code):
+    emailTo(email, code, credentials)
+    return {"response": True}
 
 
 app.run()

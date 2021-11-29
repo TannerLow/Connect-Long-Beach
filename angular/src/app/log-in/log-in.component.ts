@@ -29,10 +29,10 @@ export class LogInComponent implements OnInit {
     // TAKES USER TO SIGN UP PAGE AS PLACEHOLDER
     onInfoItem(form: NgForm){
         const value = form.value;
-        console.log(value);
+        //console.log(value);
         let password = this.database.hashPassword(value.password);
         let credentials: LoginCredentials = {email: value.emailAddress, password: password};
-        console.log(credentials);
+        //console.log(credentials);
 
         // login and take note of user ID and set logged in status
         this.database.login(credentials).subscribe((data: LoginResponse) => {
@@ -42,7 +42,7 @@ export class LogInComponent implements OnInit {
             LogInComponent.pathURL = data.pathURL;
             // redirect if login is successful
             if(LogInComponent.loggedIn) {
-                console.log("trying to go to home page");
+                //console.log("trying to go to home page");
                 this.router.navigate(['/home-page']);
             }
         });

@@ -7,7 +7,7 @@
    </div>
    <div class="row col-lg-9" style="left: 300px;bottom: 320px;margin-top: 150px;margin-bottom: 50px;margin-right: 15px;">
      
-    <form (ngSubmit)="onInfoItem(f)" #f="ngForm">
+    <form (ngSubmit)="openDialog(f)" #f="ngForm">
        <div class = "form-row">
          <div class="col-lg-12" style="margin-left: 160px;">
            <input type="FirstName" name="fname" placeholder="First Name" ngModel required #fname="ngModel" style="width: 500px;" class="form-control my-3 p-4"  >
@@ -32,7 +32,7 @@
 
        <div class = "form-row">
          <div class="col-lg-12" style="margin-left: 160px;">
-           <input type="Email" name="email" placeholder="Email" ngModel required [pattern]="emailPattern" #emailAddress="ngModel" style="width: 500px;" class="form-control my-3 p-4">
+           <input type="Email" name="email" placeholder="Email" ngModel required [pattern]="emailPattern" #emailAddress="ngModel" style="width: 500px;" class="form-control my-3 p-4" [(ngModel)]="emailAdd">
              <div *ngIf="emailAddress.invalid && f.submitted" [ngClass] = "'error'">
                 <div *ngIf="emailAddress.errors?.required">
                     Email is required.
