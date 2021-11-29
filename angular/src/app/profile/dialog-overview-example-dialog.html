@@ -1,14 +1,15 @@
 <h1 mat-dialog-title>{{data.firstName}} {{data.lastName}}</h1>
 <div mat-dialog-content>
   <img mat-card-image class="mat-card-image-dialog" src="{{data.pa}}" alt="Profile Picture">
-
-  <mat-label>Profile picture </mat-label>
+  <div class="images-files">
+    <mat-label>Profile picture </mat-label>
     <input type = "file" (change)="onFileSelected($event)">
     <br>
 
-  <mat-label>Background Picture</mat-label>
-  <input type = "file" (change)="backgroundChanged($event)">
-  <br>
+    <mat-label>Background Picture</mat-label>
+    <input type = "file" (change)="backgroundChanged($event)">
+    <br>
+  </div>
   <mat-form-field appearance="fill">
     <mat-label>First Name</mat-label>
     <input matInput [(ngModel)]="data.firstName">
