@@ -46,7 +46,8 @@ def post():
     data = request.get_json()
     message = data["message"]
     user_id = data["userID"]
-    return databases.create_post(mysql, user_id, message)
+    attachment = data["attachment"]
+    return databases.create_post(mysql, user_id, message, attachment)
 
 
 @app.route('/api/getPosts/<amount>', defaults={'user_id': -1})
@@ -84,7 +85,7 @@ def like_unlike_post():
 
 @app.route('/api/getLikes/<post_id>')
 def get_likes(post_id):
-    return jsonify(databases.get_likes(mysql, int(post_id)))
+    return databases.get_likes(mysql, int(post_id))
 
 @app.route('/api/getImage/<path>')
 def get_image(path):
@@ -123,7 +124,7 @@ def create_profile(path_url):
 
 @app.route('/api/getProfile/<user_id>/<path_url>')
 def get_profile(user_id, path_url):
-    return databases.get_profile(mysql, user_id, path_url)
+    return databases.get_profile(mysql, int(user_id), path_url)
 
 
 @app.route('/api/getPathURL/<user_id>')
@@ -139,6 +140,16 @@ def get_interests():
 @app.route('/api/getCourses')
 def get_courses():
     return jsonify(databases.get_courses(mysql))
+
+
+@app.route('/api/getName/<user_id>')
+def get_name(user_id):
+    return databases.get_name(mysql, int(user_id))
+
+
+@app.route('/api/getProfilePic/<user_id>')
+def get_profile_pic(user_id):
+    return databases.get_profile_pic(mysql, int(user_id))
 
 
 app.run()
