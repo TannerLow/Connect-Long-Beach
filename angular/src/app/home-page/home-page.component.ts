@@ -4,6 +4,7 @@ import { DatabaseService } from '../database.service';
 import { About } from '../api-objects/About';
 import { LogInComponent } from '../log-in/log-in.component';
 import { Likes } from '../api-objects/Likes';
+import { ThisReceiver } from '@angular/compiler';
 
 @Component({
   selector: 'app-home-page',
@@ -28,6 +29,9 @@ export class HomePageComponent implements OnInit {
     profilePics = new Map();
     likes = new Map();
     currentLikes = new Set();
+    comments = new Map();
+    commentingOn = "-1";
+    commentText = "";
 
     constructor(private databaseService: DatabaseService) { }
   
@@ -70,9 +74,26 @@ export class HomePageComponent implements OnInit {
             }
             console.log(this.recentPosts);
             this.postsLoaded = true;
+            this.loadComments();
         });
     }
 
+    loadComments(): void {
+        for(let post of this.recentPosts) {
+            this.databaseService.getComments(~~post.postID).subscribe(data => {
+                let commentObjs: Post[] = [];
+                for(let comment of data) {
+                    commentObjs.push(comment);
+                    if(!this.names.has(comment.author)){
+                        this.databaseService.getName(~~comment.author).subscribe(data => {
+                            this.names.set(comment.author, data.name);
+                        });
+                    }
+                }
+                this.comments.set(post.postID, commentObjs);
+            });
+        }
+    }
 
 
 //   onFileSelected(event){ //takes element(file) and 
@@ -137,6 +158,18 @@ export class HomePageComponent implements OnInit {
                 this.likes.set(postID, 1);
                 this.currentLikes.add(postID);
             }
+        });
+    }
+
+    commentOn(postID: string): void {
+        this.commentingOn = postID;
+    }
+
+    postComment(): void {
+        this.databaseService.createComment(LogInComponent.userID, ~~this.commentingOn, this.commentText).subscribe(data => {
+            this.commentText = "";
+            this.loadComments();
+            this.commentingOn = "-1";
         });
     }
 }

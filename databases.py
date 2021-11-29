@@ -198,7 +198,7 @@ def comment(mysql, parent_post_id, user_id, message):
     response = {"response": False}
     #comment_id = create_post(mysql, user_id, message)["postID"]
     cur = mysql.connection.cursor()
-    cur.execute(f"INSERT INTO messages(author, date, message) VALUES({user_id}, NOW(), {message});")
+    cur.execute(f"INSERT INTO messages(author, date, message) VALUES({user_id}, NOW(), '{message}');")
     comment_id = mysql.connection.insert_id()
     cur.execute(f"INSERT INTO comments(post_id, parent_host) VALUES({comment_id}, {parent_post_id});")
     mysql.connection.commit()

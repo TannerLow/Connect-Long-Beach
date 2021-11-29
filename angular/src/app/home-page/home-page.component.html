@@ -74,10 +74,29 @@
                     </form>
                     <mat-card-actions class = 'post-actions'>
                         <button mat-button (click)="likePost(recentPost.postID)"><span *ngIf="likes.has(recentPost.postID) && likes.get(recentPost.postID) > 0">{{likes.get(recentPost.postID)}}</span><img src = '/static/assets/like.png'>LIKE</button>
-                        <button mat-button><img src = '/static/assets/comments.png'>COMMENT</button>
+                        <button mat-button (click)="commentOn(recentPost.postID)"><img src = '/static/assets/comments.png'>COMMENT</button>
                         <button mat-button><img src = '/static/assets/share.png'>SHARE</button>
                     </mat-card-actions>
                 </mat-card>
+                <div *ngIf="commentingOn === recentPost.postID">
+                    <mat-card>
+                        <mat-form-field class="message-input-box" appearance="fill">
+                            <mat-label>Write Comment here</mat-label>
+                            <input matInput #message maxlength="256" placeholder="Write comment here!" [(ngModel)]="commentText">
+                        </mat-form-field>
+                        <button mat-button (click)="postComment()">POST</button>
+                    </mat-card>
+                </div>
+                <div *ngIf="comments.has(recentPost.postID)">
+                    <mat-card *ngFor="let comment of comments.get(recentPost.postID)">
+                        <mat-card-header>
+                            <mat-card-title>{{names.get(comment.author)}}</mat-card-title>
+                        </mat-card-header>
+                        <div>
+                            {{comment.message}}
+                        </div>
+                    </mat-card>
+                </div>
             </div>
             </div>
 
