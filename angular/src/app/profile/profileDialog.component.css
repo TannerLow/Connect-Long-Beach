@@ -1,5 +1,7 @@
 
-
+.images-files input{
+  margin-left: 18%;
+}
 .mat-card-image-dialog{
   height: 50%;
   width: 50%;
@@ -14,7 +16,7 @@
   display: flex;
   position: relative;
   text-align: center;
-  padding-left: 35px;
+  padding-left: 18%;
 }
 
 .mat-dialog-actions {
