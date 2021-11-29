@@ -35,11 +35,11 @@
                         <mat-card-title>{{firstName}} {{lastName}}</mat-card-title>
                         <mat-card-subtitle>{{privacy}}</mat-card-subtitle>
                     </mat-card-header>
-                    <p>Write your post below</p>
+                    <!--p>Write your post below</p-->
                     <form class="post-template">
                         <mat-form-field class="message-input-box" appearance="fill">
                           <mat-label>Write Post here</mat-label>
-                          <input matInput #message maxlength="256" placeholder="Write post here!">
+                          <input matInput #message maxlength="256" placeholder="Write post here!" [(ngModel)]="postText">
                         </mat-form-field>
                     </form>
                     <div *ngIf="uploadedFile && uploadedFile != ''">
@@ -53,6 +53,57 @@
                     </mat-card-actions>
                 </mat-card>
             </div>
+            <!--Attempt at programatically displaying posts-->
+            <div *ngIf="postsLoaded">
+            <!--div-->
+            <div *ngFor="let recentPost of recentPosts" class="user-postbox">
+            <!--div class="user-postbox"-->
+                <mat-card>
+                    <mat-card-header>
+                        <div mat-card-avatar style="background-image: url('{{profilePics.get(recentPost.author)}}');background-size: cover;"></div>
+                        <mat-card-title>{{names.get(recentPost.author)}}</mat-card-title>
+                        <mat-card-subtitle>Public    </mat-card-subtitle>
+                    </mat-card-header>
+                    <form class="post-template">
+                        <p class="inputed post">
+                            {{recentPost.message}}
+                        </p>
+                        <div *ngIf="recentPost.attachment !== 'null' && pictures.has(recentPost.attachment)">
+                            <img class="scale-down-img" src="{{pictures.get(recentPost.attachment)}}">
+                        </div>
+                    </form>
+                    <mat-card-actions class = 'post-actions'>
+                        <button mat-button (click)="likePost(recentPost.postID)"><span *ngIf="likes.has(recentPost.postID) && likes.get(recentPost.postID) > 0">{{likes.get(recentPost.postID)}}</span><img src = '/static/assets/like.png'>LIKE</button>
+                        <button mat-button (click)="commentOn(recentPost.postID)"><img src = '/static/assets/comments.png'>COMMENT</button>
+                        <button mat-button><img src = '/static/assets/share.png'>SHARE</button>
+                    </mat-card-actions>
+                </mat-card>
+                <div *ngIf="commentingOn === recentPost.postID">
+                    <mat-card>
+                        <mat-form-field class="message-input-box" appearance="fill">
+                            <mat-label>Write Comment here</mat-label>
+                            <input matInput #message maxlength="256" placeholder="Write comment here!" [(ngModel)]="commentText">
+                        </mat-form-field>
+                        <button mat-button (click)="postComment()">POST</button>
+                    </mat-card>
+                </div>
+                <div *ngIf="comments.has(recentPost.postID)">
+                    <mat-card *ngFor="let comment of comments.get(recentPost.postID)">
+                        <mat-card-header>
+                            <mat-card-title>{{names.get(comment.author)}}</mat-card-title>
+                        </mat-card-header>
+                        <div>
+                            {{comment.message}}
+                        </div>
+                    </mat-card>
+                </div>
+            </div>
+            </div>
+
+
+
+
+            <!--This is an old post>
             <div class="user-postbox">
                 <mat-card>
                     <mat-card-header>
@@ -117,7 +168,7 @@
                         <button mat-button><img src = '/static/assets/share.png'>SHARE</button>
                     </mat-card-actions>
                 </mat-card>
-            </div>
+            </div-->
         </div>
 
         <div class = 'right-side'></div>

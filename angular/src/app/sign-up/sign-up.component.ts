@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {NgForm} from "@angular/forms";
+import { Router } from '@angular/router';
 import { RegistrationInfo } from '../api-objects/RegistrationInfo';
 import { RegistrationResponse } from '../api-objects/RegistrationResponse';
 import { DatabaseService } from '../database.service';
@@ -15,7 +16,7 @@ export class SignUpComponent implements OnInit {
   emailPattern = "^[a-z0-9._-]+@student\.csulb\.edu$";
   passPattern = "(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&]).{8,20}";
 
-  constructor(private database: DatabaseService) { }
+  constructor(private database: DatabaseService, private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -41,6 +42,7 @@ export class SignUpComponent implements OnInit {
         console.log("Restration response: " + data.response);
         if (data.response) {
             console.log("Registered successfully");
+            this.router.navigate(['/log-in']);
         }
         else {
             console.log("Failed Registration")

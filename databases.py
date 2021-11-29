@@ -144,16 +144,26 @@ def register(mysql, email, password, fname, lname, gender, month, day, year):
     cur.execute(f"SELECT ID FROM accounts WHERE email='{email}';")
     id = cur.fetchone()[0]
     print(id)
-    cur.execute(f"INSERT INTO users(userID, fname, lname, gender, pathUrl, bday) VALUES('{id}', '{fname}', '{lname}', '{gender}', '{pathUrl}', '{bday}');")
+    cur.execute(f"INSERT INTO users(userID, fname, lname, pathUrl, bday) VALUES('{id}', '{fname}', '{lname}', '{pathUrl}', '{bday}');")
     mysql.connection.commit()
     cur.close()
     return {"response": True}
 
 
-def create_post(mysql, user_id, message):
+def create_post(mysql, user_id, message, attachment):
     post_id = None
     cur = mysql.connection.cursor()
-    cur.execute(f"INSERT INTO messages(author, date, message) VALUES({user_id}, NOW(), '{message}');")
+    query = "INSERT INTO messages(author, date, message"
+    if attachment != "null":
+        query += ", attachment"
+
+    query += f") VALUES({user_id}, NOW(), '{message}'"
+    if attachment != "null":
+        query += f", '{attachment}'"
+    
+    query += ");"
+
+    cur.execute(query)
     post_id = mysql.connection.insert_id()
     cur.execute(f"INSERT INTO posts(post_id, group_id) VALUES({post_id}, 1);") # use default group for general posts
     mysql.connection.commit()
@@ -167,16 +177,17 @@ def get_posts(mysql, amount, user_id=-1):
     response = []
     cur = mysql.connection.cursor()
     if user_id != -1: # -1 indicates no user specified
-        cur.execute(f"SELECT * FROM messages WHERE author={user_id} ORDER BY date DESC LIMIT {amount};")
+        cur.execute(f"SELECT m.* FROM messages m INNER JOIN posts p ON m.post_id=p.post_id WHERE author={user_id} ORDER BY date DESC LIMIT {amount};")
     else:
-        cur.execute(f"SELECT * FROM messages ORDER BY date DESC LIMIT {amount};")
+        cur.execute(f"SELECT m.* FROM messages m INNER JOIN posts p ON m.post_id=p.post_id ORDER BY date DESC LIMIT {amount};")
 
     for message in cur.fetchall():
         response.append({
             "postID": message[0],
             "author": message[1],
             "timestamp": int(message[2].timestamp()),
-            "message": message[3]
+            "message": message[3],
+            "attachment": message[4] if message[4] else "null"
         })
 
     cur.close()
@@ -185,8 +196,10 @@ def get_posts(mysql, amount, user_id=-1):
 
 def comment(mysql, parent_post_id, user_id, message):
     response = {"response": False}
-    comment_id = create_post(mysql, user_id, message)["postID"]
+    #comment_id = create_post(mysql, user_id, message)["postID"]
     cur = mysql.connection.cursor()
+    cur.execute(f"INSERT INTO messages(author, date, message) VALUES({user_id}, NOW(), '{message}');")
+    comment_id = mysql.connection.insert_id()
     cur.execute(f"INSERT INTO comments(post_id, parent_host) VALUES({comment_id}, {parent_post_id});")
     mysql.connection.commit()
     response["response"] = True
@@ -203,7 +216,8 @@ def get_comments(mysql, post_id):
             "postID": comment[0],
             "author": comment[1],
             "timestamp": int(comment[2].timestamp()),
-            "message": comment[3]
+            "message": comment[3],
+            "attachment": "null"
         })
 
     cur.close()
@@ -218,6 +232,18 @@ def get_image(mysql, path):
         response["retrieved"] = True
         
     return response
+
+
+def get_profile_pic(mysql, user_id):
+    cur = mysql.connection.cursor()
+    cur.execute(f"SELECT profilePic FROM users u INNER JOIN profile p ON u.pathURL=p.pathURL WHERE u.userID={user_id};")
+    data = cur.fetchone()
+    cur.close()
+    if data:
+        return {"name": data[0]}
+    else:
+        print("Error getting profile pic path. get_profile_pic()")
+        return {"name": "null"}
 
 
 def generate_image_path():
@@ -277,17 +303,17 @@ def like_unlike_post(mysql, user_id, post_id):
 
     cur = mysql.connection.cursor()
     
-    cur.execute(f"SELECT * FROM posts WHERE post_id={post_id};")
+    cur.execute(f"SELECT * FROM userLikes WHERE post_id={post_id} AND user_id={user_id};")
     data = cur.fetchone()
     
     #Checks to see if it exists or not within the database
     if data:
         #Since it exists, we are going to "Unlike" the post
-        cur.execute(f"DELETE FROM userLikes WHERE post_id = {post_id} AND user_id = {user_id};")
-        response["response"] = True
+        cur.execute(f"DELETE FROM userLikes WHERE post_id={post_id} AND user_id={user_id};")
+        response["response"] = False
     else:
         #Post hasn't been liked by user, so we create an entry into the database for it
-        cur.execute(f"INSERT INTO userLikes(user_id,post_id) VALUES ({user_id},{post_id});")
+        cur.execute(f"INSERT INTO userLikes(user_id,post_id) VALUES({user_id},{post_id});")
         response["response"] = True
 
     mysql.connection.commit()
@@ -296,13 +322,11 @@ def like_unlike_post(mysql, user_id, post_id):
     return response
 
 def get_likes(mysql,post_id):
-    response = []
+    response = {"likes": 0}
     cur = mysql.connection.cursor()
     cur.execute(f"SELECT COUNT(*) FROM userLikes WHERE post_id = {post_id};")
-    for likes in cur.fetchall():
-        response.append({
-            "likes": likes[0]
-        })
+    for likes in cur.fetchone():
+        response["likes"] = likes
 
     cur.close()
     return response
@@ -334,11 +358,11 @@ def get_profile(mysql, user_id, path_url):
     else:
         print("Error in get_profile: no profile found. Creating a new one.")
         create_profile(mysql, path_url)
-        return get_profile(mysql, path_url)
+        return get_profile(mysql, user_id, path_url)
 
     # get user's first and last name
     cur = mysql.connection.cursor()
-    cur.execute(f"SELECT * FROM users WHERE userID='{user_id}';")
+    cur.execute(f"SELECT * FROM users WHERE userID={user_id};")
     data = cur.fetchone()
     cur.close()
     if data:
@@ -398,6 +422,16 @@ def get_path_url(mysql, user_id):
     
     return response
 
+
+def get_name(mysql, user_id):
+    name = ""
+    cur = mysql.connection.cursor()
+    cur.execute(f"SELECT fname, lname FROM users WHERE userID={user_id};")
+    data = cur.fetchone()
+    cur.close()
+    if data:
+        name += data[0] + ' ' + data[1]
+    return {"name": name}
 
 def insert_major(mysql, major):
     response = {"response": False}
@@ -517,10 +551,10 @@ def update_profile(mysql, user_id, path_url, profile):
     columns = []
 
     # some fields have to be handled seperately since they house data in a different table
-    update_name(mysql, user_id, profile.fname, profile.lname)
-    update_major(mysql, user_id, profile.major)
-    set_user_interests(mysql, user_id, profile.interests)
-    set_user_courses(mysql, user_id, profile.courses)
+    print(update_name(mysql, user_id, profile.fname, profile.lname))
+    print(update_major(mysql, user_id, profile.major))
+    print(set_user_interests(mysql, user_id, profile.interests))
+    print(set_user_courses(mysql, user_id, profile.courses))
 
     # build up query
     if profile.year:

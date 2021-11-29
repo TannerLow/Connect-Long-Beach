@@ -166,3 +166,8 @@ nav{
     width: -webkit-fill-available;
     margin-bottom: 25px;
 }
+
+.scale-down-img {
+    max-width: 90%;
+    object-fit: contain;
+}

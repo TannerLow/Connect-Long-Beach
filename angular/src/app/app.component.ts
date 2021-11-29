@@ -19,11 +19,11 @@ export class AppComponent {
 
     ngOnInit() {
         //this.post_test();
-        this.getPosts_test();
+        //this.getPosts_test();
         //this.comment_test();
-        this.getComments_test();
+        //this.getComments_test();
         //this.storeImage_test();
-        this.getImage_test();
+        //this.getImage_test();
         //this.about_test();
         //this.like_test();
         this.getLikes_test();
