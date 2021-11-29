@@ -241,6 +241,14 @@ export class DatabaseService {
         );
     }
 
+    sendCode(email: string, code: string): Observable<Response> {
+        return this.http.get<Response>(URL + "sendCode/" + email + '/' + code)
+        .pipe(
+          tap(_ => console.log("Sending email " + email + " code " + code)),
+          catchError(this.handleError<Response>("sendCode"))  
+        );
+    }
+
     private handleError<T>(operation = 'operation', result?: T) {
         return (error: any): Observable<T> => {
 
