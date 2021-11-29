@@ -69,11 +69,11 @@
                             {{recentPost.message}}
                         </p>
                         <div *ngIf="recentPost.attachment !== 'null' && pictures.has(recentPost.attachment)">
-                            <img src="{{pictures.get(recentPost.attachment)}}">
+                            <img class="scale-down-img" src="{{pictures.get(recentPost.attachment)}}">
                         </div>
                     </form>
                     <mat-card-actions class = 'post-actions'>
-                        <button mat-button><img src = '/static/assets/like.png'>LIKE</button>
+                        <button mat-button><span *ngIf="likes.has(recentPost.postID) && likes.get(recentPost.postID) > 0">{{likes.get(recentPost.postID)}}</span><img src = '/static/assets/like.png'>LIKE</button>
                         <button mat-button><img src = '/static/assets/comments.png'>COMMENT</button>
                         <button mat-button><img src = '/static/assets/share.png'>SHARE</button>
                     </mat-card-actions>

@@ -85,7 +85,7 @@ def like_unlike_post():
 
 @app.route('/api/getLikes/<post_id>')
 def get_likes(post_id):
-    return jsonify(databases.get_likes(mysql, int(post_id)))
+    return databases.get_likes(mysql, int(post_id))
 
 @app.route('/api/getImage/<path>')
 def get_image(path):

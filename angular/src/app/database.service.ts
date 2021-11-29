@@ -193,11 +193,11 @@ export class DatabaseService {
         );
     }
 
-    getLikes(post_id: number): Observable<Likes[]>{
-        return this.http.get<Likes[]>(URL + "getLikes/"+ post_id)
+    getLikes(post_id: number): Observable<Likes>{
+        return this.http.get<Likes>(URL + "getLikes/"+ post_id)
         .pipe(
           tap(_ => console.log("Getting amount of likes for post with id: " + post_id)),
-          catchError(this.handleError<Likes[]>("getLikes" + post_id))  
+          catchError(this.handleError<Likes>("getLikes" + post_id))  
         );
     }
 

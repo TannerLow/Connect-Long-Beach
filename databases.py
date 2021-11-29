@@ -322,13 +322,11 @@ def like_unlike_post(mysql, user_id, post_id):
     return response
 
 def get_likes(mysql,post_id):
-    response = []
+    response = {"likes": 0}
     cur = mysql.connection.cursor()
     cur.execute(f"SELECT COUNT(*) FROM userLikes WHERE post_id = {post_id};")
-    for likes in cur.fetchall():
-        response.append({
-            "likes": likes[0]
-        })
+    for likes in cur.fetchone():
+        response["likes"] = likes
 
     cur.close()
     return response

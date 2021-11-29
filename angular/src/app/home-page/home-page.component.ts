@@ -3,6 +3,7 @@ import { Post } from '../api-objects/Post';
 import { DatabaseService } from '../database.service';
 import { About } from '../api-objects/About';
 import { LogInComponent } from '../log-in/log-in.component';
+import { Likes } from '../api-objects/Likes';
 
 @Component({
   selector: 'app-home-page',
@@ -15,7 +16,7 @@ export class HomePageComponent implements OnInit {
     //postText = "Here is a picture of the Walter Pyramid at the University of Long Beach.";
     privacy = "Public";
     currentDate = new Date();
-    likes = "12";
+    //likes = "12";
 
     uploadedFile? = "";
     postText = "";
@@ -25,6 +26,7 @@ export class HomePageComponent implements OnInit {
     pictures = new Map();
     names = new Map();
     profilePics = new Map();
+    likes = new Map();
 
     constructor(private databaseService: DatabaseService) { }
   
@@ -57,6 +59,11 @@ export class HomePageComponent implements OnInit {
                                 this.profilePics.set(post.author, data.image);
                             }
                         });
+                    });
+                }
+                if(!this.likes.has(post.postID)) {
+                    this.databaseService.getLikes(~~post.postID).subscribe(data => {
+                        this.likes.set(post.postID, data.likes);
                     });
                 }
             }
