@@ -140,21 +140,26 @@ nav{
 
 .card-container-top{
   height: auto;
-  margin: 6% 2% 8%;
+  width: 100%;
+  margin: 0% 0% 10%;
+  text-align: center;
 }
 
 .card-container-middle{
-  color: black;
-  margin-left: 1%;
-  height: 180px;
-  width: 76%;
+  color: #000;
+  margin-left: 0;
+  height: auto;
+  width: 100%;
   margin-bottom: 10%;
+  text-align: center;
 }
 
 .card-container-low{
-  color: black;
+  color: #000;
   margin-left: 0%;
-  height: 180px;
+  height: auto;
+  width: 100%;
+  text-align: center;
 }
 /*extend the comments to full width*/
 .comments{
@@ -192,10 +197,9 @@ textarea.mat-input-element{
 }
 
 .poster{
-  margin: 20px;
+  margin: 0% 0% 1%;
   height: 10%;
-  width: 10%;
-  border-radius: 50%;
+  width: 7%;
 }
 
 
