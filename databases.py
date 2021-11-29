@@ -360,11 +360,11 @@ def get_profile(mysql, user_id, path_url):
     else:
         print("Error in get_profile: no profile found. Creating a new one.")
         create_profile(mysql, path_url)
-        return get_profile(mysql, path_url)
+        return get_profile(mysql, user_id, path_url)
 
     # get user's first and last name
     cur = mysql.connection.cursor()
-    cur.execute(f"SELECT * FROM users WHERE userID='{user_id}';")
+    cur.execute(f"SELECT * FROM users WHERE userID={user_id};")
     data = cur.fetchone()
     cur.close()
     if data:
@@ -553,10 +553,10 @@ def update_profile(mysql, user_id, path_url, profile):
     columns = []
 
     # some fields have to be handled seperately since they house data in a different table
-    update_name(mysql, user_id, profile.fname, profile.lname)
-    update_major(mysql, user_id, profile.major)
-    set_user_interests(mysql, user_id, profile.interests)
-    set_user_courses(mysql, user_id, profile.courses)
+    print(update_name(mysql, user_id, profile.fname, profile.lname))
+    print(update_major(mysql, user_id, profile.major))
+    print(set_user_interests(mysql, user_id, profile.interests))
+    print(set_user_courses(mysql, user_id, profile.courses))
 
     # build up query
     if profile.year:

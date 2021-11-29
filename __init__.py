@@ -124,7 +124,7 @@ def create_profile(path_url):
 
 @app.route('/api/getProfile/<user_id>/<path_url>')
 def get_profile(user_id, path_url):
-    return databases.get_profile(mysql, user_id, path_url)
+    return databases.get_profile(mysql, int(user_id), path_url)
 
 
 @app.route('/api/getPathURL/<user_id>')

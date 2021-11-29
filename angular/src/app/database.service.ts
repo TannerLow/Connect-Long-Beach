@@ -151,11 +151,8 @@ export class DatabaseService {
     }
 
     storeImage(imageData: string, path?: string): Observable<StoreImageResponse> {
-        if(imageData === undefined) {
-            imageData = "";
-        }
         if(path === undefined || path.substr(0,1) === "/") {
-            path = "null"
+            path = "null";
         }
 
         let imageRequest: StoreImageRequest = {
@@ -163,6 +160,7 @@ export class DatabaseService {
             path: path
         }
 
+        console.log(path);
         return this.http.post<StoreImageResponse>(URL + "storeImage", imageRequest)
             .pipe(
                 tap(_ => console.log('Request to store image')),
