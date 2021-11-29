@@ -79,10 +79,17 @@ nav{
   filter: invert(63%) sepia(62%) saturate(517%) hue-rotate(4deg) brightness(200%) contrast(83%);   
 }
 
+.container{
+    display: flex;
+    justify-content: space-between;
+    padding: 13px 5%;
+    background-color: #efefef;
+}
+
 .mainPicture{
-  margin: 20px;
-  height: 55%;
-  width: 15%;
+  margin: 5%;
+  max-height: 48%;
+  max-width: 12%;
   border-radius: 50%;
 }
 .button-upper {
@@ -132,19 +139,21 @@ nav{
 }
 
 .card-container-top{
-  height: 50px;
-  margin: 6% 2% 2%;
+  height: auto;
+  margin: 6% 2% 8%;
 }
 
 .card-container-middle{
   color: black;
-  right: 5%;
+  margin-left: 1%;
   height: 180px;
+  width: 76%;
+  margin-bottom: 10%;
 }
 
 .card-container-low{
   color: black;
-  right: 5%;
+  margin-left: 0%;
   height: 180px;
 }
 /*extend the comments to full width*/
@@ -159,15 +168,17 @@ nav{
 
 
 .posting{
-  width: 70%;
+  width: 65.7%;
   height: auto;
-  margin: 20px auto auto;
+  margin-top: -20%;
+  margin-left: 23.2%;
 }
 
 .mat-card-image:first-child {
   border-radius: 50%;
   margin-top: 10px;
-
+  border: white;
+  border-style: solid;
 }
 
 textarea.mat-input-element{
@@ -204,4 +215,21 @@ textarea.mat-input-element{
 
 .mat-input-element:disabled {
   color: black;
+}
+.mat-grid-tile-content{
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 25%;
+    padding: 0;
+    margin: 0;
+}
+.top-bio-section {
+  width: 80%;
+  margin-left: 6%;
 }
