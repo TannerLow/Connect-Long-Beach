@@ -45,7 +45,7 @@ import {HttpClientModule} from "@angular/common/http";
 
 import { ValidateEqualModule } from  'ng-validate-equal';
 
-import { SignUpComponent } from './sign-up/sign-up.component';
+import { SignUpComponent, EmailVerificationDialog } from './sign-up/sign-up.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatCardModule} from '@angular/material/card';
@@ -53,6 +53,7 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatInputModule} from '@angular/material/input';
 import {MatMenuModule} from '@angular/material/menu';
 import { EmailCreationComponent } from './email-creation/email-creation.component';
+
 
 @NgModule({
   declarations: [
@@ -63,7 +64,8 @@ import { EmailCreationComponent } from './email-creation/email-creation.componen
     DialogOverviewExampleDialog,
     SignUpComponent,
     HomePageComponent,
-    EmailCreationComponent
+    EmailCreationComponent,
+    EmailVerificationDialog
   ],
   imports: [
     BrowserModule,

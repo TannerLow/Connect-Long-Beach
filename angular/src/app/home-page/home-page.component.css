@@ -198,3 +198,8 @@ nav{
   .dropdown-content a:hover {background-color: #ddd;}
   
   .dropdown:hover .dropdown-content {display: block;}
+
+.scale-down-img {
+    max-width: 90%;
+    object-fit: contain;
+}
