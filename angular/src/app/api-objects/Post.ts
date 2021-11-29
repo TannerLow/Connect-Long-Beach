@@ -3,4 +3,5 @@ export interface Post {
     author: string;
     timestamp: number;
     message: string;
+    attachment: string;
 }

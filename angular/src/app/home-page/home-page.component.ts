@@ -1,4 +1,8 @@
 import { Component, NgModule, OnInit } from '@angular/core';
+import { Post } from '../api-objects/Post';
+import { DatabaseService } from '../database.service';
+import { About } from '../api-objects/About';
+import { LogInComponent } from '../log-in/log-in.component';
 
 @Component({
   selector: 'app-home-page',
@@ -6,19 +10,62 @@ import { Component, NgModule, OnInit } from '@angular/core';
   styleUrls: ['./home-page.component.css']
 })
 export class HomePageComponent implements OnInit {
-  firstName = "CONNECT LONG";
-  lastName = "BEACH";
-  postText = "Here is a picture of the Walter Pyramid at the University of Long Beach.";
-  privacy = "Public";
-  currentDate = "Nov 10 2021, 2:00pm" ;
-  likes = "12";
+    firstName = "CONNECT LONG";
+    lastName = "BEACH";
+    postText = "Here is a picture of the Walter Pyramid at the University of Long Beach.";
+    privacy = "Public";
+    currentDate = new Date();
+    likes = "12";
 
-  uploadedFile? = "";
+    uploadedFile? = "";
 
-  constructor() { }
+
+    recentPosts: Post[] = [];
+    postsLoaded: boolean = false;
+    pictures = new Map();
+    names = new Map();
+    profilePics = new Map();
+
+    constructor(private databaseService: DatabaseService) { }
   
-  ngOnInit(): void {
-  }
+    ngOnInit(): void {
+        this.currentDate.setUTCMilliseconds(1636601968);
+        this.loadPosts();
+    }
+
+    loadPosts(): void {
+        this.databaseService.getPosts(25).subscribe((data: Post[]) => {
+            console.log(data);
+            for(let post of data) {
+                this.recentPosts.push(post);
+                if (post.attachment !== 'null' && !this.pictures.has(post.attachment)) {
+                    this.databaseService.getImage(post.attachment).subscribe(data => {
+                        if(data.retrieved) {
+                            this.pictures.set(post.attachment, data.image);
+                        }
+                    });
+                }
+                if(!this.names.has(post.author)){
+                    this.databaseService.getName(~~post.author).subscribe(data => {
+                        this.names.set(post.author, data.name);
+                    });
+                }
+                if(!this.profilePics.has(post.author)) {
+                    this.databaseService.getProfilePicture(~~post.author).subscribe(data => {
+                        this.databaseService.getImage(data.name).subscribe(data => {
+                            if(data.retrieved){
+                                this.profilePics.set(post.author, data.image);
+                            }
+                        });
+                    });
+                }
+            }
+            console.log(this.recentPosts);
+            this.postsLoaded = true;
+        });
+    }
+
+
 
 //   onFileSelected(event){ //takes element(file) and 
 //     this.uploadedFile = event.target.files[0];

@@ -53,6 +53,38 @@
                     </mat-card-actions>
                 </mat-card>
             </div>
+            <!--Attempt at programatically displaying posts-->
+            <div *ngIf="postsLoaded">
+            <!--div-->
+            <div *ngFor="let recentPost of recentPosts" class="user-postbox">
+            <!--div class="user-postbox"-->
+                <mat-card>
+                    <mat-card-header>
+                        <div mat-card-avatar style="background-image: url('{{profilePics.get(recentPost.author)}}');background-size: cover;"></div>
+                        <mat-card-title>{{names.get(recentPost.author)}}</mat-card-title>
+                        <mat-card-subtitle>Public    </mat-card-subtitle>
+                    </mat-card-header>
+                    <form class="post-template">
+                        <p class="inputed post">
+                            {{recentPost.message}}
+                        </p>
+                        <div *ngIf="recentPost.attachment !== 'null' && pictures.has(recentPost.attachment)">
+                            <img src="{{pictures.get(recentPost.attachment)}}">
+                        </div>
+                    </form>
+                    <mat-card-actions class = 'post-actions'>
+                        <button mat-button><img src = '/static/assets/like.png'>LIKE</button>
+                        <button mat-button><img src = '/static/assets/comments.png'>COMMENT</button>
+                        <button mat-button><img src = '/static/assets/share.png'>SHARE</button>
+                    </mat-card-actions>
+                </mat-card>
+            </div>
+            </div>
+
+
+
+
+            <!--This is an old post>
             <div class="user-postbox">
                 <mat-card>
                     <mat-card-header>
@@ -117,7 +149,7 @@
                         <button mat-button><img src = '/static/assets/share.png'>SHARE</button>
                     </mat-card-actions>
                 </mat-card>
-            </div>
+            </div-->
         </div>
 
         <div class = 'right-side'></div>

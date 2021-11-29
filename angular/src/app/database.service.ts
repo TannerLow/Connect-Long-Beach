@@ -23,6 +23,7 @@ import { Likes } from './api-objects/Likes';
 import { ProfileData } from './api-objects/ProfileData';
 import { PathURL } from './api-objects/PathURL';
 import { ProfileUpdateData } from './api-objects/ProfileUpdateData';
+import { Name } from './api-objects/Name';
 
 const URL = 'api/';
 
@@ -64,6 +65,14 @@ export class DatabaseService {
             .pipe(
             tap(_ => console.log('profile retrieved for url: ' + pathURL)),
             catchError(this.handleError<ProfileData>('getProfile'))
+        );
+    }
+
+    getProfilePicture(user_id: number): Observable<Name> {
+        return this.http.get<Name>(URL + "getProfilePic/" + user_id)
+            .pipe(
+            tap(_ => console.log('profile picture retrieved for user with id: ' + user_id)),
+            catchError(this.handleError<Name>('getProfilePic'))
         );
     }
 
@@ -214,6 +223,14 @@ export class DatabaseService {
         .pipe(
           tap(_ => console.log("Retrieving courses")),
           catchError(this.handleError<string[]>("getCourses"))  
+        );
+    }
+
+    getName(user_id: number): Observable<Name> {
+        return this.http.get<Name>(URL + "getName/" + user_id)
+        .pipe(
+          tap(_ => console.log("Retrieving name of user: " + user_id)),
+          catchError(this.handleError<Name>("getName"))  
         );
     }
 
