@@ -84,11 +84,17 @@ export class DatabaseService {
         );
     }
 
-    createPost(user_id: number, message: string): Observable<PostResponse> {
+    createPost(user_id: number, message: string, attachment?: string): Observable<PostResponse> {
         let post: PostInfo = {
             userID: user_id,
-            message: message
+            message: message,
+            attachment: "null"
         } 
+
+        if(attachment !== undefined) {
+            post.attachment = attachment;
+        }
+
         return this.http.post<PostResponse>(URL + "post", post)
             .pipe(
                 tap(_ => console.log('Posted with user id: ' + user_id)),
@@ -145,6 +151,9 @@ export class DatabaseService {
     }
 
     storeImage(imageData: string, path?: string): Observable<StoreImageResponse> {
+        if(imageData === undefined) {
+            imageData = "";
+        }
         if(path === undefined || path.substr(0,1) === "/") {
             path = "null"
         }

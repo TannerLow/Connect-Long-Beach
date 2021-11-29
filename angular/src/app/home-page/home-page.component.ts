@@ -12,13 +12,13 @@ import { LogInComponent } from '../log-in/log-in.component';
 export class HomePageComponent implements OnInit {
     firstName = "CONNECT LONG";
     lastName = "BEACH";
-    postText = "Here is a picture of the Walter Pyramid at the University of Long Beach.";
+    //postText = "Here is a picture of the Walter Pyramid at the University of Long Beach.";
     privacy = "Public";
     currentDate = new Date();
     likes = "12";
 
     uploadedFile? = "";
-
+    postText = "";
 
     recentPosts: Post[] = [];
     postsLoaded: boolean = false;
@@ -71,17 +71,37 @@ export class HomePageComponent implements OnInit {
 //     this.uploadedFile = event.target.files[0];
 //     console.log(this.uploadedFile);
 //   }
-  onFileSelected(event){
-    const files = event.target.files;
-    const reader = new FileReader();
-    reader.readAsDataURL(files[0]);
-    reader.onload = (_event) => {
-        console.log(reader.result?.toString());
-        this.uploadedFile = reader.result?.toString();
+    onFileSelected(event){
+        const files = event.target.files;
+        const reader = new FileReader();
+        reader.readAsDataURL(files[0]);
+        reader.onload = (_event) => {
+            console.log(reader.result?.toString());
+            this.uploadedFile = reader.result?.toString();
+        }
     }
-  }
-  onUpload()//function will upload file onto database when post is clicked 
-  {
-  }
+
+    onUpload()//function will upload file onto database when post is clicked 
+    {
+        if(this.postText.length > 0) {
+            console.log(this.postText);
+            if(this.uploadedFile === ""){
+                this.databaseService.createPost(LogInComponent.userID, this.postText).subscribe(() => {
+                    this.loadPosts();
+                });
+            }
+            else{
+                if(this.uploadedFile === undefined) {
+                    this.uploadedFile = "";
+                }
+                this.databaseService.storeImage(this.uploadedFile).subscribe(data => {
+                    this.databaseService.createPost(LogInComponent.userID, this.postText, data.path).subscribe(() => {
+                        this.loadPosts();
+                    });
+                });
+            }
+            this.postText = '';
+        }
+    }
 
 }

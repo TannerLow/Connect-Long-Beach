@@ -35,11 +35,11 @@
                         <mat-card-title>{{firstName}} {{lastName}}</mat-card-title>
                         <mat-card-subtitle>{{privacy}}</mat-card-subtitle>
                     </mat-card-header>
-                    <p>Write your post below</p>
+                    <!--p>Write your post below</p-->
                     <form class="post-template">
                         <mat-form-field class="message-input-box" appearance="fill">
                           <mat-label>Write Post here</mat-label>
-                          <input matInput #message maxlength="256" placeholder="Write post here!">
+                          <input matInput #message maxlength="256" placeholder="Write post here!" [(ngModel)]="postText">
                         </mat-form-field>
                     </form>
                     <div *ngIf="uploadedFile && uploadedFile != ''">
