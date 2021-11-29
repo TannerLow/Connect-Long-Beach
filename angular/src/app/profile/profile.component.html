@@ -69,32 +69,43 @@
 <!--  <mat-grid-tile class ="mat-grid-tile" cols="1" rows="3" rowspan="2">-->
 
 
-<mat-card class="posting">
-  <img mat-card-image class ="poster" src="{{pa}}" alt="{{firstName}}" [style.boder-radius]="'50%;'">
-  <mat-card-subtitle>{{firstName}} {{lastName}}</mat-card-subtitle>
-  <mat-card-title>SUBJECT????</mat-card-title>
-  <mat-card-content class="insidePost">
-    <p>Testing </p>
-    <p>Testing </p>
-    <p>Testing </p>
-    <p>Testing </p><p>Testing </p>
-    <p>Testing </p>
-    <p>Testing </p>
-    <p>Testing </p>
-    <p>Testing </p>
-    <p>Testing </p>
-  </mat-card-content>
+<div class="posting">
+  <h1>{{firstName}} {{lastName}}'s Recent Posts</h1>
+  <div class="insidePost">
+    <!--Attempt at programatically displaying posts-->
+    <div *ngIf="postsLoaded">
+        <!--div-->
+        <div *ngFor="let recentPost of recentPosts" class="user-postbox">
+        <!--div class="user-postbox"-->
+            <mat-card>
+                <mat-card-header>
+                    <div mat-card-avatar style="background-image: url('{{profilePics.get(recentPost.author)}}');background-size: cover;"></div>
+                    <mat-card-title>{{names.get(recentPost.author)}}</mat-card-title>
+                    <mat-card-subtitle>Public    </mat-card-subtitle>
+                </mat-card-header>
+                <form class="post-template">
+                    <p class="inputed post">
+                        {{recentPost.message}}
+                    </p>
+                    <div *ngIf="recentPost.attachment !== 'null' && pictures.has(recentPost.attachment)">
+                        <img class="scale-down-img" src="{{pictures.get(recentPost.attachment)}}">
+                    </div>
+                </form>
+            </mat-card>
+        </div>
+        </div>
+    </div>
 
-  <mat-card-actions>
+  <!--mat-card-actions>
     <button mat-button>Like</button>
     <button mat-button>Comment</button>
-  </mat-card-actions>
+  </mat-card-actions-->
   <!-- comment section-->
-  <form>
+  <!--form>
     <mat-form-field class="comments" appearance="fill">
       <mat-label>Leave a comment</mat-label>
       <textarea matInput placeholder="Comment"></textarea>
     </mat-form-field>
-  </form>
-</mat-card>
+  </form-->
+</div>
 </body>

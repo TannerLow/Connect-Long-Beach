@@ -23,6 +23,7 @@ import { Likes } from './api-objects/Likes';
 import { ProfileData } from './api-objects/ProfileData';
 import { PathURL } from './api-objects/PathURL';
 import { ProfileUpdateData } from './api-objects/ProfileUpdateData';
+import { Name } from './api-objects/Name';
 
 const URL = 'api/';
 
@@ -67,6 +68,14 @@ export class DatabaseService {
         );
     }
 
+    getProfilePicture(user_id: number): Observable<Name> {
+        return this.http.get<Name>(URL + "getProfilePic/" + user_id)
+            .pipe(
+            tap(_ => console.log('profile picture retrieved for user with id: ' + user_id)),
+            catchError(this.handleError<Name>('getProfilePic'))
+        );
+    }
+
     isEmailInUse(email: string): Observable<EmailCheckResponse> {
         return this.http.get<EmailCheckResponse>(URL + "emailCheck/" + email)
             .pipe(
@@ -75,11 +84,17 @@ export class DatabaseService {
         );
     }
 
-    createPost(user_id: number, message: string): Observable<PostResponse> {
+    createPost(user_id: number, message: string, attachment?: string): Observable<PostResponse> {
         let post: PostInfo = {
             userID: user_id,
-            message: message
+            message: message,
+            attachment: "null"
         } 
+
+        if(attachment !== undefined) {
+            post.attachment = attachment;
+        }
+
         return this.http.post<PostResponse>(URL + "post", post)
             .pipe(
                 tap(_ => console.log('Posted with user id: ' + user_id)),
@@ -137,7 +152,7 @@ export class DatabaseService {
 
     storeImage(imageData: string, path?: string): Observable<StoreImageResponse> {
         if(path === undefined || path.substr(0,1) === "/") {
-            path = "null"
+            path = "null";
         }
 
         let imageRequest: StoreImageRequest = {
@@ -145,6 +160,7 @@ export class DatabaseService {
             path: path
         }
 
+        console.log(path);
         return this.http.post<StoreImageResponse>(URL + "storeImage", imageRequest)
             .pipe(
                 tap(_ => console.log('Request to store image')),
@@ -177,11 +193,11 @@ export class DatabaseService {
         );
     }
 
-    getLikes(post_id: number): Observable<Likes[]>{
-        return this.http.get<Likes[]>(URL + "getLikes/"+ post_id)
+    getLikes(post_id: number): Observable<Likes>{
+        return this.http.get<Likes>(URL + "getLikes/"+ post_id)
         .pipe(
           tap(_ => console.log("Getting amount of likes for post with id: " + post_id)),
-          catchError(this.handleError<Likes[]>("getLikes" + post_id))  
+          catchError(this.handleError<Likes>("getLikes" + post_id))  
         );
     }
 
@@ -214,6 +230,22 @@ export class DatabaseService {
         .pipe(
           tap(_ => console.log("Retrieving courses")),
           catchError(this.handleError<string[]>("getCourses"))  
+        );
+    }
+
+    getName(user_id: number): Observable<Name> {
+        return this.http.get<Name>(URL + "getName/" + user_id)
+        .pipe(
+          tap(_ => console.log("Retrieving name of user: " + user_id)),
+          catchError(this.handleError<Name>("getName"))  
+        );
+    }
+
+    sendCode(email: string, code: string): Observable<Response> {
+        return this.http.get<Response>(URL + "sendCode/" + email + '/' + code)
+        .pipe(
+          tap(_ => console.log("Sending email " + email + " code " + code)),
+          catchError(this.handleError<Response>("sendCode"))  
         );
     }
 

@@ -232,9 +232,30 @@ textarea.mat-input-element{
   margin-left: 6%;
   z-index: 5;
 }
+
 .mat-card-content.mat-card-content.insidePost {
   margin: 2%;
 }
 .mat-card-title:not(:first-child), .mat-card-subtitle:not(:first-child) {
   margin: -1% 2% 2% 2%;
+}
+
+.scale-down-img {
+    max-width: 90%;
+    object-fit: contain;
+}
+
+.post-template{
+    min-width: 150px;
+    max-width: 500px;
+    display: grid;
+    margin-left: 7.5%;
+}
+
+.user-postbox{
+    margin-top: 5%;
+}
+.user-postbox p{
+    margin-left: 9%;
+    margin-bottom: 2%;
 }

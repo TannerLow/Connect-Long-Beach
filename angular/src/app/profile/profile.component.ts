@@ -6,6 +6,7 @@ import { DatabaseService } from '../database.service';
 import { LogInComponent } from '../log-in/log-in.component';
 import { ImageResponse } from '../api-objects/ImageResponse';
 import { StoreImageResponse } from '../api-objects/StoreImageResponse';
+import { Post } from '../api-objects/Post';
 //Data used for the Dialog data.. might want to export this interface to save space
 export interface DialogData {
   firstName: string;
@@ -40,6 +41,11 @@ export class ProfileComponent implements  OnInit{
   pa = "/static/assets/anonymous.png"
   paFile = "";
 
+  recentPosts: Post[] = [];
+  postsLoaded: boolean = false;
+  pictures = new Map();
+  names = new Map();
+  profilePics = new Map();
   
   //biography variables
   biography: any = "";
@@ -81,10 +87,43 @@ export class ProfileComponent implements  OnInit{
                     });
                 }
             });
+            this.loadPosts();
         }
         else{
             console.error("Error retrieving profile data. See ngOnInit() in ProfileComponent.");
         }
+    }
+
+    loadPosts(): void {
+        this.databaseService.getPosts(25, LogInComponent.userID).subscribe((data: Post[]) => {
+            console.log(data);
+            for(let post of data) {
+                this.recentPosts.push(post);
+                if (post.attachment !== 'null' && !this.pictures.has(post.attachment)) {
+                    this.databaseService.getImage(post.attachment).subscribe(data => {
+                        if(data.retrieved) {
+                            this.pictures.set(post.attachment, data.image);
+                        }
+                    });
+                }
+                if(!this.names.has(post.author)){
+                    this.databaseService.getName(~~post.author).subscribe(data => {
+                        this.names.set(post.author, data.name);
+                    });
+                }
+                if(!this.profilePics.has(post.author)) {
+                    this.databaseService.getProfilePicture(~~post.author).subscribe(data => {
+                        this.databaseService.getImage(data.name).subscribe(data => {
+                            if(data.retrieved){
+                                this.profilePics.set(post.author, data.image);
+                            }
+                        });
+                    });
+                }
+            }
+            console.log(this.recentPosts);
+            this.postsLoaded = true;
+        });
     }
 
   openDialog(): void {
@@ -159,10 +198,12 @@ export class ProfileComponent implements  OnInit{
 
  //edit button
   allowEdit(){
+      console.log("allowEdit");
     this.signalContent = false;
   }
 
   allowSave(){
+    console.log("allowSave");
     this.signalContent = true;
     console.log(this.biography);
     this.databaseService.createAbout(LogInComponent.userID, this.biography).subscribe();

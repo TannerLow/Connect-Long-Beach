@@ -1,0 +1,11 @@
+<div>
+    <form class="centered">
+        <mat-form-field appearance="fill">
+            <mat-label class="centered">Email Verification</mat-label>
+            <input matInput #message maxlength="256" placeholder="Enter Verification Code" [(ngModel)]="code">
+        </mat-form-field>
+    </form>
+</div>
+<div>
+    <button class="centered" mat-button mat-dialog-close [disabled]="code !== correct">Press me</button>
+</div>
