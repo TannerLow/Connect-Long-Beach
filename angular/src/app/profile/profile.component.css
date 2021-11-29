@@ -79,6 +79,29 @@ nav{
   filter: invert(63%) sepia(62%) saturate(517%) hue-rotate(4deg) brightness(200%) contrast(83%);   
 }
 
+.container{
+    display: flex;
+    justify-content: space-between;
+    padding: 13px 5%;
+    background-color: #efefef;
+}
+
+.mainPicture{
+  margin: 5%;
+  max-height: 48%;
+  max-width: 12%;
+  border-radius: 50%;
+}
+.button-upper {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 12%;
+  height: 8%;
+  border-radius: 8%;
+  margin-right: 2%;
+  margin-top: 1.5%;
+}
 .adjust-info{
   display: flex;
   justify-content: space-between;
@@ -108,34 +131,32 @@ nav{
   position: inherit;
 }
 
-.button-upper{
-  position:absolute;
-  top: 0;
-  right: 0;
-  margin: 20px;
-}
-
 .button-bio{
-  border-radius: 50%;
-  margin-left: 5%;
-  height: 2%;
+  border-radius: -28%;
+  margin-left: 7%;
+  width: 8%;
+  height: 11%;
 }
 
 .card-container-top{
-  height: 50px;
-  margin: 6% 2% 2%;
+  height: auto;
+  width: 100%;
+  margin: 0% 0% 10%;
+  text-align: center;
 }
 
 .card-container-middle{
-  color: black;
-  right: 5%;
-  height: 180px;
+  margin: 0% 0% 10%;
+  height: 100%;
+  width: 100%;
+  text-align: center;
 }
 
 .card-container-low{
-  color: black;
-  right: 5%;
-  height: 180px;
+  margin: 0% 0% 10%;
+  height: 100%;
+  width: 100%;
+  text-align: center;
 }
 /*extend the comments to full width*/
 .comments{
@@ -147,23 +168,19 @@ nav{
 /*  border-style: solid;*/
 /*}*/
 
-.mainPicture{
-  margin:20px;
-  height: 80%;
-  width: 30%;
-  border-radius: 50%;
-}
 
 .posting{
-  width: 70%;
+  width: 65.7%;
   height: auto;
-  margin: 20px auto auto;
+  margin-top: 0%;
+  margin-left: 23.2%;
 }
 
 .mat-card-image:first-child {
   border-radius: 50%;
   margin-top: 10px;
-
+  border: white;
+  border-style: solid;
 }
 
 textarea.mat-input-element{
@@ -177,10 +194,9 @@ textarea.mat-input-element{
 }
 
 .poster{
-  margin: 20px;
+  margin: 0% 0% 1%;
   height: 10%;
-  width: 10%;
-  border-radius: 50%;
+  width: 7%;
 }
 
 
@@ -200,4 +216,41 @@ textarea.mat-input-element{
 
 .mat-input-element:disabled {
   color: black;
+}
+.mat-grid-tile-content{
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 25%;
+    padding: 0;
+    margin: 0;
+}
+.top-bio-section {
+  width: 80%;
+  margin-left: 6%;
+}
+
+.scale-down-img {
+    max-width: 90%;
+    object-fit: contain;
+}
+
+.post-template{
+    min-width: 150px;
+    max-width: 500px;
+    display: grid;
+    margin-left: 7.5%;
+}
+
+.user-postbox{
+    margin-top: 5%;
+}
+.user-postbox p{
+    margin-left: 9%;
+    margin-bottom: 2%;
 }
