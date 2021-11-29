@@ -5,6 +5,7 @@
 }
 h2{
   text-align: center;
+  line-height: initial;
 }
 .container {
   position: relative;
