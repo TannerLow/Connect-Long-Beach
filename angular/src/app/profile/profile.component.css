@@ -230,6 +230,7 @@ textarea.mat-input-element{
 .top-bio-section {
   width: 80%;
   margin-left: 6%;
+  z-index: 5;
 }
 .mat-card-content.mat-card-content.insidePost {
   margin: 2%;
