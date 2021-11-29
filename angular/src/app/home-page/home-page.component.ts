@@ -27,6 +27,7 @@ export class HomePageComponent implements OnInit {
     names = new Map();
     profilePics = new Map();
     likes = new Map();
+    currentLikes = new Set();
 
     constructor(private databaseService: DatabaseService) { }
   
@@ -111,4 +112,31 @@ export class HomePageComponent implements OnInit {
         }
     }
 
+    likePost(postID: string): void {
+        let id = ~~postID;
+        this.databaseService.likeUnlikePost(LogInComponent.userID, id).subscribe(data => {
+            if(this.likes.has(postID)){
+                // if we previously liked the post or it shows its an unlike
+                if(this.currentLikes.has(postID) || !data.response){
+                    let likes = this.likes.get(postID);
+                    this.likes.set(postID, likes - 1);
+                    // if likes hits 0, remove from map
+                    if(likes === 1) {
+                        this.likes.delete(postID);
+                    }
+                    if(this.currentLikes.has(postID)){
+                        this.currentLikes.delete(postID);
+                    }
+                }
+                else{
+                    this.likes.set(postID, this.likes.get(postID) + 1);
+                    this.currentLikes.add(postID);
+                }
+            }
+            else{
+                this.likes.set(postID, 1);
+                this.currentLikes.add(postID);
+            }
+        });
+    }
 }

@@ -303,17 +303,17 @@ def like_unlike_post(mysql, user_id, post_id):
 
     cur = mysql.connection.cursor()
     
-    cur.execute(f"SELECT * FROM posts WHERE post_id={post_id};")
+    cur.execute(f"SELECT * FROM userLikes WHERE post_id={post_id} AND user_id={user_id};")
     data = cur.fetchone()
     
     #Checks to see if it exists or not within the database
     if data:
         #Since it exists, we are going to "Unlike" the post
-        cur.execute(f"DELETE FROM userLikes WHERE post_id = {post_id} AND user_id = {user_id};")
-        response["response"] = True
+        cur.execute(f"DELETE FROM userLikes WHERE post_id={post_id} AND user_id={user_id};")
+        response["response"] = False
     else:
         #Post hasn't been liked by user, so we create an entry into the database for it
-        cur.execute(f"INSERT INTO userLikes(user_id,post_id) VALUES ({user_id},{post_id});")
+        cur.execute(f"INSERT INTO userLikes(user_id,post_id) VALUES({user_id},{post_id});")
         response["response"] = True
 
     mysql.connection.commit()

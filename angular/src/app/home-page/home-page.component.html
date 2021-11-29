@@ -73,7 +73,7 @@
                         </div>
                     </form>
                     <mat-card-actions class = 'post-actions'>
-                        <button mat-button><span *ngIf="likes.has(recentPost.postID) && likes.get(recentPost.postID) > 0">{{likes.get(recentPost.postID)}}</span><img src = '/static/assets/like.png'>LIKE</button>
+                        <button mat-button (click)="likePost(recentPost.postID)"><span *ngIf="likes.has(recentPost.postID) && likes.get(recentPost.postID) > 0">{{likes.get(recentPost.postID)}}</span><img src = '/static/assets/like.png'>LIKE</button>
                         <button mat-button><img src = '/static/assets/comments.png'>COMMENT</button>
                         <button mat-button><img src = '/static/assets/share.png'>SHARE</button>
                     </mat-card-actions>
